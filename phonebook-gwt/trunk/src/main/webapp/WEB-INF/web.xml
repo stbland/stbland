@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+
+	<!-- Servlets -->
+	<servlet>
+		<servlet-name>phoneServlet</servlet-name>
+		<servlet-class>org.stbland.phonebookgwt.server.PhoneServiceImpl</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>personServlet</servlet-name>
+		<servlet-class>org.stbland.phonebookgwt.server.PersonServiceImpl</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>phoneServlet</servlet-name>
+		<url-pattern>/phonebook/phone</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>personServlet</servlet-name>
+		<url-pattern>/phonebook/person</url-pattern>
+	</servlet-mapping>
+
+	<!-- Default page to serve -->
+	<welcome-file-list>
+		<welcome-file>phonebook.html</welcome-file>
+	</welcome-file-list>
+
+</web-app>

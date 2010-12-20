@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='phonebook'>
+	<inherits name='com.google.gwt.user.User' />
+
+	<inherits name='com.google.gwt.user.theme.standard.Standard' />
+
+	<entry-point class='org.stbland.phonebookgwt.client.Phonebook' />
+
+	<source path='client' />
+	<source path='shared' />
+	<source path='bean' />
+
+	<!-- User Agent Firefox 3.x only for test -->
+	<set-property name="user.agent" value="gecko1_8"></set-property>
+	<!-- French only for test -->
+	<extend-property name="locale" values="fr_FR"></extend-property>
+</module>

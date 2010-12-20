@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+	<!-- Inherit our applications main module. -->
+	<inherits name='org.stbland.phonebookgwt.phonebook' />
+
+	<!-- Specify the path to any remote services. -->
+	<servlet path="/telephone/phone"
+		class="org.stbland.phonebookgwt.server.PhoneServiceImpl" />
+	<servlet path="/telephone/person"
+		class="org.stbland.phonebookgwt.server.PersonServiceImpl" />
+</module>
