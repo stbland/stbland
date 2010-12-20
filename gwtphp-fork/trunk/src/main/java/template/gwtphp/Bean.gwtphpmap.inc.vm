@@ -1,0 +1,36 @@
+<?php
+
+$gwtphpmap = array(
+#if(${fileInfo.getParentClass().equals("")})
+		
+#else
+	'extends' => '${fileInfo.getParentClass()}' ,
+#end 
+	'className' => '${fileInfo.getPackageName()}.${fileInfo.getClassName()}' ,
+	'mappedBy' => '${fileInfo.getPackageName()}.${fileInfo.getClassName()}' ,	
+	'typeCRC' => '${fileInfo.getTypeCRC()}'
+#if(${fileInfo.getList().size()}>1)
+,
+	
+'fields' => array (
+
+#set($i = 0)
+#foreach( $field in ${fileInfo.getList()})
+array (
+	'name' => '${field.name}',
+	'type' => ${field.getTypeInfo().getType()}
+	#if(${field.getTypeInfo().isSimple()}=="false")
+		,'typeCRC' => '${field.getTypeInfo().getCrc()}'
+	#end
+)
+#set($i = $i + 1)
+#if($i==${fileInfo.getList().size()})
+
+#else
+,
+#end
+#end
+					)
+#end						 
+);
+?>

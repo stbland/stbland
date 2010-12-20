@@ -1,0 +1,37 @@
+<?php
+#set($i = 0)
+$gwtphpmap = array (	
+	array( 
+		'className' => '${fileInfo.getPackageName()}.${fileInfo.getClassName()}' ,
+		'mappedBy' => '${fileInfo.getPackageName()}.${fileInfo.getClassName()}' ,
+		'methods' => array (
+#foreach( $method in ${fileInfo.getMethods()})
+		array(
+			'name' => '${method.getName()}',
+			'mappedName'=>'${method.getName()}',
+			'returnType' =>  ${method.getReturnType().getType()},
+#if(${method.getReturnType().isSimple()}=="false")
+		    'returnTypeCRC' => '${method.getReturnType().getCrc()}',
+#end
+			'params' => array( 
+			#set($j = 0)
+			#foreach($param	in ${method.getParams()})
+				array(
+				'type'=>${param.getTypeInfo().getType()}
+#if(${param.getTypeInfo().isSimple()}=="false")
+		,  'typeCRC' => '${param.getTypeInfo().getCrc()}'
+#end				
+				) 
+				#set($j = $j + 1)#if(${method.getParams().size()}!=$j),#end
+			#end
+							) ,
+			'throws' => array()
+			
+		) 
+#set($i = $i + 1)#if(${fileInfo.getMethods().size()}!=$i),#end						
+#end						
+	)	
+	)
+);
+
+?>

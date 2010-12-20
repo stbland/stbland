@@ -1,0 +1,23 @@
+<?php
+
+class ${fileInfo.className} implements GWTPHPSerializable  {
+	
+#foreach( $field in ${fileInfo.getList()})
+	private $${field.name};
+#end
+
+#foreach( $field in ${fileInfo.getList()})
+	public function set${field.getNameUpper()}($${field.name}) {
+		$this->${field.name} = $${field.name};
+	}
+#end
+
+#foreach($field in ${fileInfo.getList()})
+	public function get${field.getNameUpper()}() {
+		return $this->${field.getName()};
+	}
+#end	
+
+}
+
+?>

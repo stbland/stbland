@@ -1,0 +1,35 @@
+<?php
+#foreach( $fileInfoItem in ${fileInfos})
+#if(${fileInfoItem.getFileType().equals("bean")})
+require_once(dirname(__FILE__).'/${fileInfoItem.getPathForImport()}/${fileInfoItem.getClassName()}.class.php');	
+#end
+#end
+
+#foreach( $include in ${fileInfo.getIncludes()})
+$include
+#end
+
+class ${fileInfo.className} {
+	
+#foreach( $method in ${fileInfo.getMethods()})
+
+#if( ${method.getBody()}==" " )
+
+public function ${method.getName()}(#set($i = 0)
+#foreach($param in ${method.getParams()})
+$${param.getName()}#set($i = $i + 1)#if(${method.getParams().size()}!=$i),#end
+#end
+)
+{
+${method.getBody()}
+}
+
+#else
+${method.getBody()}
+#end
+
+#end
+ 
+}
+
+?>
