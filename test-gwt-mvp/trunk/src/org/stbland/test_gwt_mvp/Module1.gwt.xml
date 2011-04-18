@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 2.2.0//EN" "http://google-web-toolkit.googlecode.com/svn/tags/2.2.0/distro-source/core/src/gwt-module.dtd">
+<module rename-to="module1">
+	<inherits name="com.google.gwt.user.User" />
+	<inherits name='com.google.gwt.user.theme.standard.Standard' />
+
+	<!-- Other module inherits -->
+	<inherits name="com.google.gwt.activity.Activity" />
+	<inherits name="com.google.gwt.place.Place" />
+
+	<!-- Use ClientFactoryImpl by default -->
+	<replace-with
+		class="org.stbland.test_gwt_mvp.client.factory.ClientFactoryImpl">
+		<when-type-is class="org.stbland.test_gwt_mvp.client.factory.ClientFactory" />
+	</replace-with>
+
+	<!-- <replace-with class="org.stbland.test_gwt_mvp.client.mvp.AppPlaceHistoryMapper"> 
+		<when-type-assignable class="com.google.gwt.place.shared.PlaceHistoryMapper" 
+		/> </replace-with> -->
+
+	<source path="client" />
+	<entry-point class="org.stbland.test_gwt_mvp.client.EntryPoint1" />
+</module>
