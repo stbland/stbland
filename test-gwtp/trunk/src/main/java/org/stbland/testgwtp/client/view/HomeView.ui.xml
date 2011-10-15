@@ -1,0 +1,13 @@
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<g:HTMLPanel>
+		<h1>Home page</h1>
+		<p>
+			This is the home page for this demonstration. You'll always get this page
+			as the default when you come in this showcase.
+</p>
+		<p>
+			Also try using back of your browser after being in another page !
+</p>
+	</g:HTMLPanel>
+</ui:UiBinder>

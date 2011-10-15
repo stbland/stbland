@@ -1,0 +1,18 @@
+- gwt-voices : Sound Library for Google-Web-Toolkit (GWT)
+
+	- download JAR
+	- put JAR in this directory ${home}/.m2/repository/com/allen_sauer/gwt-voices/2.1.2/gwt-voices-2.1.2.jar
+	- create POM file in ${home}/.m2/repository/com/allen_sauer/gwt-voices/2.1.2/gwt-voices-2.1.2.pom like this :
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+			<groupId>com.allen_sauer</groupId>
+			<artifactId>gwt-voices</artifactId>
+			<version>2.1.2</version>
+	<packaging>jar</packaging>
+</project>
+
+- GwtMobile-UI
+	- download source code at https://nodeload.github.com/dennisjzh/GwtMobile-UI/zipball/master
+	- install JAR in Maven : > mvn install
