@@ -1,4 +1,4 @@
-package org.stbland.testgwtp.client.view;
+package org.stbland.testgwtp.client.view.mobile.gwtmobile;
 
 import org.stbland.testgwtp.client.presenter.ContactPresenterBase.MyView;
 

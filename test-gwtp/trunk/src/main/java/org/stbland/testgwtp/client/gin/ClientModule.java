@@ -6,11 +6,12 @@ import org.stbland.testgwtp.client.place.NameTokens;
 import org.stbland.testgwtp.client.presenter.ContactPresenter;
 import org.stbland.testgwtp.client.presenter.HomePresenter;
 import org.stbland.testgwtp.client.presenter.MainPagePresenter;
-import org.stbland.testgwtp.client.view.ContactViewGwtMobileUiImpl;
-import org.stbland.testgwtp.client.view.ContactViewUiBinderImpl;
-import org.stbland.testgwtp.client.view.HomeView;
-import org.stbland.testgwtp.client.view.MainPageView;
+import org.stbland.testgwtp.client.view.desktop.ContactViewUiBinderImpl;
+import org.stbland.testgwtp.client.view.desktop.HomeView;
+import org.stbland.testgwtp.client.view.desktop.MainPageView;
+import org.stbland.testgwtp.client.view.mobile.gwtmobile.ContactViewGwtMobileUiImpl;
 
+import com.googlecode.mgwt.ui.client.MGWT;
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 import com.gwtplatform.mvp.client.gin.DefaultModule;
 
@@ -29,7 +30,8 @@ public class ClientModule extends AbstractPresenterModule {
 				MainPageView.class, MainPagePresenter.MyProxy.class);
 		bindPresenter(HomePresenter.class, HomePresenter.MyView.class,
 				HomeView.class, HomePresenter.MyProxy.class);
-		if (false) {
+		
+		if (false && MGWT.getFeatureDetection().isDesktop()) {
 			bindPresenter(ContactPresenter.class,
 					ContactPresenter.MyView.class,
 					ContactViewUiBinderImpl.class,

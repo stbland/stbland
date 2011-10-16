@@ -1,4 +1,4 @@
-package org.stbland.testgwtp.client.view;
+package org.stbland.testgwtp.client.view.mobile.gwtmobile;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.gwtmobile.ui.client.page.Page;

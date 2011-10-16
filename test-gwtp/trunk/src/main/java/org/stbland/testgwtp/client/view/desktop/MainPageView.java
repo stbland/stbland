@@ -1,4 +1,4 @@
-package org.stbland.testgwtp.client.view;
+package org.stbland.testgwtp.client.view.desktop;
 
 import org.stbland.testgwtp.client.presenter.MainPagePresenter;
 import org.stbland.testgwtp.client.presenter.MainPagePresenter.MyView;
