@@ -165,13 +165,19 @@
 			<!-- <scope>system</scope> <systemPath>${basedir}/lib/gwt-voices-2.1.2.jar</systemPath> -->
 		</dependency>
 
-		<!-- GWT Mobile UI -->
+		<!-- gwtmobile-ui (mobile UI) -->
 		<dependency>
 			<groupId>com.gwtmobile</groupId>
 			<artifactId>gwtmobile-ui</artifactId>
 			<version>0.0.1</version>
 		</dependency>
 
+<!-- MGWT (mobile UI) -->
+       <dependency>
+                        <groupId>com.googlecode.mgwt</groupId>
+                        <artifactId>mgwt</artifactId>
+                        <version>1.0.0-SNAPSHOT</version>
+                </dependency>
 
 	</dependencies>
 

@@ -1,0 +1,61 @@
+<classpath>
+  <classpathentry kind="src" path="src/main/java" including="*.ui.xml|**/*.java"/>
+  <classpathentry kind="output" path="target/testgwtp-0.0.1-SNAPSHOT/WEB-INF/classes"/>
+  <classpathentry kind="var" path="M2_REPO/javax/inject/javax.inject/1/javax.inject-1.jar" sourcepath="M2_REPO/javax/inject/javax.inject/1/javax.inject-1-sources.jar">
+    <attributes>
+      <attribute value="jar:file:/home/stbland/.m2/repository/javax/inject/javax.inject/1/javax.inject-1-javadoc.jar!/" name="javadoc_location"/>
+    </attributes>
+  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/javax/servlet/servlet-api/2.5/servlet-api-2.5.jar" sourcepath="M2_REPO/javax/servlet/servlet-api/2.5/servlet-api-2.5-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/javax/validation/validation-api/1.0.0.GA/validation-api-1.0.0.GA.jar" sourcepath="M2_REPO/javax/validation/validation-api/1.0.0.GA/validation-api-1.0.0.GA-sources.jar">
+    <attributes>
+      <attribute value="jar:file:/home/stbland/.m2/repository/javax/validation/validation-api/1.0.0.GA/validation-api-1.0.0.GA-javadoc.jar!/" name="javadoc_location"/>
+    </attributes>
+  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/javax/validation/validation-api/1.0.0.GA/validation-api-1.0.0.GA-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/aopalliance/aopalliance/1.0/aopalliance-1.0.jar" sourcepath="M2_REPO/aopalliance/aopalliance/1.0/aopalliance-1.0-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/google/gwt/inject/gin/1.5.0/gin-1.5.0.jar" sourcepath="M2_REPO/com/google/gwt/inject/gin/1.5.0/gin-1.5.0-sources.jar">
+    <attributes>
+      <attribute value="jar:file:/home/stbland/.m2/repository/com/google/gwt/inject/gin/1.5.0/gin-1.5.0-javadoc.jar!/" name="javadoc_location"/>
+    </attributes>
+  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/com/google/inject/guice/3.0-rc3/guice-3.0-rc3.jar" sourcepath="M2_REPO/com/google/inject/guice/3.0-rc3/guice-3.0-rc3-sources.jar">
+    <attributes>
+      <attribute value="jar:file:/home/stbland/.m2/repository/com/google/inject/guice/3.0-rc3/guice-3.0-rc3-javadoc.jar!/" name="javadoc_location"/>
+    </attributes>
+  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/com/google/inject/extensions/guice-assistedinject/3.0-rc3/guice-assistedinject-3.0-rc3.jar" sourcepath="M2_REPO/com/google/inject/extensions/guice-assistedinject/3.0-rc3/guice-assistedinject-3.0-rc3-sources.jar">
+    <attributes>
+      <attribute value="jar:file:/home/stbland/.m2/repository/com/google/inject/extensions/guice-assistedinject/3.0-rc3/guice-assistedinject-3.0-rc3-javadoc.jar!/" name="javadoc_location"/>
+    </attributes>
+  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/com/google/inject/extensions/guice-servlet/3.0-rc3/guice-servlet-3.0-rc3.jar" sourcepath="M2_REPO/com/google/inject/extensions/guice-servlet/3.0-rc3/guice-servlet-3.0-rc3-sources.jar">
+    <attributes>
+      <attribute value="jar:file:/home/stbland/.m2/repository/com/google/inject/extensions/guice-servlet/3.0-rc3/guice-servlet-3.0-rc3-javadoc.jar!/" name="javadoc_location"/>
+    </attributes>
+  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/com/google/gwt/gwt-servlet/2.4.0/gwt-servlet-2.4.0.jar" sourcepath="M2_REPO/com/google/gwt/gwt-servlet/2.4.0/gwt-servlet-2.4.0-sources.jar">
+    <attributes>
+      <attribute value="jar:file:/home/stbland/.m2/repository/com/google/gwt/gwt-servlet/2.4.0/gwt-servlet-2.4.0-javadoc.jar!/" name="javadoc_location"/>
+    </attributes>
+  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/com/google/gwt/gwt-user/2.4.0/gwt-user-2.4.0.jar" sourcepath="M2_REPO/com/google/gwt/gwt-user/2.4.0/gwt-user-2.4.0-sources.jar">
+    <attributes>
+      <attribute value="jar:file:/home/stbland/.m2/repository/com/google/gwt/gwt-user/2.4.0/gwt-user-2.4.0-javadoc.jar!/" name="javadoc_location"/>
+    </attributes>
+  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/com/allen_sauer/gwt-voices/2.1.2/gwt-voices-2.1.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/gwtmobile/gwtmobile-ui/0.0.1/gwtmobile-ui-0.0.1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/gwtplatform/gwtp-clients-common/0.7-SNAPSHOT/gwtp-clients-common-0.7-SNAPSHOT.jar" sourcepath="M2_REPO/com/gwtplatform/gwtp-clients-common/0.7-SNAPSHOT/gwtp-clients-common-0.7-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/gwtplatform/gwtp-crawler/0.7-SNAPSHOT/gwtp-crawler-0.7-SNAPSHOT.jar" sourcepath="M2_REPO/com/gwtplatform/gwtp-crawler/0.7-SNAPSHOT/gwtp-crawler-0.7-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/gwtplatform/gwtp-dispatch-client/0.7-SNAPSHOT/gwtp-dispatch-client-0.7-SNAPSHOT.jar" sourcepath="M2_REPO/com/gwtplatform/gwtp-dispatch-client/0.7-SNAPSHOT/gwtp-dispatch-client-0.7-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/gwtplatform/gwtp-dispatch-server/0.7-SNAPSHOT/gwtp-dispatch-server-0.7-SNAPSHOT.jar" sourcepath="M2_REPO/com/gwtplatform/gwtp-dispatch-server/0.7-SNAPSHOT/gwtp-dispatch-server-0.7-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/gwtplatform/gwtp-dispatch-server-guice/0.7-SNAPSHOT/gwtp-dispatch-server-guice-0.7-SNAPSHOT.jar" sourcepath="M2_REPO/com/gwtplatform/gwtp-dispatch-server-guice/0.7-SNAPSHOT/gwtp-dispatch-server-guice-0.7-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/gwtplatform/gwtp-dispatch-shared/0.7-SNAPSHOT/gwtp-dispatch-shared-0.7-SNAPSHOT.jar" sourcepath="M2_REPO/com/gwtplatform/gwtp-dispatch-shared/0.7-SNAPSHOT/gwtp-dispatch-shared-0.7-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/gwtplatform/gwtp-mvp-client/0.7-SNAPSHOT/gwtp-mvp-client-0.7-SNAPSHOT.jar" sourcepath="M2_REPO/com/gwtplatform/gwtp-mvp-client/0.7-SNAPSHOT/gwtp-mvp-client-0.7-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/gwtplatform/gwtp-processors/0.7-SNAPSHOT/gwtp-processors-0.7-SNAPSHOT.jar" sourcepath="M2_REPO/com/gwtplatform/gwtp-processors/0.7-SNAPSHOT/gwtp-processors-0.7-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/gwtplatform/gwtp-tester/0.7-SNAPSHOT/gwtp-tester-0.7-SNAPSHOT.jar" sourcepath="M2_REPO/com/gwtplatform/gwtp-tester/0.7-SNAPSHOT/gwtp-tester-0.7-SNAPSHOT-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/junit/junit/4.7/junit-4.7.jar" sourcepath="M2_REPO/junit/junit/4.7/junit-4.7-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/googlecode/mgwt/mgwt/1.0.0-SNAPSHOT/mgwt-1.0.0-SNAPSHOT.jar"/>
+  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+</classpath>
