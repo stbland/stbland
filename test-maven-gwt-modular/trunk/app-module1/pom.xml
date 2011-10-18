@@ -1,0 +1,121 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.stbland.test.mavengwtmodular</groupId>
+	<artifactId>app-module1</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<parent>
+		<artifactId>app-parent</artifactId>
+		<groupId>org.stbland.test.mavengwtmodular</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-user</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-dev</artifactId>
+			<version>${gwt.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<directory>src/main/webapp</directory>
+			</resource>
+		</resources>
+
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.3.1</version>
+				<configuration>
+					<classesDirectory>${project.build.directory}</classesDirectory>
+					<includes>
+						<include>classes/*.html</include>
+						<include>classes/*.css</include>
+						<include>classes/*.ico</include>
+						<include>${project.artifactId}-${project.version}/**</include>
+					</includes>
+				</configuration>
+			</plugin>
+
+			<!-- All the fantastical settings that GWT needs -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>gwt-maven-plugin</artifactId>
+				<configuration>
+					<!-- <compileSourcesArtifacts> <compileSourcesArtifact>fspotcloud:rpc</compileSourcesArtifact> 
+						</compileSourcesArtifacts> -->
+					<logLevel>INFO</logLevel>
+					<compileTargets>
+						<value>fspotcloud.Module1</value>
+						<!-- <value>fspotcloud.FSpotCloud</value> <value>fspotcloud.dashboard</value> -->
+					</compileTargets>
+					<extraJvmArgs>-Xmx512m</extraJvmArgs>
+					<runTarget>http://localhost:8080/module1.html</runTarget>
+					<style>PRETTY</style>
+					<mode>htmlunit</mode>
+					<gwtVersion>${gwt.version}</gwtVersion>
+					<!-- <skipTests>false</skipTests> -->
+					<webXml>../app-war/src/main/webapp/WEB-INF/web.xml</webXml>
+					<!-- <includes>**/DefaultGwtTestSuite.java</includes> -->
+					<noserver>true</noserver>
+				</configuration>
+				<executions>
+					<execution>
+						<id>compile</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>compile</goal>
+							<goal>test</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Eclipse configuration -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<additionalBuildcommands>
+						<buildCommand>
+							<name>com.google.gwt.eclipse.core.gwtProjectValidator</name>
+						</buildCommand>
+						<buildCommand>
+							<name>net.sf.eclipsecs.core.CheckstyleBuilder</name>
+						</buildCommand>
+					</additionalBuildcommands>
+					<additionalProjectnatures>
+						<projectnature>com.google.gwt.eclipse.core.gwtNature</projectnature>
+						<projectnature>net.sf.eclipsecs.core.CheckstyleNature</projectnature>
+					</additionalProjectnatures>
+					<sourceIncludes>
+						<sourceInclude>*.ui.xml</sourceInclude>
+					</sourceIncludes>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
+</project>

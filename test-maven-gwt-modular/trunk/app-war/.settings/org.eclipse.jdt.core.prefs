@@ -1,0 +1,9 @@
+#Tue Oct 18 23:30:07 CEST 2011
+encoding//src/test/java=${project.encoding}
+org.eclipse.jdt.core.compiler.codegen.targetPlatform=1.6
+eclipse.preferences.version=1
+encoding//src/test/resources=${project.encoding}
+org.eclipse.jdt.core.compiler.source=1.6
+encoding//src/main/java=${project.encoding}
+encoding//src/main/resources=${project.encoding}
+org.eclipse.jdt.core.compiler.compliance=1.6
