@@ -2,7 +2,8 @@
   <wb-module deploy-name="app-war">
     <property name="context-root" value="app-war"/>
     <wb-resource deploy-path="/" source-path="src/main/webapp"/>
-    <property name="java-output-path" value="/target/classes"/>
+    <wb-resource deploy-path="/" source-path="src/main/webapp"/>
+    <property name="java-output-path" value="/target/app-war/WEB-INF/classes"/>
     <dependent-module archiveName="app-module1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/app-module1/app-module1">
       <dependency-type>uses</dependency-type>
     </dependent-module>

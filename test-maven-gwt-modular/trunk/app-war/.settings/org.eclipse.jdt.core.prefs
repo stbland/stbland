@@ -1,10 +1,9 @@
-#Wed Oct 19 15:48:33 CEST 2011
-encoding//src/main/java=${project.encoding}
-encoding//src/main/webapp=${project.encoding}
-org.eclipse.jdt.core.compiler.compliance=1.6
-encoding//src/main/resources=${project.encoding}
-encoding//src/test/resources=${project.encoding}
+#Thu Oct 20 01:00:31 CEST 2011
 encoding//src/test/java=${project.encoding}
 org.eclipse.jdt.core.compiler.codegen.targetPlatform=1.6
 eclipse.preferences.version=1
+encoding//src/test/resources=${project.encoding}
 org.eclipse.jdt.core.compiler.source=1.6
+encoding//src/main/webapp=${project.encoding}
+encoding//src/main/java=${project.encoding}
+org.eclipse.jdt.core.compiler.compliance=1.6

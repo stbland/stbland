@@ -4,6 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.stbland.test.mavengwtmodular</groupId>
 	<artifactId>app-war</artifactId>
+	<!-- <version>${app-war.version}</version> -->
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>app-war</name>
@@ -11,14 +12,14 @@
 	<parent>
 		<groupId>org.stbland.test.mavengwtmodular</groupId>
 		<artifactId>app-parent</artifactId>
+		<!-- <version>${app-parent.version}</version> -->
 		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../app-parent/pom.xml</relativePath>
 	</parent>
 
 	<properties>
 		<!-- Project properties -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
-
 	</properties>
 
 	<dependencies>
@@ -71,16 +72,8 @@
 					</compileSourcesArtifacts>
 					<compileTargets>
 						<value>org.stbland.test.mavengwtmodular.Module2</value>
-						<!-- <value>fspotcloud.Module1</value> -->
-						<!-- <value>fspotcloud.FSpotCloud</value> <value>fspotcloud.dashboard</value> -->
 					</compileTargets>
-					<!-- 
-					<modules>
-						<module>org.stbland.test.mavengwtmodular.Module2</module>
-					</modules>
-					-->
-					<runTarget>http://localhost:8080/module2.html</runTarget>
-					<!-- <includes>**/DefaultGwtTestSuite.java</includes> -->
+					<runTarget>index.html</runTarget>
 				</configuration>
 			</plugin>
 
@@ -90,9 +83,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-eclipse-plugin</artifactId>
-				<configuration>
-					<wtpversion>2.0</wtpversion>
-				</configuration>
 			</plugin>
 		</plugins>
 

@@ -5,6 +5,7 @@
 
 	<groupId>org.stbland.test.mavengwtmodular</groupId>
 	<artifactId>app-module1</artifactId>
+	<!-- <version>${app-module1.version}</version> -->
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>app-module1</name>
@@ -12,6 +13,8 @@
 	<parent>
 		<artifactId>app-parent</artifactId>
 		<groupId>org.stbland.test.mavengwtmodular</groupId>
+		<relativePath>../app-parent/pom.xml</relativePath>
+		<!-- <version>${app-parent.version}</version> -->
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
@@ -25,7 +28,7 @@
 		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-dev</artifactId>
-			<version>${gwt.version}</version>
+			<!-- <version>${gwt.version}</version> -->
 			<scope>test</scope>
 		</dependency>
 
@@ -36,12 +39,13 @@
 		<finalName>${project.artifactId}</finalName>
 
 		<plugins>
-				 <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-        </plugin>
-        
-		<!-- JAR plugin -->
+			<!-- Source plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+			</plugin>
+
+			<!-- JAR plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
@@ -51,39 +55,12 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>gwt-maven-plugin</artifactId>
-				<configuration>
-					<!-- <compileSourcesArtifacts> <compileSourcesArtifact>fspotcloud:rpc</compileSourcesArtifact> 
-						</compileSourcesArtifacts> -->
-					<compileTargets>
-						<!-- <value>fspotcloud.Module1</value> -->
-						<!-- <value>fspotcloud.FSpotCloud</value> <value>fspotcloud.dashboard</value> -->
-					</compileTargets>
-					<runTarget>http://localhost:8080/module1.html</runTarget>
-					<!-- <includes>**/DefaultGwtTestSuite.java</includes> -->
-				</configuration>
 			</plugin>
 
 			<!-- Eclipse configuration -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-eclipse-plugin</artifactId>
-				<configuration>
-					<additionalBuildcommands>
-						<buildCommand>
-							<name>com.google.gwt.eclipse.core.gwtProjectValidator</name>
-						</buildCommand>
-						<buildCommand>
-							<name>net.sf.eclipsecs.core.CheckstyleBuilder</name>
-						</buildCommand>
-					</additionalBuildcommands>
-					<additionalProjectnatures>
-						<projectnature>com.google.gwt.eclipse.core.gwtNature</projectnature>
-						<projectnature>net.sf.eclipsecs.core.CheckstyleNature</projectnature>
-					</additionalProjectnatures>
-					<sourceIncludes>
-						<sourceInclude>*.ui.xml</sourceInclude>
-					</sourceIncludes>
-				</configuration>
 			</plugin>
 
 		</plugins>

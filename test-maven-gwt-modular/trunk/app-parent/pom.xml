@@ -7,24 +7,27 @@
 	<packaging>pom</packaging>
 	<name>app-parent</name>
 
-	<modules>		
-		<module>../app-module1</module>
-		<module>../app-module2</module>		
-		<module>../app-war</module>
-	</modules>
-
 	<properties>
 		<!-- Project properties -->
 		<target.jdk>1.6</target.jdk>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		
+
+		<!-- <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory> -->
+		<!-- <webappDirectory>../app-war/target/webapp</webappDirectory> -->
+		<webappDirectory>../app-war/target/app-war</webappDirectory>
+		<webappWorkDirectory>../app-war/target/war/work</webappWorkDirectory>
+
+		<app-parent.version>0.0.1-SNAPSHOT</app-parent.version>
+
 		<module1.artifactId>app-module1</module1.artifactId>
 		<module1.name>module1</module1.name>
 		<app-module1.version>0.0.1-SNAPSHOT</app-module1.version>
-		
+
 		<module2.artifactId>app-module2</module2.artifactId>
 		<module2.name>module2</module2.name>
-		<app-module2.version>0.0.1-SNAPSHOT</app-module2.version>		
+		<app-module2.version>0.0.1-SNAPSHOT</app-module2.version>
+
+		<app-war.version>0.0.1-SNAPSHOT</app-war.version>
 
 		<!-- Dependencies versions -->
 		<gwt.version>2.4.0</gwt.version>
@@ -35,12 +38,17 @@
 		<maven-eclipse-plugin.version>2.8</maven-eclipse-plugin.version>
 		<maven-war-plugin.version>2.1.1</maven-war-plugin.version>
 		<gwt-maven-plugin.version>2.4.0</gwt-maven-plugin.version>
-		<!-- 
-		<gwt-maven-plugin.version>2.3.0-1</gwt-maven-plugin.version>
-		 -->
+		<!-- <gwt-maven-plugin.version>2.3.0-1</gwt-maven-plugin.version> -->
 		<maven-jar-plugin.version>2.3.1</maven-jar-plugin.version>
 
 	</properties>
+
+	<modules>
+		<module>../app-module1</module>
+		<module>../app-module2</module>
+		<module>../app-war</module>
+	</modules>
+
 
 	<dependencyManagement>
 
@@ -94,18 +102,16 @@
 	</dependencyManagement>
 
 	<build>
-	
-	<resources>
+
+		<!-- Generate compiled stuff in the folder used for developing mode -->
+		<outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
+
+		<resources>
 			<!-- Java resources -->
 			<resource>
 				<directory>src/main/resources</directory>
 			</resource>
-			<!-- WEB resources -->			
-			<resource>
-				<directory>src/main/webapp</directory>
-					<targetPath>${project.artifactId}</targetPath>				
-			</resource>
-			<!-- GWT resources -->			
+			<!-- GWT resources -->
 			<resource>
 				<directory>src/main/java</directory>
 				<includes>
@@ -113,10 +119,10 @@
 					<include>**/shared/**/*.java</include>
 					<include>**/*.gwt.xml</include>
 				</includes>
-			</resource>	
+			</resource>
 
-			</resources>
-	
+		</resources>
+
 
 		<pluginManagement>
 
@@ -144,44 +150,95 @@
 							<version>${gwt.version}</version>
 						</dependency>
 					</dependencies>
-					
-<configuration>
-					<logLevel>INFO</logLevel>
-					<extraJvmArgs>-Xmx512m</extraJvmArgs>
-					<style>PRETTY</style>
-					<mode>htmlunit</mode>
-					<gwtVersion>${gwt.version}</gwtVersion>
-					<!-- <skipTests>false</skipTests> -->
-					<webXml>../app-war/src/main/webapp/WEB-INF/web.xml</webXml>
-					<noserver>true</noserver>
-				</configuration>
-				<executions>
-					<!-- <execution> <id>resources</id> <goals> <goal>resources</goal> </goals> 
-						</execution> -->
-					<execution>
-						<id>compile</id>
-						<phase>prepare-package</phase>
-						<goals>
-							<goal>resources</goal>
-							<goal>compile</goal>
-							<goal>test</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>clean</id>
-						<goals>
-							<goal>clean</goal>
-						</goals>
-						<phase>clean</phase>
-					</execution>
-				</executions>
-									
+
+					<configuration>
+						<logLevel>INFO</logLevel>
+						<extraJvmArgs>-Xmx512m</extraJvmArgs>
+						<style>PRETTY</style>
+						<mode>htmlunit</mode>
+						<gwtVersion>${gwt.version}</gwtVersion>
+						<!-- <skipTests>false</skipTests> -->
+						<hostedWebapp>${webappDirectory}</hostedWebapp>
+						<webXml>../app-war/src/main/webapp/WEB-INF/web.xml</webXml>
+						<!-- <noserver>true</noserver> -->
+						<inplace>false</inplace>
+					</configuration>
+					<executions>
+						<!-- <execution> <id>resources</id> <goals> <goal>resources</goal> 
+							</goals> </execution> -->
+						<execution>
+							<id>compile</id>
+							<phase>prepare-package</phase>
+							<goals>
+								<goal>resources</goal>
+								<goal>compile</goal>
+								<goal>test</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>clean</id>
+							<goals>
+								<goal>clean</goal>
+							</goals>
+							<phase>clean</phase>
+						</execution>
+					</executions>
+
 				</plugin>
 
+				<!-- WAR plugin -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-war-plugin</artifactId>
 					<version>${maven-war-plugin.version}</version>
+
+					<configuration>
+						<webappDirectory>${webappDirectory}</webappDirectory>
+						<webResources>
+							<resource>
+								<!-- WEB resources -->
+								<directory>src/main/webapp</directory>
+							</resource>
+						</webResources>
+					</configuration>
+
+					<executions>
+						<execution>
+							<id>exploded-when-compile</id>
+							<phase>compile</phase>
+							<goals>
+								<goal>exploded</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
+				<!-- Ant plugin -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>1.6</version>
+					<executions>
+						<execution>
+							<id>include-GWT-module-when-package</id>
+							<phase>package</phase>
+							<configuration>
+								<tasks>
+									<echo>Copie du module GWT {project.artifactId} vers
+										${webappDirectory}</echo>
+
+									<copy todir="${webappDirectory}">
+										<fileset dir="target/${project.artifactId}">
+											<include name="**/*" />
+										</fileset>
+									</copy>
+								</tasks>
+							</configuration>
+							<goals>
+								<goal>run</goal>
+							</goals>
+						</execution>
+					</executions>
 				</plugin>
 
 				<!-- Standard Maven plugins -->
@@ -196,6 +253,7 @@
 					</configuration>
 				</plugin>
 
+				<!-- Resources plugin -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-resources-plugin</artifactId>
@@ -213,25 +271,47 @@
 					<configuration>
 						<downloadSources>true</downloadSources>
 						<downloadJavadocs>true</downloadJavadocs>
+
+						<wtpversion>2.0</wtpversion>
+
+						<additionalBuildcommands>
+							<buildCommand>
+								<name>com.google.gwt.eclipse.core.gwtProjectValidator</name>
+							</buildCommand>
+							<buildCommand>
+								<name>net.sf.eclipsecs.core.CheckstyleBuilder</name>
+							</buildCommand>
+						</additionalBuildcommands>
+
+						<additionalProjectnatures>
+							<projectnature>com.google.gwt.eclipse.core.gwtNature</projectnature>
+							<projectnature>net.sf.eclipsecs.core.CheckstyleNature</projectnature>
+						</additionalProjectnatures>
+
+						<sourceIncludes>
+							<sourceInclude>*.ui.xml</sourceInclude>
+						</sourceIncludes>
+
 					</configuration>
 				</plugin>
-				
-				 <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-        <version>2.1.2</version>
-        <executions>
-          <execution>
-            <id>attach-sources</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>jar-no-fork</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-				
-				
+
+				<!-- Source plugin -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>2.1.2</version>
+					<executions>
+						<execution>
+							<id>attach-sources</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>jar-no-fork</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
+
 			</plugins>
 
 		</pluginManagement>
