@@ -5,9 +5,11 @@
 	<artifactId>app-parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
+	<name>app-parent</name>
 
-	<modules>
+	<modules>		
 		<module>../app-module1</module>
+		<module>../app-module2</module>		
 		<module>../app-war</module>
 	</modules>
 
@@ -15,6 +17,14 @@
 		<!-- Project properties -->
 		<target.jdk>1.6</target.jdk>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		
+		<module1.artifactId>app-module1</module1.artifactId>
+		<module1.name>module1</module1.name>
+		<app-module1.version>0.0.1-SNAPSHOT</app-module1.version>
+		
+		<module2.artifactId>app-module2</module2.artifactId>
+		<module2.name>module2</module2.name>
+		<app-module2.version>0.0.1-SNAPSHOT</app-module2.version>		
 
 		<!-- Dependencies versions -->
 		<gwt.version>2.4.0</gwt.version>
@@ -24,10 +34,13 @@
 		<maven-resources-plugin.version>2.5</maven-resources-plugin.version>
 		<maven-eclipse-plugin.version>2.8</maven-eclipse-plugin.version>
 		<maven-war-plugin.version>2.1.1</maven-war-plugin.version>
+		<gwt-maven-plugin.version>2.4.0</gwt-maven-plugin.version>
+		<!-- 
 		<gwt-maven-plugin.version>2.3.0-1</gwt-maven-plugin.version>
+		 -->
+		<maven-jar-plugin.version>2.3.1</maven-jar-plugin.version>
 
 	</properties>
-
 
 	<dependencyManagement>
 
@@ -46,7 +59,7 @@
 				<version>${gwt.version}</version>
 				<scope>provided</scope>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>com.google.gwt</groupId>
 				<artifactId>gwt-dev</artifactId>
@@ -81,6 +94,29 @@
 	</dependencyManagement>
 
 	<build>
+	
+	<resources>
+			<!-- Java resources -->
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+			<!-- WEB resources -->			
+			<resource>
+				<directory>src/main/webapp</directory>
+					<targetPath>${project.artifactId}</targetPath>				
+			</resource>
+			<!-- GWT resources -->			
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/client/**/*.java</include>
+					<include>**/shared/**/*.java</include>
+					<include>**/*.gwt.xml</include>
+				</includes>
+			</resource>	
+
+			</resources>
+	
 
 		<pluginManagement>
 
@@ -108,6 +144,38 @@
 							<version>${gwt.version}</version>
 						</dependency>
 					</dependencies>
+					
+<configuration>
+					<logLevel>INFO</logLevel>
+					<extraJvmArgs>-Xmx512m</extraJvmArgs>
+					<style>PRETTY</style>
+					<mode>htmlunit</mode>
+					<gwtVersion>${gwt.version}</gwtVersion>
+					<!-- <skipTests>false</skipTests> -->
+					<webXml>../app-war/src/main/webapp/WEB-INF/web.xml</webXml>
+					<noserver>true</noserver>
+				</configuration>
+				<executions>
+					<!-- <execution> <id>resources</id> <goals> <goal>resources</goal> </goals> 
+						</execution> -->
+					<execution>
+						<id>compile</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>resources</goal>
+							<goal>compile</goal>
+							<goal>test</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>clean</id>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+						<phase>clean</phase>
+					</execution>
+				</executions>
+									
 				</plugin>
 
 				<plugin>
@@ -147,13 +215,26 @@
 						<downloadJavadocs>true</downloadJavadocs>
 					</configuration>
 				</plugin>
-
-
+				
+				 <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>2.1.2</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+				
+				
 			</plugins>
 
 		</pluginManagement>
 	</build>
-
-
 
 </project>

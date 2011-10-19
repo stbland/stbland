@@ -4,10 +4,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.stbland.test.mavengwtmodular</groupId>
-	<artifactId>app-module1</artifactId>
+	<artifactId>app-module2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>app-module1</name>
+	<name>app-module2</name>
 
 	<parent>
 		<artifactId>app-parent</artifactId>
@@ -29,19 +29,25 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.stbland.test.mavengwtmodular</groupId>
+			<artifactId>app-module1</artifactId>
+			<version>${app-module1.version}</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
 
 		<finalName>${project.artifactId}</finalName>
-
 		<plugins>
+		
 				 <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
         </plugin>
-        
-		<!-- JAR plugin -->
+
+			<!-- JAR plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
@@ -51,17 +57,35 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>gwt-maven-plugin</artifactId>
+				
+				<executions>
+          <execution>
+            <goals>
+              <goal>compile</goal>
+              <goal>test</goal>
+            </goals>
+          </execution>
+        </executions>
+        
 				<configuration>
+				
+        <compileSourcesArtifacts>
+          <artifact>org.stbland.test.mavengwtmodular:app-module1</artifact>
+        </compileSourcesArtifacts>
+        
 					<!-- <compileSourcesArtifacts> <compileSourcesArtifact>fspotcloud:rpc</compileSourcesArtifact> 
 						</compileSourcesArtifacts> -->
+						<!-- 
 					<compileTargets>
-						<!-- <value>fspotcloud.Module1</value> -->
-						<!-- <value>fspotcloud.FSpotCloud</value> <value>fspotcloud.dashboard</value> -->
+						<value>fspotcloud.Module1</value>
+						<value>fspotcloud.FSpotCloud</value> <value>fspotcloud.dashboard</value>
 					</compileTargets>
-					<runTarget>http://localhost:8080/module1.html</runTarget>
+					 -->
+					<runTarget>http://localhost:8080/module2.html</runTarget>
 					<!-- <includes>**/DefaultGwtTestSuite.java</includes> -->
 				</configuration>
 			</plugin>
+
 
 			<!-- Eclipse configuration -->
 			<plugin>

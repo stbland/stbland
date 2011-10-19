@@ -1,7 +1,9 @@
 <projectDescription>
-  <name>app-module1</name>
+  <name>app-module2</name>
   <comment>NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
-  <projects/>
+  <projects>
+    <project>app-module1</project>
+  </projects>
   <buildSpec>
     <buildCommand>
       <name>org.eclipse.jdt.core.javabuilder</name>
@@ -14,6 +16,15 @@
     </buildCommand>
     <buildCommand>
       <name>org.maven.ide.eclipse.maven2Builder</name>
+    </buildCommand>
+    <buildCommand>
+      <name>org.eclipse.ui.externaltools.ExternalToolBuilder</name>
+      <arguments>
+        <dictionary>
+          <key>LaunchConfigHandle</key>
+          <value>&lt;project&gt;/.externalToolBuilders/Maven_Ant_Builder.launch</value>
+        </dictionary>
+      </arguments>
     </buildCommand>
   </buildSpec>
   <natures>

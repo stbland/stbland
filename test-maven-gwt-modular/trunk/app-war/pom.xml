@@ -6,10 +6,11 @@
 	<artifactId>app-war</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
+	<name>app-war</name>
 
 	<parent>
-		<artifactId>app-parent</artifactId>
 		<groupId>org.stbland.test.mavengwtmodular</groupId>
+		<artifactId>app-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
@@ -17,9 +18,7 @@
 		<!-- Project properties -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
-		
-		<module1.artifactId>app-module1</module1.artifactId>
-		<module1.name>module1</module1.name>
+
 	</properties>
 
 	<dependencies>
@@ -27,96 +26,64 @@
 		<dependency>
 			<groupId>org.stbland.test.mavengwtmodular</groupId>
 			<artifactId>app-module1</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${app-module1.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.stbland.test.mavengwtmodular</groupId>
+			<artifactId>app-module2</artifactId>
+			<version>${app-module2.version}</version>
 		</dependency>
 
 	</dependencies>
 
 	<build>
 
+		<finalName>${project.artifactId}</finalName>
+
+		<resources>
+
+			<!-- WEB resources -->
+			<resource>
+				<directory>src/main/webapp</directory>
+				<excludes>
+					<exclude>**</exclude>
+				</excludes>
+			</resource>
+
+		</resources>
+
 		<plugins>
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-
-				<executions>
-					<execution>
-						<id>unpack</id>
-						<phase>compile</phase> <!-- strange hack, to have it done earlier in the lifecycle -->
-						<goals>
-							<goal>unpack</goal>
-						</goals>
-						<configuration>
-							<artifactItems>
-								<artifactItem>
-									<groupId>org.stbland.test.mavengwtmodular</groupId>
-									<artifactId>app-module1</artifactId>
-								</artifactItem>
-								<!-- <artifactItem> <groupId>fspotcloud</groupId> <artifactId>client</artifactId> 
-									</artifactItem> <artifactItem> <groupId>com.google.appengine.testing.cloudcover</groupId> 
-									<artifactId>cloudcover-ui</artifactId> <classifier>web</classifier> <type>zip</type> 
-									<overWrite>true</overWrite> </artifactItem> -->
-							</artifactItems>
-						</configuration>
-					</execution>
-				</executions>
+				<artifactId>maven-war-plugin</artifactId>
 			</plugin>
 
+			<!-- GWT plugin -->
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.1.1</version>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>gwt-maven-plugin</artifactId>
 				<configuration>
-					<webResources>
-						<resource>
-							<directory>${project.build.directory}/dependency/classes</directory>
-							<includes>
-								<include>**</include>
-							</includes>
-						</resource>
-						<resource>
-							<directory>${project.build.directory}/dependency/${module1.artifactId}-${project.version}/</directory>
-							<includes>
-								<include>**</include>
-							</includes>
-							<excludes>
-								<exclude>classes/**</exclude>
-							</excludes>
-						</resource>
-						<resource>
-							<directory>${project.build.directory}/dependency/</directory>
-							<includes>
-								<!-- 
-								<include>cloudcover.css</include>
-								<include>cloudcover.html</include>								
-								<include>com.google.appengine.testing.cloudcover.CloudCover/**</include>
-								 -->
-								<include>META-INF</include>
-								<include>WEB-INF</include>
-							</includes>
-						</resource>
-					</webResources>
+					<compileSourcesArtifacts>
+						<artifact>org.stbland.test.mavengwtmodular:app-module1</artifact>
+						<artifact>org.stbland.test.mavengwtmodular:app-module2</artifact>
+					</compileSourcesArtifacts>
+					<compileTargets>
+						<value>org.stbland.test.mavengwtmodular.Module2</value>
+						<!-- <value>fspotcloud.Module1</value> -->
+						<!-- <value>fspotcloud.FSpotCloud</value> <value>fspotcloud.dashboard</value> -->
+					</compileTargets>
+					<!-- 
+					<modules>
+						<module>org.stbland.test.mavengwtmodular.Module2</module>
+					</modules>
+					-->
+					<runTarget>http://localhost:8080/module2.html</runTarget>
+					<!-- <includes>**/DefaultGwtTestSuite.java</includes> -->
 				</configuration>
 			</plugin>
 
-
-			<!-- Copy static web files before executing gwt:run -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<executions>
-					<execution>
-						<phase>compile</phase>
-						<goals>
-							<goal>exploded</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<webappDirectory>${webappDirectory}</webappDirectory>
-				</configuration>
-			</plugin>
 
 
 			<!-- Eclipse configuration -->
