@@ -13,13 +13,13 @@
 	<parent>
 		<artifactId>app-parent</artifactId>
 		<groupId>org.stbland.test.mavengwtmodular</groupId>
-		<!-- <version>${app-parent.version}</version> -->
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../app-parent/pom.xml</relativePath>
 	</parent>
 
 	<dependencies>
 
+		<!-- GWT dependencies -->
 		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-user</artifactId>
@@ -31,6 +31,13 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- MGWT dependency -->
+		<dependency>
+			<groupId>com.googlecode.mgwt</groupId>
+			<artifactId>mgwt</artifactId>
+		</dependency>
+
+		<!-- Module 1 dependency -->
 		<dependency>
 			<groupId>org.stbland.test.mavengwtmodular</groupId>
 			<artifactId>app-module1</artifactId>

@@ -3,9 +3,11 @@
   <classpathentry kind="src" path="src/test/resources" output="target/test-classes" excluding="**/*.java"/>
   <classpathentry kind="src" path="src/main/java" including="*.ui.xml|**/*.java"/>
   <classpathentry kind="src" path="src/main/webapp" excluding="**|**/*.java"/>
-  <classpathentry kind="output" path="target/app-war/WEB-INF/classes"/>
+  <classpathentry kind="src" path="/home/stbland/prog/java/monCode/tests/gwt/test-maven-gwt-modular/app-module2/src/main/webapp" output="target/app" excluding="**/*.java"/>
+  <classpathentry kind="output" path="target/app/WEB-INF/classes"/>
   <classpathentry kind="src" path="/app-module1"/>
   <classpathentry kind="src" path="/app-module2"/>
+  <classpathentry kind="var" path="M2_REPO/com/googlecode/mgwt/mgwt/1.0.0-SNAPSHOT/mgwt-1.0.0-SNAPSHOT.jar"/>
   <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
   <classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>
 </classpath>

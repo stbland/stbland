@@ -50,7 +50,8 @@
 		<junit.version>4.7</junit.version>
 		<validation-api.version>1.0.0.GA</validation-api.version>
 		<gwt.version>2.4.0</gwt.version>
-
+		<!-- MGWT -->
+		<mgwt.version>1.0.0-SNAPSHOT</mgwt.version>
 
 		<!-- ******************** -->
 		<!-- * Plugins versions * -->
@@ -139,6 +140,13 @@
 				<scope>test</scope>
 			</dependency>
 
+			<!-- MGWT -->
+			<dependency>
+				<groupId>com.googlecode.mgwt</groupId>
+				<artifactId>mgwt</artifactId>
+				<version>${mgwt.version}</version>
+			</dependency>
+
 		</dependencies>
 
 	</dependencyManagement>
@@ -160,6 +168,7 @@
 					<include>**/client/**/*.java</include>
 					<include>**/shared/**/*.java</include>
 					<include>**/*.gwt.xml</include>
+					<include>**/*.ui.xml</include>
 				</includes>
 			</resource>
 
