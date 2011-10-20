@@ -12,6 +12,7 @@
 		<!-- * Project properties * -->
 		<!-- ********************** -->
 
+		<war.name>app-war</war.name>
 		<webappDirectory>../app-war/target/app-war</webappDirectory>
 
 		<!-- Dossier de compilation d'un module GWT (ne pas modifier) -->
@@ -50,6 +51,8 @@
 		<!-- * Plugins versions * -->
 		<!-- ******************** -->
 
+		<!-- JavaDoc plugin -->
+		<maven-javadoc-plugin.version>2.7</maven-javadoc-plugin.version>
 		<!-- Compiler plugin -->
 		<maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
 		<!-- Resources plugin -->
@@ -155,10 +158,16 @@
 
 		</resources>
 
-
 		<pluginManagement>
 
 			<plugins>
+
+				<!-- JavaDoc plugin -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>${maven-javadoc-plugin.version}</version>
+				</plugin>
 
 				<!-- GWT Plugin -->
 				<plugin>
@@ -213,6 +222,16 @@
 						</execution>
 					</executions>
 
+				</plugin>
+
+				<!-- Tomcat plugin (exécution de la webapp via le serveur Tomcat embarqué 
+					de Maven) -->
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>tomcat-maven-plugin</artifactId>
+					<configuration>
+						<path>/${war.name}</path>
+					</configuration>
 				</plugin>
 
 				<!-- JAR plugin -->
@@ -312,30 +331,41 @@
 					</configuration>
 				</plugin>
 
-				<!-- Eclipse plugin -->
+				<!-- Eclipse plugin (génaration du projet Eclipse depuis Maven) -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-eclipse-plugin</artifactId>
 					<version>${maven-eclipse-plugin.version}</version>
+
 					<configuration>
 						<downloadSources>true</downloadSources>
 						<downloadJavadocs>true</downloadJavadocs>
-
 						<wtpversion>2.0</wtpversion>
 
-						<additionalBuildcommands>
+						<projectnatures>
+							<projectnature>org.eclipse.jdt.core.javanature</projectnature>
+							<nature>com.google.gwt.eclipse.core.gwtNature</nature>
+							<nature>org.springframework.ide.eclipse.core.springnature</nature>
+						</projectnatures>
+						<buildcommands>
+							<buildcommand>org.eclipse.jdt.core.javabuilder</buildcommand>
+							<buildcommand>com.google.appengine.eclipse.core.projectValidator</buildcommand>
+							<buildcommand>com.google.gwt.eclipse.core.gwtProjectValidator</buildcommand>
 							<buildCommand>
-								<name>com.google.gwt.eclipse.core.gwtProjectValidator</name>
+								<name>org.springframework.ide.eclipse.core.springbuilder</name>
 							</buildCommand>
-							<buildCommand>
-								<name>net.sf.eclipsecs.core.CheckstyleBuilder</name>
-							</buildCommand>
-						</additionalBuildcommands>
+						</buildcommands>
+						<classpathContainers>
+							<classpathContainer>org.eclipse.jdt.launching.JRE_CONTAINER</classpathContainer>
+							<classpathContainer>com.google.gwt.eclipse.core.GWT_CONTAINER</classpathContainer>
+						</classpathContainers>
 
-						<additionalProjectnatures>
-							<projectnature>com.google.gwt.eclipse.core.gwtNature</projectnature>
-							<projectnature>net.sf.eclipsecs.core.CheckstyleNature</projectnature>
-						</additionalProjectnatures>
+						<excludes>
+							<exclude>com.google.gwt:gwt-servlet</exclude>
+							<exclude>com.google.gwt:gwt-user</exclude>
+							<exclude>com.google.gwt:gwt-dev</exclude>
+							<exclude>javax.validation:validation-api</exclude>
+						</excludes>
 
 						<sourceIncludes>
 							<sourceInclude>*.ui.xml</sourceInclude>

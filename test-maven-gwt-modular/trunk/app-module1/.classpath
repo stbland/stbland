@@ -4,21 +4,6 @@
   <classpathentry kind="src" path="src/main/java"/>
   <classpathentry kind="src" path="src/main/resources" excluding="**/*.java"/>
   <classpathentry kind="output" path="D:/personnel/Prog/Java/MonCode/Tests/test-maven-gwt-modular/app-war/target/app-war/WEB-INF/classes"/>
-  <classpathentry kind="var" path="M2_REPO/javax/validation/validation-api/1.0.0.GA/validation-api-1.0.0.GA.jar" sourcepath="M2_REPO/javax/validation/validation-api/1.0.0.GA/validation-api-1.0.0.GA-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/C:/Documents%20and%20Settings/SBEAUFORT/.m2/repository/javax/validation/validation-api/1.0.0.GA/validation-api-1.0.0.GA-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/javax/validation/validation-api/1.0.0.GA/validation-api-1.0.0.GA-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/google/gwt/gwt-dev/2.4.0/gwt-dev-2.4.0.jar" sourcepath="M2_REPO/com/google/gwt/gwt-dev/2.4.0/gwt-dev-2.4.0-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/C:/Documents%20and%20Settings/SBEAUFORT/.m2/repository/com/google/gwt/gwt-dev/2.4.0/gwt-dev-2.4.0-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/google/gwt/gwt-user/2.4.0/gwt-user-2.4.0.jar" sourcepath="M2_REPO/com/google/gwt/gwt-user/2.4.0/gwt-user-2.4.0-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/C:/Documents%20and%20Settings/SBEAUFORT/.m2/repository/com/google/gwt/gwt-user/2.4.0/gwt-user-2.4.0-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
   <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+  <classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>
 </classpath>

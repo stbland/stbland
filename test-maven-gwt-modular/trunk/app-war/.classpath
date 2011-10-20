@@ -7,4 +7,5 @@
   <classpathentry kind="src" path="/app-module1"/>
   <classpathentry kind="src" path="/app-module2"/>
   <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+  <classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>
 </classpath>
