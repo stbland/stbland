@@ -12,11 +12,13 @@
 		<!-- * Project properties * -->
 		<!-- ********************** -->
 
-		<war.name>app-war</war.name>
-		<webappDirectory>../app-war/target/app-war</webappDirectory>
+		<war.name>app</war.name>
+		<webappDirectory>../app-war/target/${war.name}</webappDirectory>
+		<gwt.runTarget1>index.html</gwt.runTarget1>
 
 		<!-- Dossier de compilation d'un module GWT (ne pas modifier) -->
 		<gwtModuleCompileDirectory>${project.build.directory}/${project.artifactId}</gwtModuleCompileDirectory>
+		<moduleWebappPartDirectory>${project.build.directory}/partial-war</moduleWebappPartDirectory>
 
 		<module1.artifactId>app-module1</module1.artifactId>
 		<module1.name>module1</module1.name>
@@ -45,7 +47,10 @@
 		<!-- * Dependencies versions * -->
 		<!-- ************************* -->
 
+		<junit.version>4.7</junit.version>
+		<validation-api.version>1.0.0.GA</validation-api.version>
 		<gwt.version>2.4.0</gwt.version>
+
 
 		<!-- ******************** -->
 		<!-- * Plugins versions * -->
@@ -69,6 +74,8 @@
 		<maven-antrun-plugin.version>1.6</maven-antrun-plugin.version>
 		<!-- Source plugin -->
 		<maven-source-plugin.version>2.1.2</maven-source-plugin.version>
+		<!-- Build helper plugin -->
+		<build-helper-maven-plugin.version>1.4</build-helper-maven-plugin.version>
 
 	</properties>
 
@@ -112,7 +119,7 @@
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
-				<version>4.7</version>
+				<version>${junit.version}</version>
 				<scope>test</scope>
 			</dependency>
 
@@ -120,14 +127,14 @@
 			<dependency>
 				<groupId>javax.validation</groupId>
 				<artifactId>validation-api</artifactId>
-				<version>1.0.0.GA</version>
+				<version>${validation-api.version}</version>
 				<scope>test</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>javax.validation</groupId>
 				<artifactId>validation-api</artifactId>
-				<version>1.0.0.GA</version>
+				<version>${validation-api.version}</version>
 				<classifier>sources</classifier>
 				<scope>test</scope>
 			</dependency>
@@ -202,6 +209,7 @@
 						<hostedWebapp>${webappDirectory}</hostedWebapp>
 						<webXml>../app-war/src/main/webapp/WEB-INF/web.xml</webXml>
 						<inplace>false</inplace>
+						<runTarget>${gwt.runTarget1}</runTarget>
 					</configuration>
 					<executions>
 						<execution>
@@ -277,34 +285,37 @@
 						<execution>
 							<id>include-GWT-module-when-package</id>
 							<phase>package</phase>
+							<goals>
+								<goal>run</goal>
+							</goals>
 							<configuration>
 
-								<tasks>
+								<target name="copy-gwt-resources">
+
 									<echo>Intégration du module GWT ${project.artifactId} au WAR
-										final ( copie de
+										partiel ( copie de
 										${gwtModuleCompileDirectory} vers
-										${webappDirectory}</echo>
+										${moduleWebappPartDirectory} )</echo>
 
 									<echo>Contenu du module GWT</echo>
 									<exec executable="dir" failonerror="false">
 										<arg value="${gwtModuleCompileDirectory}" />
 									</exec>
 
-									<mkdir dir="${webappDirectory}" />
-									<copy todir="${webappDirectory}" failonerror="true">
+									<mkdir dir="${moduleWebappPartDirectory}" />
+									<copy todir="${moduleWebappPartDirectory}" failonerror="true"
+										verbose="true">
 										<fileset dir="${gwtModuleCompileDirectory}" includes="**/*" />
 									</copy>
 
 									<echo>Contenu du WAR final</echo>
 									<exec executable="dir" failonerror="false">
-										<arg value="${webappDirectory}" />
+										<arg value="${moduleWebappPartDirectory}" />
 									</exec>
 
-								</tasks>
+								</target>
 							</configuration>
-							<goals>
-								<goal>run</goal>
-							</goals>
+
 						</execution>
 					</executions>
 				</plugin>
@@ -390,6 +401,12 @@
 					</executions>
 				</plugin>
 
+				<!-- Build helper plugin -->
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>build-helper-maven-plugin</artifactId>
+					<version>${build-helper-maven-plugin.version}</version>
+				</plugin>
 
 			</plugins>
 

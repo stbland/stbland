@@ -38,7 +38,7 @@
 
 	<build>
 
-		<finalName>${project.artifactId}</finalName>
+		<finalName>${war.name}</finalName>
 
 		<resources>
 
@@ -54,6 +54,7 @@
 
 		<plugins>
 
+			<!-- WAR plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
@@ -77,10 +78,39 @@
 
 
 
-			<!-- Eclipse configuration -->
+			<!-- Eclipse plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-eclipse-plugin</artifactId>
+			</plugin>
+
+			<!-- Build helper plugin -->
+			<!-- (intègre le contenu HTML et JavaScript généré par chaque module GWT) -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>add-resource</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-resource</goal>
+						</goals>
+						<configuration>
+							<resources>
+								<resource>
+									<directory>../app-module2/src/main/webapp</directory>
+									<!-- sort du dossier classes puis de WEB-INF pour se retrouver app-war -->
+									<targetPath>../..</targetPath>
+								</resource>
+								<resource>
+									<directory>../app-module2/target/partial-war</directory>
+									<targetPath>../..</targetPath>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 
