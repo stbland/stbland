@@ -8,41 +8,70 @@
 	<name>app-parent</name>
 
 	<properties>
-		<!-- Project properties -->
-		<target.jdk>1.6</target.jdk>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- ********************** -->
+		<!-- * Project properties * -->
+		<!-- ********************** -->
 
-		<!-- <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory> -->
-		<!-- <webappDirectory>../app-war/target/webapp</webappDirectory> -->
 		<webappDirectory>../app-war/target/app-war</webappDirectory>
-		<webappWorkDirectory>../app-war/target/war/work</webappWorkDirectory>
 
-		<app-parent.version>0.0.1-SNAPSHOT</app-parent.version>
+		<!-- Dossier de compilation d'un module GWT (ne pas modifier) -->
+		<gwtModuleCompileDirectory>${project.build.directory}/${project.artifactId}</gwtModuleCompileDirectory>
 
 		<module1.artifactId>app-module1</module1.artifactId>
 		<module1.name>module1</module1.name>
-		<app-module1.version>0.0.1-SNAPSHOT</app-module1.version>
 
 		<module2.artifactId>app-module2</module2.artifactId>
 		<module2.name>module2</module2.name>
-		<app-module2.version>0.0.1-SNAPSHOT</app-module2.version>
 
+		<!-- Encoding -->
+		<project.encoding>UTF-8</project.encoding>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- Compiler (GWT 2.2+ ne compile qu'avec Java 1.6 pour la partie client) -->
+		<maven.compiler.source>1.6</maven.compiler.source>
+		<maven.compiler.target>1.6</maven.compiler.target>
+
+		<!-- ******************** -->
+		<!-- * Modules versions * -->
+		<!-- ******************** -->
+
+		<app-parent.version>0.0.1-SNAPSHOT</app-parent.version>
+		<app-module1.version>0.0.1-SNAPSHOT</app-module1.version>
+		<app-module2.version>0.0.1-SNAPSHOT</app-module2.version>
 		<app-war.version>0.0.1-SNAPSHOT</app-war.version>
 
-		<!-- Dependencies versions -->
+		<!-- ************************* -->
+		<!-- * Dependencies versions * -->
+		<!-- ************************* -->
+
 		<gwt.version>2.4.0</gwt.version>
 
-		<!-- Plugin properties -->
+		<!-- ******************** -->
+		<!-- * Plugins versions * -->
+		<!-- ******************** -->
+
+		<!-- Compiler plugin -->
 		<maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
+		<!-- Resources plugin -->
 		<maven-resources-plugin.version>2.5</maven-resources-plugin.version>
+		<!-- Eclipse plugin -->
 		<maven-eclipse-plugin.version>2.8</maven-eclipse-plugin.version>
+		<!-- WAR plugin -->
 		<maven-war-plugin.version>2.1.1</maven-war-plugin.version>
+		<!-- GWT plugin -->
 		<gwt-maven-plugin.version>2.4.0</gwt-maven-plugin.version>
-		<!-- <gwt-maven-plugin.version>2.3.0-1</gwt-maven-plugin.version> -->
+		<!-- JAR plugin -->
 		<maven-jar-plugin.version>2.3.1</maven-jar-plugin.version>
+		<!-- Ant plugin -->
+		<maven-antrun-plugin.version>1.6</maven-antrun-plugin.version>
+		<!-- Source plugin -->
+		<maven-source-plugin.version>2.1.2</maven-source-plugin.version>
 
 	</properties>
 
+	<!-- *********** -->
+	<!-- * Modules * -->
+	<!-- *********** -->
 	<modules>
 		<module>../app-module1</module>
 		<module>../app-module2</module>
@@ -54,6 +83,7 @@
 
 		<dependencies>
 
+			<!-- GWT dependencies -->
 			<dependency>
 				<groupId>com.google.gwt</groupId>
 				<artifactId>gwt-servlet</artifactId>
@@ -75,6 +105,7 @@
 				<scope>test</scope>
 			</dependency>
 
+			<!-- JUnit dependency -->
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
@@ -82,6 +113,7 @@
 				<scope>test</scope>
 			</dependency>
 
+			<!-- Validation dependencies (pour GWT) -->
 			<dependency>
 				<groupId>javax.validation</groupId>
 				<artifactId>validation-api</artifactId>
@@ -128,7 +160,7 @@
 
 			<plugins>
 
-				<!-- GWT Maven Plugin -->
+				<!-- GWT Plugin -->
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>gwt-maven-plugin</artifactId>
@@ -160,12 +192,9 @@
 						<!-- <skipTests>false</skipTests> -->
 						<hostedWebapp>${webappDirectory}</hostedWebapp>
 						<webXml>../app-war/src/main/webapp/WEB-INF/web.xml</webXml>
-						<!-- <noserver>true</noserver> -->
 						<inplace>false</inplace>
 					</configuration>
 					<executions>
-						<!-- <execution> <id>resources</id> <goals> <goal>resources</goal> 
-							</goals> </execution> -->
 						<execution>
 							<id>compile</id>
 							<phase>prepare-package</phase>
@@ -184,6 +213,13 @@
 						</execution>
 					</executions>
 
+				</plugin>
+
+				<!-- JAR plugin -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>${maven-jar-plugin.version}</version>
 				</plugin>
 
 				<!-- WAR plugin -->
@@ -217,21 +253,34 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-antrun-plugin</artifactId>
-					<version>1.6</version>
+					<version>${maven-antrun-plugin.version}</version>
 					<executions>
 						<execution>
 							<id>include-GWT-module-when-package</id>
 							<phase>package</phase>
 							<configuration>
+
 								<tasks>
-									<echo>Copie du module GWT {project.artifactId} vers
+									<echo>Intégration du module GWT ${project.artifactId} au WAR
+										final ( copie de
+										${gwtModuleCompileDirectory} vers
 										${webappDirectory}</echo>
 
-									<copy todir="${webappDirectory}">
-										<fileset dir="target/${project.artifactId}">
-											<include name="**/*" />
-										</fileset>
+									<echo>Contenu du module GWT</echo>
+									<exec executable="dir" failonerror="false">
+										<arg value="${gwtModuleCompileDirectory}" />
+									</exec>
+
+									<mkdir dir="${webappDirectory}" />
+									<copy todir="${webappDirectory}" failonerror="true">
+										<fileset dir="${gwtModuleCompileDirectory}" includes="**/*" />
 									</copy>
+
+									<echo>Contenu du WAR final</echo>
+									<exec executable="dir" failonerror="false">
+										<arg value="${webappDirectory}" />
+									</exec>
+
 								</tasks>
 							</configuration>
 							<goals>
@@ -241,14 +290,14 @@
 					</executions>
 				</plugin>
 
-				<!-- Standard Maven plugins -->
+				<!-- Compiler plugin -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>${maven-compiler-plugin.version}</version>
 					<configuration>
-						<source>${target.jdk}</source>
-						<target>${target.jdk}</target>
+						<source>${maven.compiler.source}</source>
+						<target>${maven.compiler.target}</target>
 						<encoding>${project.encoding}</encoding>
 					</configuration>
 				</plugin>
@@ -263,7 +312,7 @@
 					</configuration>
 				</plugin>
 
-				<!-- Eclipse configuration -->
+				<!-- Eclipse plugin -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-eclipse-plugin</artifactId>
@@ -299,7 +348,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-source-plugin</artifactId>
-					<version>2.1.2</version>
+					<version>${maven-source-plugin.version}</version>
 					<executions>
 						<execution>
 							<id>attach-sources</id>
