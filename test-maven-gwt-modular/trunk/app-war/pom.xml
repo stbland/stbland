@@ -22,16 +22,20 @@
 
 	<dependencies>
 
-		<dependency>
-			<groupId>org.stbland.test.mavengwtmodular</groupId>
-			<artifactId>app-module1</artifactId>
-			<version>${app-module1.version}</version>
-		</dependency>
-
+		<!-- Module 2 -->
+		<!-- 
 		<dependency>
 			<groupId>org.stbland.test.mavengwtmodular</groupId>
 			<artifactId>app-module2</artifactId>
 			<version>${app-module2.version}</version>
+		</dependency>
+		 -->
+
+		<!-- Module 3 -->
+		<dependency>
+			<groupId>org.stbland.test.mavengwtmodular</groupId>
+			<artifactId>app-module3</artifactId>
+			<version>${app-module3.version}</version>
 		</dependency>
 
 	</dependencies>
@@ -66,11 +70,16 @@
 				<artifactId>gwt-maven-plugin</artifactId>
 				<configuration>
 					<compileSourcesArtifacts>
-						<artifact>org.stbland.test.mavengwtmodular:app-module1</artifact>
+					 	<!-- 						
 						<artifact>org.stbland.test.mavengwtmodular:app-module2</artifact>
-					</compileSourcesArtifacts>
+						<artifact>org.stbland.test.mavengwtmodular:app-module3</artifact>
+						 -->
+					</compileSourcesArtifacts>					
 					<compileTargets>
+						<!-- 
 						<value>org.stbland.test.mavengwtmodular.Module2</value>
+						 -->
+						<value>org.stbland.test.mavengwtmodular.Module3</value>
 					</compileTargets>
 					<runTarget>index.html</runTarget>
 				</configuration>
@@ -97,14 +106,26 @@
 							<goal>add-resource</goal>
 						</goals>
 						<configuration>
+									<!-- ../.. <-> sort du dossier classes puis de WEB-INF pour se retrouver app-war -->
 							<resources>
+								<!-- Module 2 -->
+								<!-- 
 								<resource>
 									<directory>../app-module2/src/main/webapp</directory>
-									<!-- sort du dossier classes puis de WEB-INF pour se retrouver app-war -->
 									<targetPath>../..</targetPath>
 								</resource>
 								<resource>
 									<directory>../app-module2/target/partial-war</directory>
+									<targetPath>../..</targetPath>
+								</resource>
+								 -->
+								<!-- Module 3 -->
+								<resource>
+									<directory>../app-module3/src/main/webapp</directory>
+									<targetPath>../..</targetPath>
+								</resource>
+								<resource>
+									<directory>../app-module3/target/partial-war</directory>
 									<targetPath>../..</targetPath>
 								</resource>
 							</resources>

@@ -5,6 +5,7 @@
   <classpathentry kind="src" path="src/main/resources" excluding="**/*.java"/>
   <classpathentry kind="output" path="/home/stbland/prog/java/monCode/tests/gwt/test-maven-gwt-modular/app-war/target/app/WEB-INF/classes"/>
   <classpathentry kind="src" path="/app-module1"/>
+  <classpathentry kind="var" path="M2_REPO/junit/junit/4.7/junit-4.7.jar" sourcepath="M2_REPO/junit/junit/4.7/junit-4.7-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/googlecode/mgwt/mgwt/1.0.0-SNAPSHOT/mgwt-1.0.0-SNAPSHOT.jar"/>
   <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
   <classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>

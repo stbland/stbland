@@ -26,6 +26,9 @@
 		<module2.artifactId>app-module2</module2.artifactId>
 		<module2.name>module2</module2.name>
 
+		<module3.artifactId>app-module3</module3.artifactId>
+		<module3.name>module3</module3.name>
+
 		<!-- Encoding -->
 		<project.encoding>UTF-8</project.encoding>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -40,7 +43,10 @@
 
 		<app-parent.version>0.0.1-SNAPSHOT</app-parent.version>
 		<app-module1.version>0.0.1-SNAPSHOT</app-module1.version>
+		<!-- 
 		<app-module2.version>0.0.1-SNAPSHOT</app-module2.version>
+		 -->
+		<app-module3.version>0.0.1-SNAPSHOT</app-module3.version>
 		<app-war.version>0.0.1-SNAPSHOT</app-war.version>
 
 		<!-- ************************* -->
@@ -85,7 +91,10 @@
 	<!-- *********** -->
 	<modules>
 		<module>../app-module1</module>
+		<!-- 
 		<module>../app-module2</module>
+		-->
+		<module>../app-module3</module>
 		<module>../app-war</module>
 	</modules>
 

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to="module3">
+	<inherits name="com.google.gwt.user.User" />
+
+	<!-- Model View Presenter -->
+	<inherits name="com.google.gwt.activity.Activity" />
+	<inherits name="com.google.gwt.place.Place" />
+
+	<!-- MGWT module -->
+	<inherits name="com.googlecode.mgwt.MGWT" />
+	
+	<entry-point class="org.stbland.test.mavengwtmodular.module3.client.Module3EntryPoint" />		
+
+	<source path="client" />
+	<source path="shared" />
+
+</module>

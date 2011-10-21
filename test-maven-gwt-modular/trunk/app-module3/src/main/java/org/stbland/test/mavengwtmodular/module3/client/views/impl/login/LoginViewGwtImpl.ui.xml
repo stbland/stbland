@@ -1,0 +1,30 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:mgwt="urn:import:com.googlecode.mgwt.ui.client.widget">
+
+	<mgwt:LayoutPanel>
+		<mgwt:HeaderPanel>
+			<mgwt:center>
+				<g:HTML>monPortail mobile - identification</g:HTML>
+			</mgwt:center>
+		</mgwt:HeaderPanel>
+		<mgwt:RoundPanel>
+
+			<g:HTMLPanel addStyleNames="form">
+				<p>
+					<label>Identifiant:</label>
+					<mgwt:MTextBox ui:field="loginTextBox"></mgwt:MTextBox>
+				</p>
+				<p>
+					<label>Mot de passe:</label>
+					<mgwt:MPasswordTextBox ui:field="passwordTextBox"></mgwt:MPasswordTextBox>
+				</p>
+				<p>
+					<mgwt:Button text="Valider" ui:field="loginButton"></mgwt:Button>
+				</p>
+			</g:HTMLPanel>
+
+		</mgwt:RoundPanel>
+
+	</mgwt:LayoutPanel>
+</ui:UiBinder>
