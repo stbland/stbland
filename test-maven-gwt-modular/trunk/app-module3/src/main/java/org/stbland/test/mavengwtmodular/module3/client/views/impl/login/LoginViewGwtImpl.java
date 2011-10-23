@@ -1,47 +1,88 @@
 package org.stbland.test.mavengwtmodular.module3.client.views.impl.login;
 
 import org.stbland.test.mavengwtmodular.module3.client.views.LoginView;
+import org.stbland.test.mavengwtmodular.module3.client.views.impl.AbstractViewGwtImpl;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.uibinder.client.UiBinder;
-import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.googlecode.mgwt.dom.client.event.touch.simple.HasSimpleTouchHandler;
 import com.googlecode.mgwt.dom.client.event.touch.simple.SimpleTouchEvent;
+import com.googlecode.mgwt.dom.client.event.touch.simple.SimpleTouchHandler;
+import com.googlecode.mgwt.ui.client.MGWTUtil;
 import com.googlecode.mgwt.ui.client.widget.Button;
 import com.googlecode.mgwt.ui.client.widget.MPasswordTextBox;
 import com.googlecode.mgwt.ui.client.widget.MTextBox;
+import com.googlecode.mgwt.ui.client.widget.WidgetList;
 
-public class LoginViewGwtImpl extends Composite implements LoginView {
+public class LoginViewGwtImpl extends AbstractViewGwtImpl implements LoginView {
 
-	interface LoginViewGwtImplUiBinder extends
-			UiBinder<Widget, LoginViewGwtImpl> {
-	}
+	private LoginPresenter presenter;
 
-	private static LoginViewGwtImplUiBinder uiBinder = GWT
-			.create(LoginViewGwtImplUiBinder.class);
-
-	private LoginPresenter loginPresenter;
-
-	@UiField
 	protected Button loginButton;
 
-	@UiField
 	protected MTextBox loginTextBox;
 
-	@UiField
 	protected MPasswordTextBox passwordTextBox;
 
 	public LoginViewGwtImpl() {
 		super();
-		initWidget(uiBinder.createAndBindUi(this));
+
+		
+		FlowPanel widgetList = new FlowPanel();
+		// widgetList.setWidth("300px");
+		// widgetList.setHeight("300px");		
+		widgetList.setHeight("90px");
+		
+	//	WidgetList widgetList = new WidgetList();
+//		widgetList.setRound(true);		
+
+		scrollPanel.setScrollingEnabledX(false);
+		
+
+
+		scrollPanel.setWidget(widgetList);
+		// workaround for android formfields jumping around when using
+		// -webkit-transform
+		scrollPanel.setUsePos(MGWTUtil.getFeatureDetection().isAndroid());
+
+		loginTextBox = new MTextBox();
+		loginTextBox.setPlaceHolder("identifiant");
+		widgetList.add(loginTextBox);
+
+		passwordTextBox = new MPasswordTextBox();
+		passwordTextBox.setPlaceHolder("mot de passe");
+		widgetList.add(passwordTextBox);
+
+		loginButton = new Button("Valider");
+		widgetList.add(loginButton);
+
+		loginButton.addSimpleTouchHandler(new SimpleTouchHandler() {
+
+			@Override
+			public void onTouch(SimpleTouchEvent event) {
+				onSimpleTouch(event);
+
+			}
+		});
+
+		main.add(scrollPanel);
+		//main.add(loginButton);
 	}
 
 	@Override
-	public void setLoginPresenter(LoginPresenter loginPresenter) {
-		this.loginPresenter = loginPresenter;
+	public void setTitle(String title) {
+		headerPanel.setCenter(title);
+	}
+
+	@Override
+	public void setBackButtonText(String text) {
+		headerBackButton.setText(text);
+
+	}
+
+	@Override
+	public void setLoginPresenter(LoginPresenter presenter) {
+		this.presenter = presenter;
 	}
 
 	@Override
@@ -49,10 +90,12 @@ public class LoginViewGwtImpl extends Composite implements LoginView {
 		return loginButton;
 	}
 
-	@UiHandler("loginButton")
+	// @UiHandler("loginButton")
 	public void onSimpleTouch(SimpleTouchEvent event) {
-		if (loginPresenter != null) {
-			loginPresenter.onLoginButtonClicked();
+		//Window.alert("LoginButton clicked");
+		if (presenter != null) {
+			presenter.onLoginButtonClicked();
 		}
 	}
+
 }

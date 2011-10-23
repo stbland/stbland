@@ -43,9 +43,7 @@
 
 		<app-parent.version>0.0.1-SNAPSHOT</app-parent.version>
 		<app-module1.version>0.0.1-SNAPSHOT</app-module1.version>
-		<!-- 
-		<app-module2.version>0.0.1-SNAPSHOT</app-module2.version>
-		 -->
+		<!-- <app-module2.version>0.0.1-SNAPSHOT</app-module2.version> -->
 		<app-module3.version>0.0.1-SNAPSHOT</app-module3.version>
 		<app-war.version>0.0.1-SNAPSHOT</app-war.version>
 
@@ -58,6 +56,9 @@
 		<gwt.version>2.4.0</gwt.version>
 		<!-- MGWT -->
 		<mgwt.version>1.0.0-SNAPSHOT</mgwt.version>
+		<!-- GWT-Phonegap -->
+		<gwtphonegap.version>1.0.0.0</gwtphonegap.version>
+
 
 		<!-- ******************** -->
 		<!-- * Plugins versions * -->
@@ -91,9 +92,7 @@
 	<!-- *********** -->
 	<modules>
 		<module>../app-module1</module>
-		<!-- 
-		<module>../app-module2</module>
-		-->
+		<!-- <module>../app-module2</module> -->
 		<module>../app-module3</module>
 		<module>../app-war</module>
 	</modules>
@@ -154,6 +153,13 @@
 				<groupId>com.googlecode.mgwt</groupId>
 				<artifactId>mgwt</artifactId>
 				<version>${mgwt.version}</version>
+			</dependency>
+
+			<!-- GWT-Phonegap -->
+			<dependency>
+				<groupId>com.googlecode.gwtphonegap</groupId>
+				<artifactId>gwtphonegap</artifactId>
+				<version>${gwtphonegap.version}</version>
 			</dependency>
 
 		</dependencies>

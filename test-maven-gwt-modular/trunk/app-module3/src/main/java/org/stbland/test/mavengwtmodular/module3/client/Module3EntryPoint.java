@@ -1,10 +1,14 @@
 package org.stbland.test.mavengwtmodular.module3.client;
 
-import org.stbland.test.mavengwtmodular.module3.client.css.PortailMgwtClientBundle;
+import org.stbland.test.mavengwtmodular.module3.client.css.AppBundle;
 import org.stbland.test.mavengwtmodular.module3.client.factory.PortailClientFactory;
 import org.stbland.test.mavengwtmodular.module3.client.factory.impl.PortailClientFactoryGwtImpl;
 import org.stbland.test.mavengwtmodular.module3.client.mappers.activity.PhoneActivityMapper;
+import org.stbland.test.mavengwtmodular.module3.client.mappers.activity.TabletMainActivityMapper;
+import org.stbland.test.mavengwtmodular.module3.client.mappers.activity.TabletNavActivityMapper;
 import org.stbland.test.mavengwtmodular.module3.client.mappers.animation.phone.PortailPhoneAnimationMapper;
+import org.stbland.test.mavengwtmodular.module3.client.mappers.animation.phone.TabletMainAnimationMapper;
+import org.stbland.test.mavengwtmodular.module3.client.mappers.animation.phone.TabletNavAnimationMapper;
 import org.stbland.test.mavengwtmodular.module3.client.mappers.history.PortailPlaceHistoryMapper;
 import org.stbland.test.mavengwtmodular.module3.client.places.LoginPlace;
 
@@ -18,12 +22,16 @@ import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.SimplePanel;
 import com.googlecode.mgwt.mvp.client.AnimatableDisplay;
 import com.googlecode.mgwt.mvp.client.AnimatingActivityManager;
 import com.googlecode.mgwt.mvp.client.AnimationMapper;
 import com.googlecode.mgwt.ui.client.MGWT;
 import com.googlecode.mgwt.ui.client.MGWTSettings;
 import com.googlecode.mgwt.ui.client.MGWTUtil;
+import com.googlecode.mgwt.ui.client.MasterRegionHandler;
+import com.googlecode.mgwt.ui.client.OrientationRegionHandler;
+import com.googlecode.mgwt.ui.client.panel.TabletPortraitOverlay;
 
 public class Module3EntryPoint implements EntryPoint {
 
@@ -52,12 +60,11 @@ public class Module3EntryPoint implements EntryPoint {
 
 		if ((MGWTUtil.getFeatureDetection().isIPad() || MGWTUtil
 				.getFeatureDetection().isDesktop())) {
-			// workaround
-			StyleInjector.inject(PortailMgwtClientBundle.INSTANCE.css()
-					.getText());
-			// TODO createTabletDisplay(clientFactory);
 
-			createPhoneDisplay(clientFactory);
+			// very nasty workaround because GWT does not corretly support
+			// @media
+			StyleInjector.inject(AppBundle.INSTANCE.appCss().getText());
+			createTabletDisplay(clientFactory);
 		} else {
 			createPhoneDisplay(clientFactory);
 
@@ -82,47 +89,51 @@ public class Module3EntryPoint implements EntryPoint {
 
 	}
 
-	/*
-	 * private void createTabletDisplay(PortailClientFactory clientFactory) {
-	 * SimplePanel navContainer = new SimplePanel();
-	 * navContainer.getElement().setId("nav");
-	 * navContainer.getElement().addClassName("landscapeonly");
-	 * AnimatableDisplayBaseImpl navDisplay = GWT
-	 * .create(AnimatableDisplay.class);
-	 * 
-	 * ActivityMapper activityMapper = new TabletActivityMapper(clientFactory);
-	 * 
-	 * AnimationMapper animationMapper = new PortailTabletAnimationMapper();
-	 * 
-	 * AnimatingActivityManager activityManager = new AnimatingActivityManager(
-	 * activityMapper, animationMapper, clientFactory.getEventBus());
-	 * 
-	 * activityManager.setDisplay(navDisplay);
-	 * navContainer.setWidget(navDisplay);
-	 * 
-	 * RootPanel.get().add(navContainer);
-	 * 
-	 * SimplePanel mainContainer = new SimplePanel();
-	 * mainContainer.getElement().setId("main"); AnimatableDisplayBaseImpl
-	 * mainDisplay = GWT .create(AnimatableDisplay.class);
-	 * 
-	 * TabletMainActivityMapper tabletMainActivityMapper = new
-	 * TabletMainActivityMapper( clientFactory);
-	 * 
-	 * AnimationMapper tabletMainAnimationMapper = new
-	 * TabletMainAnimationMapper();
-	 * 
-	 * AnimatingActivityManager mainActivityManager = new
-	 * AnimatingActivityManager( tabletMainActivityMapper,
-	 * tabletMainAnimationMapper, clientFactory.getEventBus());
-	 * 
-	 * mainActivityManager.setDisplay(mainDisplay);
-	 * mainContainer.setWidget(mainDisplay);
-	 * 
-	 * RootPanel.get().add(mainContainer);
-	 * 
-	 * }
-	 */
+	private void createTabletDisplay(PortailClientFactory clientFactory) {
+		SimplePanel navContainer = new SimplePanel();
+		navContainer.getElement().setId("nav");
+		navContainer.getElement().addClassName("landscapeonly");
+		AnimatableDisplay navDisplay = GWT.create(AnimatableDisplay.class);
+
+		final TabletPortraitOverlay tabletPortraitOverlay = new TabletPortraitOverlay();
+
+		new OrientationRegionHandler(navContainer, tabletPortraitOverlay,
+				navDisplay);
+		new MasterRegionHandler(clientFactory.getEventBus(), "nav",
+				tabletPortraitOverlay);
+
+		ActivityMapper navActivityMapper = new TabletNavActivityMapper(
+				clientFactory);
+
+		AnimationMapper navAnimationMapper = new TabletNavAnimationMapper();
+
+		AnimatingActivityManager navActivityManager = new AnimatingActivityManager(
+				navActivityMapper, navAnimationMapper,
+				clientFactory.getEventBus());
+
+		navActivityManager.setDisplay(navDisplay);
+
+		RootPanel.get().add(navContainer);
+
+		SimplePanel mainContainer = new SimplePanel();
+		mainContainer.getElement().setId("main");
+		AnimatableDisplay mainDisplay = GWT.create(AnimatableDisplay.class);
+
+		ActivityMapper tabletMainActivityMapper = new TabletMainActivityMapper(
+				clientFactory);
+
+		AnimationMapper tabletMainAnimationMapper = new TabletMainAnimationMapper();
+
+		AnimatingActivityManager mainActivityManager = new AnimatingActivityManager(
+				tabletMainActivityMapper, tabletMainAnimationMapper,
+				clientFactory.getEventBus());
+
+		mainActivityManager.setDisplay(mainDisplay);
+		mainContainer.setWidget(mainDisplay);
+
+		RootPanel.get().add(mainContainer);
+
+	}
 
 	@Override
 	public void onModuleLoad() {

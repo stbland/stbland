@@ -24,11 +24,20 @@ public class LoginPlace extends Place {
 
 		@Override
 		public LoginPlace getPlace(String token) {
-			return new LoginPlace();
+			if ("login".endsWith(token)) {
+				return new LoginPlace();
+			} 
+				return null;
+			
+
 		}
 
 		@Override
 		public String getToken(LoginPlace place) {
+
+			if (place != null) {
+				return "login";
+			}
 			return null;
 		}
 

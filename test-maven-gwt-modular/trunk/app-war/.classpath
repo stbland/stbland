@@ -3,13 +3,21 @@
   <classpathentry kind="src" path="src/test/resources" output="target/test-classes" excluding="**/*.java"/>
   <classpathentry kind="src" path="src/main/java" including="*.ui.xml|**/*.java"/>
   <classpathentry kind="src" path="src/main/webapp" excluding="**|**/*.java"/>
-  <classpathentry kind="src" path="/home/stbland/prog/java/monCode/tests/gwt/test-maven-gwt-modular/app-module2/src/main/webapp" output="target/app" excluding="**/*.java"/>
-  <classpathentry kind="src" path="/home/stbland/prog/java/monCode/tests/gwt/test-maven-gwt-modular/app-module2/target/partial-war" output="target/app" excluding="**/*.java"/>
   <classpathentry kind="src" path="/home/stbland/prog/java/monCode/tests/gwt/test-maven-gwt-modular/app-module3/src/main/webapp" output="target/app" excluding="**/*.java"/>
+  <classpathentry kind="src" path="/home/stbland/prog/java/monCode/tests/gwt/test-maven-gwt-modular/app-module3/target/partial-war" output="target/app" excluding="**/*.java"/>
   <classpathentry kind="output" path="target/app/WEB-INF/classes"/>
   <classpathentry kind="src" path="/app-module1"/>
-  <classpathentry kind="src" path="/app-module2"/>
-  <classpathentry kind="var" path="M2_REPO/org/stbland/test/mavengwtmodular/app-module3/0.0.1-SNAPSHOT/app-module3-0.0.1-SNAPSHOT.jar"/>
+  <classpathentry kind="src" path="/app-module3"/>
+  <classpathentry kind="var" path="M2_REPO/commons-io/commons-io/2.0.1/commons-io-2.0.1.jar" sourcepath="M2_REPO/commons-io/commons-io/2.0.1/commons-io-2.0.1-sources.jar">
+    <attributes>
+      <attribute value="jar:file:/home/stbland/.m2/repository/commons-io/commons-io/2.0.1/commons-io-2.0.1-javadoc.jar!/" name="javadoc_location"/>
+    </attributes>
+  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/com/googlecode/gwtphonegap/gwtphonegap/1.0.0.0/gwtphonegap-1.0.0.0.jar" sourcepath="M2_REPO/com/googlecode/gwtphonegap/gwtphonegap/1.0.0.0/gwtphonegap-1.0.0.0-sources.jar">
+    <attributes>
+      <attribute value="jar:file:/home/stbland/.m2/repository/com/googlecode/gwtphonegap/gwtphonegap/1.0.0.0/gwtphonegap-1.0.0.0-javadoc.jar!/" name="javadoc_location"/>
+    </attributes>
+  </classpathentry>
   <classpathentry kind="var" path="M2_REPO/com/googlecode/mgwt/mgwt/1.0.0-SNAPSHOT/mgwt-1.0.0-SNAPSHOT.jar"/>
   <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
   <classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>

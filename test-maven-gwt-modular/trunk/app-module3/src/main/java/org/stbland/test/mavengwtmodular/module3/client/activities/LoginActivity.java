@@ -10,7 +10,8 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
-
+import com.googlecode.mgwt.dom.client.event.touch.simple.SimpleTouchEvent;
+import com.googlecode.mgwt.dom.client.event.touch.simple.SimpleTouchHandler;
 
 public class LoginActivity extends AbstractActivity implements LoginPresenter {
 
@@ -28,6 +29,20 @@ public class LoginActivity extends AbstractActivity implements LoginPresenter {
 			LoginPlace loginPlace = (LoginPlace) place;
 
 			loginView = clientFactory.getLoginView();
+			loginView.setLoginPresenter(this);
+			loginView.setBackButtonText("Menu");
+			loginView.setTitle("Identification");
+
+			addHandlerRegistration(loginView.getBackButton().addSimpleTouchHandler(
+					new SimpleTouchHandler() {
+
+						@Override
+						public void onTouch(SimpleTouchEvent event) {
+							clientFactory.getPlaceController().goTo(
+									new MenuPlace());
+
+						}
+					}));
 
 			panel.setWidget(loginView);
 

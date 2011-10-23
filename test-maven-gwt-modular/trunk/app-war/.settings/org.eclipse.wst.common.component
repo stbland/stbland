@@ -7,10 +7,13 @@
     <dependent-module archiveName="app-module1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/app-module1/app-module1">
       <dependency-type>uses</dependency-type>
     </dependent-module>
-    <dependent-module archiveName="app-module2.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/app-module2/app-module2">
+    <dependent-module archiveName="app-module3.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/app-module3/app-module3">
       <dependency-type>uses</dependency-type>
     </dependent-module>
-    <dependent-module archiveName="app-module3-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/org/stbland/test/mavengwtmodular/app-module3/0.0.1-SNAPSHOT/app-module3-0.0.1-SNAPSHOT.jar">
+    <dependent-module archiveName="commons-io-2.0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/commons-io/commons-io/2.0.1/commons-io-2.0.1.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="gwtphonegap-1.0.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/com/googlecode/gwtphonegap/gwtphonegap/1.0.0.0/gwtphonegap-1.0.0.0.jar">
       <dependency-type>uses</dependency-type>
     </dependent-module>
     <dependent-module archiveName="mgwt-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/com/googlecode/mgwt/mgwt/1.0.0-SNAPSHOT/mgwt-1.0.0-SNAPSHOT.jar">
@@ -18,8 +21,7 @@
     </dependent-module>
     <wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/java"/>
     <wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/webapp"/>
-    <wb-resource deploy-path="/WEB-INF/classes" source-path="/home/stbland/prog/java/monCode/tests/gwt/test-maven-gwt-modular/app-module2/src/main/webapp"/>
-    <wb-resource deploy-path="/WEB-INF/classes" source-path="/home/stbland/prog/java/monCode/tests/gwt/test-maven-gwt-modular/app-module2/target/partial-war"/>
     <wb-resource deploy-path="/WEB-INF/classes" source-path="/home/stbland/prog/java/monCode/tests/gwt/test-maven-gwt-modular/app-module3/src/main/webapp"/>
+    <wb-resource deploy-path="/WEB-INF/classes" source-path="/home/stbland/prog/java/monCode/tests/gwt/test-maven-gwt-modular/app-module3/target/partial-war"/>
   </wb-module>
 </project-modules>

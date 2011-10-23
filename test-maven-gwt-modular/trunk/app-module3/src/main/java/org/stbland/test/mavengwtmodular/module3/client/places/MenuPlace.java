@@ -24,12 +24,19 @@ public class MenuPlace extends Place {
 
 		@Override
 		public MenuPlace getPlace(String token) {
-			return new MenuPlace();
+			if ("menu".endsWith(token)) {
+				return new MenuPlace();
+			}
+			return null;
 		}
 
 		@Override
 		public String getToken(MenuPlace place) {
+			if (place != null) {
+				return "menu";
+			}
 			return null;
+
 		}
 
 	}

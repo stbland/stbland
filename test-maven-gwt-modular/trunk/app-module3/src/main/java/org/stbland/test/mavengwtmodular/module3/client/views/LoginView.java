@@ -1,9 +1,8 @@
 package org.stbland.test.mavengwtmodular.module3.client.views;
 
-import com.google.gwt.user.client.ui.IsWidget;
 import com.googlecode.mgwt.dom.client.event.touch.simple.HasSimpleTouchHandler;
 
-public interface LoginView extends IsWidget {
+public interface LoginView extends ViewGwt {
 
 	public interface LoginPresenter {
 		public void onLoginButtonClicked();
@@ -12,5 +11,8 @@ public interface LoginView extends IsWidget {
 	void setLoginPresenter(LoginPresenter loginPresenter);
 
 	HasSimpleTouchHandler getLoginButton();
+	
+	public void setTitle(String title);
+	public void setBackButtonText(String text);	
 
 }

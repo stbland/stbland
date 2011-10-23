@@ -6,9 +6,9 @@ import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.place.shared.Place;
 
 
-public class TabletActivityMapper extends AbstracPortailActivityMapper {
+public class TabletNavActivityMapper extends AbstracPortailActivityMapper {
 
-	public TabletActivityMapper(PortailClientFactory clientFactory) {
+	public TabletNavActivityMapper(PortailClientFactory clientFactory) {
 		super(clientFactory);
 	}
 

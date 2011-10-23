@@ -10,7 +10,6 @@ import com.google.gwt.place.shared.PlaceController;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.SimpleEventBus;
 
-
 public class PortailClientFactoryGwtImpl implements PortailClientFactory {
 
 	private PlaceController placeController;
@@ -37,6 +36,7 @@ public class PortailClientFactoryGwtImpl implements PortailClientFactory {
 	@Override
 	public MenuView getMenuView() {
 		if (menuView == null) {
+			// menuView = new MenuViewGwtUiBinderImpl();
 			menuView = new MenuViewGwtImpl();
 		}
 		return menuView;
@@ -45,6 +45,7 @@ public class PortailClientFactoryGwtImpl implements PortailClientFactory {
 	@Override
 	public LoginView getLoginView() {
 		if (loginView == null) {
+			// loginView = new LoginViewUiBinderImpl();
 			loginView = new LoginViewGwtImpl();
 		}
 		return loginView;
