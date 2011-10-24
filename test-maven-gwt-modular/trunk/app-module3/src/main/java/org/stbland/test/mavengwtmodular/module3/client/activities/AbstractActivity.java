@@ -4,7 +4,6 @@ import org.stbland.test.mavengwtmodular.module3.client.factory.PortailClientFact
 
 import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
 
-
 public abstract class AbstractActivity extends MGWTAbstractActivity {
 
 	protected PortailClientFactory clientFactory;

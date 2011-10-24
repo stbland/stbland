@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 2.4.0//EN" "http://google-web-toolkit.googlecode.com/svn/tags/2.4.0/distro-source/core/src/gwt-module.dtd">
+<module rename-to="module4">
+	<inherits name="com.google.gwt.user.User" />
+
+	<!-- Model View Presenter -->
+	<inherits name="com.google.gwt.activity.Activity" />
+	<inherits name="com.google.gwt.place.Place" />
+
+	<!-- jqm4gwt module -->
+	<inherits name='com.sksamuel.Jqm4gwt' />
+
+	<stylesheet
+		src="http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b1.min.css" />
+	<script src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
+	<script
+		src="http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b1.min.js"></script>
+
+
+	<entry-point
+		class="org.stbland.test.mavengwtmodular.module4.client.Module4EntryPoint" />
+
+
+	<source path="client" />
+	<source path="shared" />
+
+</module>

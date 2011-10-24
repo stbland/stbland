@@ -38,6 +38,15 @@
 			<version>${app-module3.version}</version>
 		</dependency>
 
+		<!-- Module 4 -->
+		<!-- 
+		<dependency>
+			<groupId>org.stbland.test.mavengwtmodular</groupId>
+			<artifactId>app-module4</artifactId>
+			<version>${app-module4.version}</version>
+		</dependency>
+		-->
+
 	</dependencies>
 
 	<build>
@@ -78,8 +87,9 @@
 					<compileTargets>
 						<!-- 
 						<value>org.stbland.test.mavengwtmodular.Module2</value>
-						 -->
 						<value>org.stbland.test.mavengwtmodular.Module3</value>
+						 -->
+						<value>org.stbland.test.mavengwtmodular.Module4</value>
 					</compileTargets>
 					<runTarget>index.html</runTarget>
 				</configuration>
@@ -120,6 +130,7 @@
 								</resource>
 								 -->
 								<!-- Module 3 -->
+
 								<resource>
 									<directory>../app-module3/src/main/webapp</directory>
 									<targetPath>../..</targetPath>
@@ -128,6 +139,18 @@
 									<directory>../app-module3/target/partial-war</directory>
 									<targetPath>../..</targetPath>
 								</resource>
+
+								<!-- Module 4 -->	
+								<!-- 
+								<resource>
+									<directory>../app-module4/src/main/webapp</directory>
+									<targetPath>../..</targetPath>
+								</resource>
+								<resource>
+									<directory>../app-module4/target/partial-war</directory>
+									<targetPath>../..</targetPath>
+								</resource>
+								-->
 							</resources>
 						</configuration>
 					</execution>

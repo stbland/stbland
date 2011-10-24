@@ -45,6 +45,7 @@
 		<app-module1.version>0.0.1-SNAPSHOT</app-module1.version>
 		<!-- <app-module2.version>0.0.1-SNAPSHOT</app-module2.version> -->
 		<app-module3.version>0.0.1-SNAPSHOT</app-module3.version>
+		<app-module4.version>0.0.1-SNAPSHOT</app-module4.version>
 		<app-war.version>0.0.1-SNAPSHOT</app-war.version>
 
 		<!-- ************************* -->
@@ -58,7 +59,8 @@
 		<mgwt.version>1.0.0-SNAPSHOT</mgwt.version>
 		<!-- GWT-Phonegap -->
 		<gwtphonegap.version>1.0.0.0</gwtphonegap.version>
-
+		<!-- jqm4gwt -->
+		<jqm4gwt.version>0.4.0</jqm4gwt.version>
 
 		<!-- ******************** -->
 		<!-- * Plugins versions * -->
@@ -94,6 +96,9 @@
 		<module>../app-module1</module>
 		<!-- <module>../app-module2</module> -->
 		<module>../app-module3</module>
+		<!-- 
+		<module>../app-module4</module>
+		 -->
 		<module>../app-war</module>
 	</modules>
 
@@ -148,11 +153,18 @@
 				<scope>test</scope>
 			</dependency>
 
-			<!-- MGWT -->
+			<!-- MGWT dependency -->
 			<dependency>
 				<groupId>com.googlecode.mgwt</groupId>
 				<artifactId>mgwt</artifactId>
 				<version>${mgwt.version}</version>
+			</dependency>
+
+			<!-- jqm4gwt dependency -->
+			<dependency>
+				<groupId>com.sksamuel.jqm4gwt</groupId>
+				<artifactId>jqm4gwt</artifactId>
+				<version>${jqm4gwt.version}</version>
 			</dependency>
 
 			<!-- GWT-Phonegap -->

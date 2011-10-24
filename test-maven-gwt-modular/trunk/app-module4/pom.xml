@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.stbland.test.mavengwtmodular</groupId>
+	<artifactId>app-module4</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<name>app-module4</name>
+
+	<parent>
+		<groupId>org.stbland.test.mavengwtmodular</groupId>
+		<artifactId>app-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../app-parent/pom.xml</relativePath>
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<profiles>
+		<!-- Production profile -->
+		<profile>
+			<id>prod</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+				<property>
+					<name>env</name>
+					<value>prod</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<!-- GWT plugin -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>gwt-maven-plugin</artifactId>
+						<configuration>
+							<modules>
+								<module>org.stbland.test.mavengwtmodular.module4.Module4</module>
+							</modules>
+						</configuration>
+					</plugin>
+				</plugins>
+
+			</build>
+		</profile>
+
+		<!-- Développement profile -->
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+				<property>
+					<name>env</name>
+					<value>dev</value>
+				</property>
+			</activation>
+
+			<build>
+				<plugins>
+					<!-- GWT plugin -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>gwt-maven-plugin</artifactId>
+						<configuration>
+							<modules>
+								<module>org.stbland.test.mavengwtmodular.module4.Module4Dev</module>
+							</modules>
+						</configuration>
+					</plugin>
+				</plugins>
+
+			</build>
+
+		</profile>
+	</profiles>
+
+	<dependencies>
+		<!-- GWT dependencies -->
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-user</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-dev</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- JUnit dependency -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- jqm4gwt dependency -->
+		<dependency>
+			<groupId>com.sksamuel.jqm4gwt</groupId>
+			<artifactId>jqm4gwt</artifactId>
+		</dependency>
+
+		<!-- GWT-Phonegap dependency -->
+		<dependency>
+			<groupId>com.googlecode.gwtphonegap</groupId>
+			<artifactId>gwtphonegap</artifactId>
+		</dependency>
+
+		<!-- *********** -->
+		<!-- * Modules * -->
+		<!-- *********** -->
+
+		<!-- Module 1 dependency -->
+		<dependency>
+			<groupId>org.stbland.test.mavengwtmodular</groupId>
+			<artifactId>app-module1</artifactId>
+			<version>${app-module1.version}</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+
+		<finalName>${project.artifactId}</finalName>
+
+		<plugins>
+			<!-- Source plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+			</plugin>
+
+			<!-- WAR plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+			</plugin>
+
+			<!-- JAR plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+			</plugin>
+
+			<!-- Eclipse plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+			</plugin>
+
+			<!-- Ant plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+			</plugin>
+
+			<!-- GWT plugin -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>gwt-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+							<goal>test</goal>
+							<goal>resources</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<!-- Les modules GWT sont déclarés ci-dessus dans les profiels -->
+					<runTarget>module4.html</runTarget>
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+	</build>
+
+</project>
