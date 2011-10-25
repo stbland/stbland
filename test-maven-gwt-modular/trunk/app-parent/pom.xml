@@ -43,7 +43,7 @@
 
 		<app-parent.version>0.0.1-SNAPSHOT</app-parent.version>
 		<app-module1.version>0.0.1-SNAPSHOT</app-module1.version>
-		<!-- <app-module2.version>0.0.1-SNAPSHOT</app-module2.version> -->
+		<app-module2.version>0.0.1-SNAPSHOT</app-module2.version>
 		<app-module3.version>0.0.1-SNAPSHOT</app-module3.version>
 		<app-module4.version>0.0.1-SNAPSHOT</app-module4.version>
 		<app-war.version>0.0.1-SNAPSHOT</app-war.version>
@@ -94,11 +94,9 @@
 	<!-- *********** -->
 	<modules>
 		<module>../app-module1</module>
-		<!-- <module>../app-module2</module> -->
+		<module>../app-module2</module>
 		<module>../app-module3</module>
-		<!-- 
-		<module>../app-module4</module>
-		 -->
+		<!-- <module>../app-module4</module> -->
 		<module>../app-war</module>
 	</modules>
 
@@ -174,6 +172,27 @@
 				<version>${gwtphonegap.version}</version>
 			</dependency>
 
+			<!-- *********** -->
+			<!-- * Modules * -->
+			<!-- *********** -->
+
+			<!-- Module 1 dependency -->
+			<!-- 
+			<dependency>
+				<groupId>org.stbland.test.mavengwtmodular</groupId>
+				<artifactId>app-module1</artifactId>
+				<version>${app-module1.version}</version>
+			</dependency>
+			-->
+
+			<!-- Module 2 -->
+			<!--
+			<dependency>
+				<groupId>org.stbland.test.mavengwtmodular</groupId>
+				<artifactId>app-module2</artifactId>
+				<version>${app-module2.version}</version>
+			</dependency>
+-->
 		</dependencies>
 
 	</dependencyManagement>

@@ -5,7 +5,6 @@
 
 	<groupId>org.stbland.test.mavengwtmodular</groupId>
 	<artifactId>app-module1</artifactId>
-	<!-- <version>${app-module1.version}</version> -->
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>app-module1</name>
@@ -16,6 +15,69 @@
 		<relativePath>../app-parent/pom.xml</relativePath>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+
+	<profiles>
+		<!-- Production profile -->
+		<profile>
+			<id>prod</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+				<property>
+					<name>env</name>
+					<value>prod</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<!-- GWT plugin -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>gwt-maven-plugin</artifactId>
+						<configuration>
+							<modules>
+								<module>org.stbland.test.mavengwtmodular.module1.Module1</module>
+							</modules>
+						</configuration>
+					</plugin>
+				</plugins>
+
+			</build>
+		</profile>
+
+		<!-- Développement profile -->
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+				<property>
+					<name>env</name>
+					<value>dev</value>
+				</property>
+			</activation>
+
+			<build>
+				<plugins>
+					<!-- GWT plugin -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>gwt-maven-plugin</artifactId>
+						<configuration>
+							<modules>
+								<module>org.stbland.test.mavengwtmodular.module1.Module1Dev</module>
+							</modules>
+						</configuration>
+					</plugin>
+				</plugins>
+
+			</build>
+
+		</profile>
+	</profiles>
 
 	<dependencies>
 
@@ -29,6 +91,12 @@
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-dev</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<!-- GWT-Phonegap dependency -->
+		<dependency>
+			<groupId>com.googlecode.gwtphonegap</groupId>
+			<artifactId>gwtphonegap</artifactId>
 		</dependency>
 
 	</dependencies>
@@ -48,6 +116,12 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
+			</plugin>
+
+			<!-- Ant plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
 			</plugin>
 
 			<!-- GWT plugin -->

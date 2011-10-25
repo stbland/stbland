@@ -22,14 +22,19 @@
 
 	<dependencies>
 
+		<!-- Module 1 -->
+		<dependency>
+			<groupId>org.stbland.test.mavengwtmodular</groupId>
+			<artifactId>app-module1</artifactId>
+			<version>${app-module1.version}</version>
+		</dependency>
+
 		<!-- Module 2 -->
-		<!-- 
 		<dependency>
 			<groupId>org.stbland.test.mavengwtmodular</groupId>
 			<artifactId>app-module2</artifactId>
 			<version>${app-module2.version}</version>
 		</dependency>
-		 -->
 
 		<!-- Module 3 -->
 		<dependency>
@@ -39,13 +44,8 @@
 		</dependency>
 
 		<!-- Module 4 -->
-		<!-- 
-		<dependency>
-			<groupId>org.stbland.test.mavengwtmodular</groupId>
-			<artifactId>app-module4</artifactId>
-			<version>${app-module4.version}</version>
-		</dependency>
-		-->
+		<!-- <dependency> <groupId>org.stbland.test.mavengwtmodular</groupId> <artifactId>app-module4</artifactId> 
+			<version>${app-module4.version}</version> </dependency> -->
 
 	</dependencies>
 
@@ -79,22 +79,16 @@
 				<artifactId>gwt-maven-plugin</artifactId>
 				<configuration>
 					<compileSourcesArtifacts>
-					 	<!-- 						
-						<artifact>org.stbland.test.mavengwtmodular:app-module2</artifact>
-						<artifact>org.stbland.test.mavengwtmodular:app-module3</artifact>
-						 -->
-					</compileSourcesArtifacts>					
+						<!-- <artifact>org.stbland.test.mavengwtmodular:app-module2</artifact> 
+							<artifact>org.stbland.test.mavengwtmodular:app-module3</artifact> -->
+					</compileSourcesArtifacts>
 					<compileTargets>
-						<!-- 
-						<value>org.stbland.test.mavengwtmodular.Module2</value>
-						<value>org.stbland.test.mavengwtmodular.Module3</value>
-						 -->
+						<!-- <value>org.stbland.test.mavengwtmodular.Module2</value> <value>org.stbland.test.mavengwtmodular.Module3</value> -->
 						<value>org.stbland.test.mavengwtmodular.Module4</value>
 					</compileTargets>
 					<runTarget>index.html</runTarget>
 				</configuration>
 			</plugin>
-
 
 
 			<!-- Eclipse plugin -->
@@ -116,10 +110,20 @@
 							<goal>add-resource</goal>
 						</goals>
 						<configuration>
-									<!-- ../.. <-> sort du dossier classes puis de WEB-INF pour se retrouver app-war -->
+							<!-- ../.. <-> sort du dossier classes puis de WEB-INF pour se retrouver 
+								app-war -->
 							<resources>
+								<!-- Module 1 -->
+								<resource>
+									<directory>../app-module1/src/main/webapp</directory>
+									<targetPath>../..</targetPath>
+								</resource>
+								<resource>
+									<directory>../app-module1/target/partial-war</directory>
+									<targetPath>../..</targetPath>
+								</resource>
+
 								<!-- Module 2 -->
-								<!-- 
 								<resource>
 									<directory>../app-module2/src/main/webapp</directory>
 									<targetPath>../..</targetPath>
@@ -128,9 +132,8 @@
 									<directory>../app-module2/target/partial-war</directory>
 									<targetPath>../..</targetPath>
 								</resource>
-								 -->
-								<!-- Module 3 -->
 
+								<!-- Module 3 -->
 								<resource>
 									<directory>../app-module3/src/main/webapp</directory>
 									<targetPath>../..</targetPath>
@@ -140,17 +143,10 @@
 									<targetPath>../..</targetPath>
 								</resource>
 
-								<!-- Module 4 -->	
-								<!-- 
-								<resource>
-									<directory>../app-module4/src/main/webapp</directory>
-									<targetPath>../..</targetPath>
-								</resource>
-								<resource>
-									<directory>../app-module4/target/partial-war</directory>
-									<targetPath>../..</targetPath>
-								</resource>
-								-->
+								<!-- Module 4 -->
+								<!-- <resource> <directory>../app-module4/src/main/webapp</directory> 
+									<targetPath>../..</targetPath> </resource> <resource> <directory>../app-module4/target/partial-war</directory> 
+									<targetPath>../..</targetPath> </resource> -->
 							</resources>
 						</configuration>
 					</execution>

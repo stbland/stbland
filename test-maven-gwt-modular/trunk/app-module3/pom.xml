@@ -104,12 +104,6 @@
 			<artifactId>mgwt</artifactId>
 		</dependency>
 
-		<!-- GWT-Phonegap dependency -->
-		<dependency>
-			<groupId>com.googlecode.gwtphonegap</groupId>
-			<artifactId>gwtphonegap</artifactId>
-		</dependency>
-
 		<!-- *********** -->
 		<!-- * Modules * -->
 		<!-- *********** -->

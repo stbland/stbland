@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 2.4.0//EN" "http://google-web-toolkit.googlecode.com/svn/tags/2.4.0/distro-source/core/src/gwt-module.dtd">
+<module rename-to="module2">
+
+	<inherits name="com.google.gwt.user.User" />
+	
+	<inherits name="org.stbland.test.mavengwtmodular.module1.Module1" />
+
+	<source path="client" />
+
+	<entry-point
+		class="org.stbland.test.mavengwtmodular.module2.client.Module2EntryPoint" />
+</module>

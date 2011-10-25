@@ -7,6 +7,9 @@
     <dependent-module archiveName="app-module1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/app-module1/app-module1">
       <dependency-type>uses</dependency-type>
     </dependent-module>
+    <dependent-module archiveName="app-module2.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/app-module2/app-module2">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
     <dependent-module archiveName="app-module3.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/app-module3/app-module3">
       <dependency-type>uses</dependency-type>
     </dependent-module>
@@ -21,6 +24,9 @@
     </dependent-module>
     <wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/java"/>
     <wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/webapp"/>
+    <wb-resource deploy-path="/WEB-INF/classes" source-path="/home/stbland/prog/java/monCode/tests/gwt/test-maven-gwt-modular/app-module1/src/main/webapp"/>
+    <wb-resource deploy-path="/WEB-INF/classes" source-path="/home/stbland/prog/java/monCode/tests/gwt/test-maven-gwt-modular/app-module1/target/partial-war"/>
+    <wb-resource deploy-path="/WEB-INF/classes" source-path="/home/stbland/prog/java/monCode/tests/gwt/test-maven-gwt-modular/app-module2/src/main/webapp"/>
     <wb-resource deploy-path="/WEB-INF/classes" source-path="/home/stbland/prog/java/monCode/tests/gwt/test-maven-gwt-modular/app-module3/src/main/webapp"/>
   </wb-module>
 </project-modules>

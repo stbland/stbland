@@ -16,10 +16,68 @@
 		<relativePath>../app-parent/pom.xml</relativePath>
 	</parent>
 
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
+	<profiles>
+		<!-- Production profile -->
+		<profile>
+			<id>prod</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+				<property>
+					<name>env</name>
+					<value>prod</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<!-- GWT plugin -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>gwt-maven-plugin</artifactId>
+						<configuration>
+							<modules>
+								<module>org.stbland.test.mavengwtmodular.module2.Module2</module>
+							</modules>
+						</configuration>
+					</plugin>
+				</plugins>
+
+			</build>
+		</profile>
+
+		<!-- Développement profile -->
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+				<property>
+					<name>env</name>
+					<value>dev</value>
+				</property>
+			</activation>
+
+			<build>
+				<plugins>
+					<!-- GWT plugin -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>gwt-maven-plugin</artifactId>
+						<configuration>
+							<modules>
+								<module>org.stbland.test.mavengwtmodular.module2.Module2Dev</module>
+							</modules>
+						</configuration>
+					</plugin>
+				</plugins>
+
+			</build>
+
+		</profile>
+	</profiles>
 	<dependencies>
 
 		<!-- GWT dependencies -->
@@ -56,6 +114,9 @@
 			<groupId>org.stbland.test.mavengwtmodular</groupId>
 			<artifactId>app-module1</artifactId>
 			<version>${app-module1.version}</version>
+			<!-- 
+			<scope>compile</scope>
+			-->			
 		</dependency>
 
 	</dependencies>
@@ -106,17 +167,14 @@
 						<goals>
 							<goal>compile</goal>
 							<goal>test</goal>
+							<goal>resources</goal>
 						</goals>
 					</execution>
 				</executions>
 
 				<configuration>
-
-					<compileSourcesArtifacts>
-						<artifact>org.stbland.test.mavengwtmodular:app-module1</artifact>
-					</compileSourcesArtifacts>
+					<!-- Les modules GWT sont déclarés ci-dessus dans les profiels -->
 					<runTarget>module2.html</runTarget>
-
 				</configuration>
 			</plugin>
 
