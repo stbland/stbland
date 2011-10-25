@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 2.4.0//EN" "http://google-web-toolkit.googlecode.com/svn/tags/2.4.0/distro-source/core/src/gwt-module.dtd">
+<module rename-to="module1">
+
+	<inherits name="com.google.gwt.user.User" />
+	
+	<inherits name="com.google.gwt.logging.Logging"/>
+	<inherits name="com.googlecode.gwtphonegap.PhoneGap"/>
+	
+	<!-- Hack for PhoneGap remote website -->
+	<property-provider name="phonegap.env"><![CDATA[
+  	{
+	    var ua = window.navigator.userAgent.toLowerCase();
+	    if (ua.indexOf('android') != -1 || ua.indexOf('ipad') != -1 || ua.indexOf('iphone') != -1 || ua.indexOf('blackberry') != -1) 
+	    { 
+	    	return "yes";
+	    }	   
+	    return 'no';
+  	}
+]]></property-provider>
+
+<set-property name="gwt.logging.enabled" value="FALSE" />
+		
+	<script	src="../js/phonegap-1.0.0.js"></script>	
+
+	<source path="client" />
+
+</module>
