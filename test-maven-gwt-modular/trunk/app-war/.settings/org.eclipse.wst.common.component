@@ -25,7 +25,6 @@
     <wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/java"/>
     <wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/webapp"/>
     <wb-resource deploy-path="/WEB-INF/classes" source-path="/home/stbland/prog/java/monCode/tests/gwt/test-maven-gwt-modular/app-module1/src/main/webapp"/>
-    <wb-resource deploy-path="/WEB-INF/classes" source-path="/home/stbland/prog/java/monCode/tests/gwt/test-maven-gwt-modular/app-module1/target/partial-war"/>
     <wb-resource deploy-path="/WEB-INF/classes" source-path="/home/stbland/prog/java/monCode/tests/gwt/test-maven-gwt-modular/app-module2/src/main/webapp"/>
     <wb-resource deploy-path="/WEB-INF/classes" source-path="/home/stbland/prog/java/monCode/tests/gwt/test-maven-gwt-modular/app-module3/src/main/webapp"/>
   </wb-module>

@@ -4,7 +4,6 @@
   <classpathentry kind="src" path="src/main/java" including="*.ui.xml|**/*.java"/>
   <classpathentry kind="src" path="src/main/webapp" excluding="**|**/*.java"/>
   <classpathentry kind="src" path="/home/stbland/prog/java/monCode/tests/gwt/test-maven-gwt-modular/app-module1/src/main/webapp" output="target/app" excluding="**/*.java"/>
-  <classpathentry kind="src" path="/home/stbland/prog/java/monCode/tests/gwt/test-maven-gwt-modular/app-module1/target/partial-war" output="target/app" excluding="**/*.java"/>
   <classpathentry kind="src" path="/home/stbland/prog/java/monCode/tests/gwt/test-maven-gwt-modular/app-module2/src/main/webapp" output="target/app" excluding="**/*.java"/>
   <classpathentry kind="src" path="/home/stbland/prog/java/monCode/tests/gwt/test-maven-gwt-modular/app-module3/src/main/webapp" output="target/app" excluding="**/*.java"/>
   <classpathentry kind="output" path="target/app/WEB-INF/classes"/>
