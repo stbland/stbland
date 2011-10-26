@@ -21,7 +21,7 @@
 
 <set-property name="gwt.logging.enabled" value="FALSE" />
 		
-	<script	src="../js/phonegap-1.0.0.js"></script>	
+	<script	src="../js/phonegap-1.0.0-apple.js"></script>	
 
 	<source path="client" />
 
