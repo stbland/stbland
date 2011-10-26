@@ -18,7 +18,7 @@ import com.googlecode.gwtphonegap.client.PhoneGapTimeoutHandler;
 public class Module2EntryPoint implements EntryPoint {
 
 	private Button module1Button;
-	private Button phoneGapButton;
+	private Button uuidPhoneGapButton, vibratePhoneGapButton;
 	private PhoneGap phoneGap;
 
 	@Override
@@ -38,7 +38,9 @@ public class Module2EntryPoint implements EntryPoint {
 			@Override
 			public void onPhoneGapAvailable(PhoneGapAvailableEvent event) {
 				showDebug("onPhoneGapAvailable");
-				phoneGapButton.setEnabled(true);
+
+				uuidPhoneGapButton.setEnabled(true);
+				vibratePhoneGapButton.setEnabled(true);
 			}
 		});
 
@@ -61,20 +63,35 @@ public class Module2EntryPoint implements EntryPoint {
 			}
 		});
 
-		phoneGapButton = new MyButton("PhoneGap", new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				if (phoneGap.isPhoneGapInitialized()) {
-					showInfo("UUID: " + phoneGap.getDevice().getUuid());
-				} else {
-					showError("phoneGap.isPhoneGapInitialized() = false");
-				}
+		uuidPhoneGapButton = new MyButton("UUID (PhoneGap)",
+				new ClickHandler() {
+					public void onClick(ClickEvent event) {
+						if (phoneGap.isPhoneGapInitialized()) {
+							showInfo("UUID: " + phoneGap.getDevice().getUuid());
+						} else {
+							showError("phoneGap.isPhoneGapInitialized() = false");
+						}
 
-			}
-		});
-		phoneGapButton.setEnabled(false);
+					}
+				});
+
+		vibratePhoneGapButton = new MyButton("vribrate (PhoneGap)",
+				new ClickHandler() {
+					public void onClick(ClickEvent event) {
+						if (phoneGap.isPhoneGapInitialized()) {
+							phoneGap.getNotification().vibrate(750 /* ms */);
+						} else {
+							showError("phoneGap.isPhoneGapInitialized() = false");
+						}
+
+					}
+				});
+		uuidPhoneGapButton.setEnabled(false);
+		vibratePhoneGapButton.setEnabled(false);
 
 		RootPanel.get().add(module1Button);
-		RootPanel.get().add(phoneGapButton);
+		RootPanel.get().add(uuidPhoneGapButton);
+		RootPanel.get().add(vibratePhoneGapButton);
 
 	}
 
@@ -85,7 +102,9 @@ public class Module2EntryPoint implements EntryPoint {
 
 	private void showDebug(String msg) {
 		GWT.log("DEBUG: " + msg);
-		Window.alert("DEBUG: " + msg);
+		if (false) {
+			Window.alert("DEBUG: " + msg);
+		}
 	}
 
 	private void showError(String msg) {
