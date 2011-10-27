@@ -11,8 +11,11 @@ public interface LoginView extends ViewGwt {
 	void setLoginPresenter(LoginPresenter loginPresenter);
 
 	HasSimpleTouchHandler getLoginButton();
-	
+
 	public void setTitle(String title);
-	public void setBackButtonText(String text);	
+
+	public void setBackButtonText(String text);
+
+	public void setUuid(String uuid);
 
 }

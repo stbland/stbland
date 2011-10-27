@@ -5,14 +5,15 @@
 	<!-- Model View Presenter -->
 	<inherits name="com.google.gwt.activity.Activity" />
 	<inherits name="com.google.gwt.place.Place" />
+	
+	<!-- Module 1 (PhoneGap, MyButton) -->
+	<inherits name="org.stbland.test.mavengwtmodular.module1.Module1" />	
 
 	<!-- MGWT module -->
 	<inherits name="com.googlecode.mgwt.MGWT" />
 
 	<entry-point
 		class="org.stbland.test.mavengwtmodular.module3.client.Module3EntryPoint" />
-
-	<set-property name="user.agent" value="safari" />
 
 	<!-- <set-property name="mgwt.os" value="iphone" /> -->
 	<!-- <set-property name="mgwt.os" value="android" /> -->

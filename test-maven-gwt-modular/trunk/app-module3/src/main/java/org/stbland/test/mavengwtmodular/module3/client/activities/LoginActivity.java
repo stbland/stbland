@@ -10,6 +10,11 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
+import com.googlecode.gwtphonegap.client.PhoneGap;
+import com.googlecode.gwtphonegap.client.PhoneGapAvailableEvent;
+import com.googlecode.gwtphonegap.client.PhoneGapAvailableHandler;
+import com.googlecode.gwtphonegap.client.PhoneGapTimeoutEvent;
+import com.googlecode.gwtphonegap.client.PhoneGapTimeoutHandler;
 import com.googlecode.mgwt.dom.client.event.touch.simple.SimpleTouchEvent;
 import com.googlecode.mgwt.dom.client.event.touch.simple.SimpleTouchHandler;
 
@@ -33,8 +38,8 @@ public class LoginActivity extends AbstractActivity implements LoginPresenter {
 			loginView.setBackButtonText("Menu");
 			loginView.setTitle("Identification");
 
-			addHandlerRegistration(loginView.getBackButton().addSimpleTouchHandler(
-					new SimpleTouchHandler() {
+			addHandlerRegistration(loginView.getBackButton()
+					.addSimpleTouchHandler(new SimpleTouchHandler() {
 
 						@Override
 						public void onTouch(SimpleTouchEvent event) {
@@ -43,6 +48,35 @@ public class LoginActivity extends AbstractActivity implements LoginPresenter {
 
 						}
 					}));
+
+			final PhoneGap phoneGap = clientFactory.getPhoneGap();
+
+			if (phoneGap.isPhoneGapInitialized()) {
+				loginView.setUuid("isPhoneGapInitialized "
+						+ phoneGap.getDevice().getUuid());
+			} else {
+				clientFactory.getEventBus().addHandler(
+						PhoneGapAvailableEvent.TYPE,
+						new PhoneGapAvailableHandler() {
+
+							@Override
+							public void onPhoneGapAvailable(
+									PhoneGapAvailableEvent event) {
+								loginView.setUuid("onPhoneGapAvailable");
+							}
+						});
+
+				clientFactory.getEventBus().addHandler(
+						PhoneGapTimeoutEvent.TYPE,
+						new PhoneGapTimeoutHandler() {
+
+							@Override
+							public void onPhoneGapTimeout(
+									PhoneGapTimeoutEvent event) {
+								loginView.setUuid("onPhoneGapTimeout");
+							}
+						});
+			}
 
 			panel.setWidget(loginView);
 

@@ -6,9 +6,11 @@ import org.stbland.test.mavengwtmodular.module3.client.views.MenuView;
 import org.stbland.test.mavengwtmodular.module3.client.views.impl.login.LoginViewGwtImpl;
 import org.stbland.test.mavengwtmodular.module3.client.views.impl.menu.MenuViewGwtImpl;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.SimpleEventBus;
+import com.googlecode.gwtphonegap.client.PhoneGap;
 
 public class PortailClientFactoryGwtImpl implements PortailClientFactory {
 
@@ -16,6 +18,7 @@ public class PortailClientFactoryGwtImpl implements PortailClientFactory {
 	private SimpleEventBus eventBus;
 	private MenuView menuView;
 	private LoginView loginView;
+	private PhoneGap phoneGap;
 
 	@Override
 	public PlaceController getPlaceController() {
@@ -49,6 +52,14 @@ public class PortailClientFactoryGwtImpl implements PortailClientFactory {
 			loginView = new LoginViewGwtImpl();
 		}
 		return loginView;
+	}
+
+	@Override
+	public PhoneGap getPhoneGap() {
+		if (phoneGap == null) {
+			phoneGap = (PhoneGap) GWT.create(PhoneGap.class);
+		}
+		return phoneGap;
 	}
 
 }

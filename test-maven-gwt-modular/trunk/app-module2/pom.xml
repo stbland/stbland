@@ -99,12 +99,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- MGWT dependency -->
-		<dependency>
-			<groupId>com.googlecode.mgwt</groupId>
-			<artifactId>mgwt</artifactId>
-		</dependency>
-
 		<!-- *********** -->
 		<!-- * Modules * -->
 		<!-- *********** -->
@@ -114,9 +108,7 @@
 			<groupId>org.stbland.test.mavengwtmodular</groupId>
 			<artifactId>app-module1</artifactId>
 			<version>${app-module1.version}</version>
-			<!-- 
-			<scope>compile</scope>
-			-->			
+			<!-- <scope>compile</scope> -->
 		</dependency>
 
 	</dependencies>

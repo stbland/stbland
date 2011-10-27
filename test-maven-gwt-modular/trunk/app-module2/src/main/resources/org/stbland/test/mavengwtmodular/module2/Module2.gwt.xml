@@ -4,6 +4,7 @@
 
 	<inherits name="com.google.gwt.user.User" />
 	
+	<!-- Module 1 (PhoneGap, MyButton) -->
 	<inherits name="org.stbland.test.mavengwtmodular.module1.Module1" />
 
 	<source path="client" />

@@ -3,7 +3,6 @@ package org.stbland.test.mavengwtmodular.module3.client.views.impl.login;
 import org.stbland.test.mavengwtmodular.module3.client.views.LoginView;
 import org.stbland.test.mavengwtmodular.module3.client.views.impl.AbstractViewGwtImpl;
 
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.googlecode.mgwt.dom.client.event.touch.simple.HasSimpleTouchHandler;
 import com.googlecode.mgwt.dom.client.event.touch.simple.SimpleTouchEvent;
@@ -12,7 +11,6 @@ import com.googlecode.mgwt.ui.client.MGWTUtil;
 import com.googlecode.mgwt.ui.client.widget.Button;
 import com.googlecode.mgwt.ui.client.widget.MPasswordTextBox;
 import com.googlecode.mgwt.ui.client.widget.MTextBox;
-import com.googlecode.mgwt.ui.client.widget.WidgetList;
 
 public class LoginViewGwtImpl extends AbstractViewGwtImpl implements LoginView {
 
@@ -22,23 +20,22 @@ public class LoginViewGwtImpl extends AbstractViewGwtImpl implements LoginView {
 
 	protected MTextBox loginTextBox;
 
+	protected MTextBox uuidTextBox;
+
 	protected MPasswordTextBox passwordTextBox;
 
 	public LoginViewGwtImpl() {
 		super();
 
-		
 		FlowPanel widgetList = new FlowPanel();
 		// widgetList.setWidth("300px");
-		// widgetList.setHeight("300px");		
+		// widgetList.setHeight("300px");
 		widgetList.setHeight("90px");
-		
-	//	WidgetList widgetList = new WidgetList();
-//		widgetList.setRound(true);		
+
+		// WidgetList widgetList = new WidgetList();
+		// widgetList.setRound(true);
 
 		scrollPanel.setScrollingEnabledX(false);
-		
-
 
 		scrollPanel.setWidget(widgetList);
 		// workaround for android formfields jumping around when using
@@ -48,6 +45,11 @@ public class LoginViewGwtImpl extends AbstractViewGwtImpl implements LoginView {
 		loginTextBox = new MTextBox();
 		loginTextBox.setPlaceHolder("identifiant");
 		widgetList.add(loginTextBox);
+
+		uuidTextBox = new MTextBox();
+		uuidTextBox.setPlaceHolder("UUID");
+		uuidTextBox.setReadOnly(true);
+		widgetList.add(uuidTextBox);
 
 		passwordTextBox = new MPasswordTextBox();
 		passwordTextBox.setPlaceHolder("mot de passe");
@@ -66,7 +68,12 @@ public class LoginViewGwtImpl extends AbstractViewGwtImpl implements LoginView {
 		});
 
 		main.add(scrollPanel);
-		//main.add(loginButton);
+		// main.add(loginButton);
+	}
+
+	@Override
+	public void setUuid(String uuid) {
+		uuidTextBox.setText(uuid);
 	}
 
 	@Override
@@ -92,7 +99,7 @@ public class LoginViewGwtImpl extends AbstractViewGwtImpl implements LoginView {
 
 	// @UiHandler("loginButton")
 	public void onSimpleTouch(SimpleTouchEvent event) {
-		//Window.alert("LoginButton clicked");
+		// Window.alert("LoginButton clicked");
 		if (presenter != null) {
 			presenter.onLoginButtonClicked();
 		}

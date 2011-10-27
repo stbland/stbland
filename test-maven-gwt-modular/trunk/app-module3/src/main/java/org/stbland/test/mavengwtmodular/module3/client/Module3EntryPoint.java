@@ -23,6 +23,11 @@ import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
+import com.googlecode.gwtphonegap.client.PhoneGap;
+import com.googlecode.gwtphonegap.client.PhoneGapAvailableEvent;
+import com.googlecode.gwtphonegap.client.PhoneGapAvailableHandler;
+import com.googlecode.gwtphonegap.client.PhoneGapTimeoutEvent;
+import com.googlecode.gwtphonegap.client.PhoneGapTimeoutHandler;
 import com.googlecode.mgwt.mvp.client.AnimatableDisplay;
 import com.googlecode.mgwt.mvp.client.AnimatingActivityManager;
 import com.googlecode.mgwt.mvp.client.AnimationMapper;
@@ -35,6 +40,8 @@ import com.googlecode.mgwt.ui.client.panel.TabletPortraitOverlay;
 
 public class Module3EntryPoint implements EntryPoint {
 
+	private PortailClientFactory clientFactory;
+
 	private void start() {
 		MGWTSettings settings = new MGWTSettings();
 		settings.setAddGlosToIcon(true);
@@ -45,7 +52,7 @@ public class Module3EntryPoint implements EntryPoint {
 		MGWT mgwt = new MGWT();
 		mgwt.applySettings(settings);
 
-		final PortailClientFactory clientFactory = new PortailClientFactoryGwtImpl();
+		clientFactory = new PortailClientFactoryGwtImpl();
 
 		// Start PlaceHistoryHandler with our PlaceHistoryMapper
 		PortailPlaceHistoryMapper historyMapper = GWT
@@ -69,6 +76,9 @@ public class Module3EntryPoint implements EntryPoint {
 			createPhoneDisplay(clientFactory);
 
 		}
+
+		initPhoneGap();
+
 		historyHandler.handleCurrentHistory();
 
 	}
@@ -135,14 +145,42 @@ public class Module3EntryPoint implements EntryPoint {
 
 	}
 
+	private void initPhoneGap() {
+		final PhoneGap phoneGap = clientFactory.getPhoneGap();
+
+		phoneGap.addHandler(new PhoneGapAvailableHandler() {
+
+			@Override
+			public void onPhoneGapAvailable(PhoneGapAvailableEvent event) {
+				showDebug("onPhoneGapAvailable");
+
+				clientFactory.getEventBus().fireEvent(event);
+
+			}
+		});
+
+		phoneGap.addHandler(new PhoneGapTimeoutHandler() {
+
+			@Override
+			public void onPhoneGapTimeout(PhoneGapTimeoutEvent event) {
+				showError("onPhoneGapTimeout");
+
+				clientFactory.getEventBus().fireEvent(event);
+			}
+		});
+
+		phoneGap.initializePhoneGap();
+	}
+
 	@Override
 	public void onModuleLoad() {
+		showDebug("onModuleLoad");
 
 		GWT.setUncaughtExceptionHandler(new UncaughtExceptionHandler() {
 
 			@Override
 			public void onUncaughtException(Throwable e) {
-				Window.alert("uncaught: " + e.getMessage());
+				showError("uncaught: " + e.getMessage());
 				e.printStackTrace();
 
 			}
@@ -156,6 +194,23 @@ public class Module3EntryPoint implements EntryPoint {
 			}
 		}.schedule(1);
 
+	}
+
+	private void showInfo(String msg) {
+		GWT.log("INFO: " + msg);
+		Window.alert(msg);
+	}
+
+	private void showDebug(String msg) {
+		GWT.log("DEBUG: " + msg);
+		if (true) {
+			Window.alert("DEBUG: " + msg);
+		}
+	}
+
+	private void showError(String msg) {
+		GWT.log("ERROR: " + msg);
+		Window.alert("ERROR: " + msg);
 	}
 
 }
