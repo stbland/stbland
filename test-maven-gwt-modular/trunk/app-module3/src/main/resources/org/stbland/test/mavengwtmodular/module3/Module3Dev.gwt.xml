@@ -5,6 +5,8 @@
 	<inherits name="org.stbland.test.mavengwtmodular.module3.Module3" />
 
 	<set-property name="user.agent" value="safari" />
+	
+	<set-property name="mgwt.os" value="iphone" />
 
 <!-- 
 	<set-property name="gwt.logging.logLevel" value="FINEST" />

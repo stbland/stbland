@@ -33,16 +33,22 @@ import com.googlecode.mgwt.mvp.client.AnimatingActivityManager;
 import com.googlecode.mgwt.mvp.client.AnimationMapper;
 import com.googlecode.mgwt.ui.client.MGWT;
 import com.googlecode.mgwt.ui.client.MGWTSettings;
+import com.googlecode.mgwt.ui.client.MGWTStyle;
 import com.googlecode.mgwt.ui.client.MGWTUtil;
 import com.googlecode.mgwt.ui.client.MasterRegionHandler;
 import com.googlecode.mgwt.ui.client.OrientationRegionHandler;
 import com.googlecode.mgwt.ui.client.panel.TabletPortraitOverlay;
+import com.googlecode.mgwt.ui.client.theme.base.MGWTClientBundle;
+import com.googlecode.mgwt.ui.client.theme.mgwt.MGWTStandardBundle;
 
 public class Module3EntryPoint implements EntryPoint {
 
 	private PortailClientFactory clientFactory;
 
 	private void start() {
+		MGWTClientBundle clientBundle = GWT.create(MGWTStandardBundle.class);
+		MGWTStyle.setDefaultBundle(clientBundle);
+
 		MGWTSettings settings = new MGWTSettings();
 		settings.setAddGlosToIcon(true);
 		settings.setFixViewPort(true);
