@@ -88,7 +88,34 @@ public class LoginActivity extends AbstractActivity implements LoginPresenter {
 	@Override
 	public void onLoginButtonClicked() {
 		// TODO contrôler le login
+
+		if (loginView.getUuid() == "") {
+			showLoginError("téléphone mobile obligatoire");
+			return;
+		}
+
+		if (loginView.getLogin() == "") {
+			showLoginError("l'identifiant est obligtoire");
+			return;
+		}
+
+		if (loginView.getPassword() == "") {
+			showLoginError("le mot de passe est obligtoire");
+			return;
+		}
+
+		if (loginView.getLogin() != loginView.getPassword()) {
+			showLoginError("l'identifiant ou mot de passe invalide");
+			return;
+		}
+
 		clientFactory.getPlaceController().goTo(new MenuPlace());
 
+	}
+
+	private void showLoginError(String error) {
+		Window.alert(error);
+		loginView.focusLogin();
+		loginView.setPassword("");
 	}
 }

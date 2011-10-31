@@ -15,5 +15,9 @@ public interface ViewGwt  extends IsWidget{
 	
 	public HasSimpleTouchHandler getMainButton();
 	
+	public void setTitle(String title);
+
+	public void setBackButtonText(String text);	
+	
 
 }

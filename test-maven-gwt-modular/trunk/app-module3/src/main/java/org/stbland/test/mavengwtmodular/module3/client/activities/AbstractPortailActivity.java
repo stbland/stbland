@@ -18,4 +18,6 @@ public abstract class AbstractPortailActivity extends AbstractActivity
 		clientFactory.getPlaceController().goTo(new LoginPlace());
 
 	}
+	
+
 }

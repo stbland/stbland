@@ -4,13 +4,11 @@ import org.stbland.test.mavengwtmodular.module3.client.views.PortailView;
 
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.ui.Composite;
 import com.googlecode.mgwt.dom.client.event.touch.simple.HasSimpleTouchHandler;
 import com.googlecode.mgwt.dom.client.event.touch.simple.SimpleTouchEvent;
 import com.googlecode.mgwt.ui.client.widget.BarButton;
 
-
-public abstract class AbstractPortailView extends Composite implements
+public abstract class AbstractPortailView extends AbstractViewGwtImpl implements
 		PortailView {
 
 	private PortailPresenter presenter;

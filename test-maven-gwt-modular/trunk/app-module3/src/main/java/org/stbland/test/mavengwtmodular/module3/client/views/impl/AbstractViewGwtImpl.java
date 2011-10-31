@@ -16,6 +16,7 @@ import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
 import com.googlecode.mgwt.ui.client.widget.ScrollPanel;
 
 public abstract class AbstractViewGwtImpl implements ViewGwt {
+
 	protected LayoutPanel main;
 	protected ScrollPanel scrollPanel;
 	protected HeaderPanel headerPanel;
@@ -82,6 +83,17 @@ public abstract class AbstractViewGwtImpl implements ViewGwt {
 	@Override
 	public HasSimpleTouchHandler getMainButton() {
 		return headerMainButton;
+	}
+
+	@Override
+	public void setTitle(String title) {
+		headerPanel.setCenter(title);
+	}
+
+	@Override
+	public void setBackButtonText(String text) {
+		headerBackButton.setText(text);
+
 	}
 
 }
