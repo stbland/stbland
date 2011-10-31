@@ -209,7 +209,7 @@ public class Module3EntryPoint implements EntryPoint {
 
 	private void showDebug(String msg) {
 		GWT.log("DEBUG: " + msg);
-		if (true) {
+		if (false) {
 			Window.alert("DEBUG: " + msg);
 		}
 	}

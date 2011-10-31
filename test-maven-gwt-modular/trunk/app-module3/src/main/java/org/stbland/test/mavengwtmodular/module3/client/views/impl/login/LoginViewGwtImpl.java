@@ -4,6 +4,7 @@ import org.stbland.test.mavengwtmodular.module3.client.views.LoginView;
 import org.stbland.test.mavengwtmodular.module3.client.views.impl.AbstractViewGwtImpl;
 
 import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.dom.client.event.touch.simple.HasSimpleTouchHandler;
 import com.googlecode.mgwt.dom.client.event.touch.simple.SimpleTouchEvent;
 import com.googlecode.mgwt.dom.client.event.touch.simple.SimpleTouchHandler;
@@ -24,13 +25,15 @@ public class LoginViewGwtImpl extends AbstractViewGwtImpl implements LoginView {
 
 	protected MPasswordTextBox passwordTextBox;
 
+	private FlowPanel widgetList;
+
 	public LoginViewGwtImpl() {
 		super();
 
-		FlowPanel widgetList = new FlowPanel();
+		widgetList = new FlowPanel();
 		// widgetList.setWidth("300px");
 		// widgetList.setHeight("300px");
-		widgetList.setHeight("90px");
+		// widgetList.setHeight("90px");
 
 		// WidgetList widgetList = new WidgetList();
 		// widgetList.setRound(true);
@@ -44,19 +47,19 @@ public class LoginViewGwtImpl extends AbstractViewGwtImpl implements LoginView {
 
 		loginTextBox = new MTextBox();
 		loginTextBox.setPlaceHolder("identifiant");
-		widgetList.add(loginTextBox);
+		widgetListAdd(loginTextBox);
 
 		uuidTextBox = new MTextBox();
 		uuidTextBox.setPlaceHolder("UUID");
 		uuidTextBox.setReadOnly(true);
-		widgetList.add(uuidTextBox);
+		widgetListAdd(uuidTextBox);
 
 		passwordTextBox = new MPasswordTextBox();
 		passwordTextBox.setPlaceHolder("mot de passe");
-		widgetList.add(passwordTextBox);
+		widgetListAdd(passwordTextBox);
 
 		loginButton = new Button("Valider");
-		widgetList.add(loginButton);
+		widgetListAdd(loginButton);
 
 		loginButton.addSimpleTouchHandler(new SimpleTouchHandler() {
 
@@ -69,6 +72,11 @@ public class LoginViewGwtImpl extends AbstractViewGwtImpl implements LoginView {
 
 		main.add(scrollPanel);
 		// main.add(loginButton);
+	}
+
+	private void widgetListAdd(Widget widget) {
+		widget.setHeight("30px");
+		widgetList.add(widget);
 	}
 
 	@Override

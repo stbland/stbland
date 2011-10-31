@@ -25,7 +25,9 @@ public abstract class AbstractViewGwtImpl implements ViewGwt {
 
 	public AbstractViewGwtImpl() {
 
-		StyleInjector.inject(AppBundle.INSTANCE.inputCss().getText());
+		if (false) {
+			StyleInjector.inject(AppBundle.INSTANCE.inputCss().getText());
+		}
 
 		main = new LayoutPanel();
 
