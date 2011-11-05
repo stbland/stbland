@@ -28,6 +28,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+			<version>1.7</version>
+		</dependency>
+
+		<dependency>
 			<groupId>com.google.code.facebookapi</groupId>
 			<artifactId>facebook-java-api</artifactId>
 			<version>3.0.4</version>
@@ -36,11 +42,25 @@
 	<build>
 		<finalName>facebookfetcher</finalName>
 
+		<filters>
+			<filter>src/main/resources/facebookfetcher.properties.default</filter>
+		</filters>
+
 		<resources>
+
 			<resource>
 				<directory>src/main/resources</directory>
 				<filtering>true</filtering>
 			</resource>
+			<!--
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/Constants.java</include>
+				</includes>
+				<filtering>true</filtering>
+			</resource>
+-->
 		</resources>
 
 		<plugins>
@@ -62,6 +82,7 @@
 							<goal>read-project-properties</goal>
 						</goals>
 					</execution>
+					<!-- 
 					<execution>
 						<id>set-system-properties</id>
 						<phase>compile</phase>
@@ -85,6 +106,7 @@
 							</properties>
 						</configuration>
 					</execution>
+					-->
 				</executions>
 			</plugin>
 		</plugins>

@@ -7,14 +7,16 @@ import org.apache.commons.logging.LogFactory;
 
 import com.google.code.facebookapi.FacebookException;
 import com.google.code.facebookapi.FacebookJaxbRestClient;
+import com.google.code.facebookapi.schema.StreamGetCommentsResponse;
 
 public class FetcherTestCase extends TestCase {
 
 	protected static Log log = LogFactory.getLog(FetcherTestCase.class);
+	private Configuration configuration;
 
 	protected void setUp() throws Exception {
 		super.setUp();
-
+		configuration = Configuration.getInstance();
 	}
 
 	protected void tearDown() throws Exception {
@@ -23,20 +25,34 @@ public class FetcherTestCase extends TestCase {
 	}
 
 	protected FacebookJaxbRestClient getFacebookClient() {
-		final String apiKey = System.getProperty("facebook.applicationKey");
+		final String apiKey = configuration.getFaceBookApplicationKey();
 		assertNotNull("apiKey", apiKey);
-		final String secret = System.getProperty("facebook.applicationSecret");
+		final String secret = configuration.getFaceBookApplicationKey();
 		assertNotNull("secret", secret);
 		return new FacebookJaxbRestClient(apiKey, secret);
 	}
 
 	public void test_stream_getComments() throws FacebookException {
-		String postId = System.getProperty("facebook.postId");
+		String postId = configuration.getFaceBookPostId();
+		log.debug("version: " + Constants.VERSION);
+		log.debug("postId: " + Constants.FACEBOOK_POST_ID);
 
 		assertNotNull("postId", postId);
 		FacebookJaxbRestClient facebookClient = getFacebookClient();
 
-		log.debug("test_stream_getComments postId: " + postId);
-		facebookClient.stream_getComments(postId);
+		String authToken = facebookClient.auth_createToken();
+		assertNotNull("authToken", authToken);
+		String authSession = facebookClient.auth_getSession(authToken);
+		assertNotNull("authSession", authSession);
+		try {
+
+			log.debug("facebookClient.stream_getComments(postId: " + postId + ")");
+			StreamGetCommentsResponse streamGetCommentsResponse = facebookClient
+					.stream_getComments(postId);
+			assertNotNull("streamGetCommentsResponse",
+					streamGetCommentsResponse);
+		} finally {
+			facebookClient.auth_expireSession();
+		}
 	}
 }
