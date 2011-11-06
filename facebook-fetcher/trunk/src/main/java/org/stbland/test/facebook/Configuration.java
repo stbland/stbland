@@ -49,4 +49,18 @@ public final class Configuration {
 		return getString("facebook.postId");
 	}
 
+	public String getBrowserPath() {
+		return getString("browser.path");
+	}
+	
+	public String getFacebookUserLogin() {
+		return getString("facebook.userLogin");
+	}
+	
+	public String getFacebookUserPassword() {
+		return getString("facebook.userPassword");
+	}
+	
+
+
 }

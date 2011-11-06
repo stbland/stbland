@@ -1,3 +1,6 @@
+browser.path=/usr/bin/google-chrome
 facebook.applicationKey=
 facebook.applicationSecret=
+facebook.userLogin=
+facebook.userPassword=
 facebook.postId=
