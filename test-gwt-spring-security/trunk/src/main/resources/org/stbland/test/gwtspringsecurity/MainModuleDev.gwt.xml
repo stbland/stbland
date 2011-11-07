@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to="gwtspringsecurity">
+
+	<!-- Module de production -->
+	<inherits name="org.stbland.test.gwtspringsecurity.MainModule" />
+
+<!-- 
+	<set-property name="gwt.logging.logLevel" value="FINEST" />
+	<set-property name="gwt.logging.enabled" value="TRUE" />
+
+	<set-property name="gwt.logging.popupHandler" value="DISABLED" />
+	<set-property name="gwt.logging.consoleHandler" value="ENABLED" />
+	<set-property name="gwt.logging.simpleRemoteHandler" value="ENABLED" />
+	 -->
+
+	<!-- Remove client side stack info. Can reduce javascript size by 15% -->
+	<set-property name="compiler.stackMode" value="emulated" />
+
+	<!-- Whether or not the compiler should alter Enum.name() to return ordinal() 
+		as a way of obfuscating Enum field identifiers. Can reduce javascript size 
+		if use lots of enums or large enums -->
+	<set-configuration-property name="compiler.enum.obfuscate.names"
+		value="false" />
+
+</module>

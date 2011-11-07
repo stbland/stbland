@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to="gwtspringsecurity">
+	<inherits name="com.google.gwt.user.User" />
+
+	<!-- Model View Presenter -->
+	<inherits name="com.google.gwt.activity.Activity" />
+	<inherits name="com.google.gwt.place.Place" />
+
+	<!-- Use ClientFactoryImpl by default -->
+	<replace-with
+		class="org.stbland.test.gwtspringsecurity.client.factory.ClientFactoryImpl">
+		<when-type-is
+			class="org.stbland.test.gwtspringsecurity.client.factory.ClientFactory" />
+	</replace-with>
+
+	<entry-point
+		class="org.stbland.test.gwtspringsecurity.client.MainModuleEntryPoint" />
+
+	<source path="client" />
+	<source path="shared" />
+
+</module>
