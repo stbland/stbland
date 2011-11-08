@@ -1,0 +1,1 @@
+mvn -Pdev tomcat:run
