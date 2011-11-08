@@ -33,7 +33,6 @@ public class Fetcher {
 	public static EnumSet<ProfileField> fields = EnumSet
 			.allOf(ProfileField.class);
 
-	private Configuration propertiesManager;
 	private boolean isConnected = false;
 	private String session;
 	private Configuration configuration;
@@ -135,7 +134,7 @@ public class Fetcher {
 			return loggedUser;
 
 		long id = client.users_getLoggedInUser();
-		logger.info("LoggedInUser=" + id );
+		logger.info("LoggedInUser=" + id);
 		Collection<Long> users = new ArrayList<Long>();
 		users.add(id);
 
