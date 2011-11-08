@@ -263,7 +263,7 @@
 						<hostedWebapp>${webappOutputDirectory}</hostedWebapp>
 						<webappDirectory>${webappOutputDirectory}</webappDirectory>
 						<webXml>${webappSourceDirectory}/WEB-INF/web.xml</webXml>
-						<inplace>false</inplace>
+						<copyWebapp>true</copyWebapp>
 						<runTarget>${gwt.runTarget1}</runTarget>
 					</configuration>
 					<executions>
@@ -273,7 +273,7 @@
 							<goals>
 								<goal>resources</goal>
 								<goal>compile</goal>
-								 <goal>generateAsync</goal>
+								<goal>generateAsync</goal>
 								<goal>test</goal>
 							</goals>
 						</execution>
