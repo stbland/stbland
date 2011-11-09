@@ -1,1 +1,1 @@
-mvn -Pdev clean tomcat:run-war
+mvn -Pdev tomcat:run-war
