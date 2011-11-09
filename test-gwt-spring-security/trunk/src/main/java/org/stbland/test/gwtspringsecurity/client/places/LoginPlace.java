@@ -17,7 +17,7 @@ public class LoginPlace extends Place {
 
 		@Override
 		public String getToken(LoginPlace place) {
-			return null;
+			return "";
 
 		}
 	}
