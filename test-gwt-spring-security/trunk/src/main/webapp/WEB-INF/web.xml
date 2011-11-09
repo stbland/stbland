@@ -8,14 +8,20 @@
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
-	
-	<!--
-	http://www.javacodegeeks.com/2010/12/securing-gwt-apps-with-spring-security.html
--->	
+
+	<!-- http://www.javacodegeeks.com/2010/12/securing-gwt-apps-with-spring-security.html -->
+
+	<!-- - Location of the XML file that defines the root application context 
+		- Applied by ContextLoaderListener. -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:**/applicationContext*.xml</param-value>
+	</context-param>
+
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-		 
+
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -25,6 +31,5 @@
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
- 
 
 </web-app>
