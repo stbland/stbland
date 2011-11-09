@@ -1,6 +1,7 @@
 package org.stbland.test.gwtspringsecurity.client.factory;
 
 import org.stbland.test.gwtspringsecurity.client.views.LoginView;
+import org.stbland.test.gwtspringsecurity.client.views.SecureView;
 import org.stbland.test.gwtspringsecurity.client.views.WelcomeView;
 
 import com.google.gwt.place.shared.PlaceController;
@@ -15,5 +16,7 @@ public interface ClientFactory {
 	LoginView getLoginView();
 
 	WelcomeView getWelcomeView();
+
+	SecureView getSecureView();
 
 }

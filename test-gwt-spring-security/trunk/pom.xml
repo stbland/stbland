@@ -17,6 +17,9 @@
 		<webappOutputDirectory>${basedir}/target/${war.name}</webappOutputDirectory>
 		<gwt.runTarget1>index.html</gwt.runTarget1>
 
+		<!-- Module GWT principal -->
+		<main.gwt.module />
+
 		<!-- Dossier de compilation d'un module GWT (ne pas modifier) -->
 		<gwtModuleCompileDirectory>${project.build.directory}/${project.artifactId}</gwtModuleCompileDirectory>
 		<moduleWebappPartDirectory>${project.build.directory}/partial-war</moduleWebappPartDirectory>
@@ -44,8 +47,6 @@
 		<!-- * Plugins versions * -->
 		<!-- ******************** -->
 
-		<!-- JavaDoc plugin -->
-		<maven-javadoc-plugin.version>2.7</maven-javadoc-plugin.version>
 		<!-- Compiler plugin -->
 		<maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
 		<!-- Resources plugin -->
@@ -62,6 +63,8 @@
 		<maven-source-plugin.version>2.1.2</maven-source-plugin.version>
 		<!-- Build helper plugin -->
 		<build-helper-maven-plugin.version>1.4</build-helper-maven-plugin.version>
+		<!-- Tomcat plugin -->
+		<tomcat-maven-plugin.version>1.1</tomcat-maven-plugin.version>
 
 	</properties>
 
@@ -76,49 +79,29 @@
 					<value>prod</value>
 				</property>
 			</activation>
-			<build>
-				<plugins>
-					<!-- GWT plugin -->
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>gwt-maven-plugin</artifactId>
-						<configuration>
-							<modules>
-								<module>org.stbland.test.gwtspringsecurity.MainModule</module>
-							</modules>
-						</configuration>
-					</plugin>
-				</plugins>
 
-			</build>
+			<properties>
+				<!-- Module GWT principal -->
+				<main.gwt.module>org.stbland.test.gwtspringsecurity.MainModule</main.gwt.module>
+			</properties>
+
 		</profile>
 
 		<!-- Développement profile -->
 		<profile>
 			<id>dev</id>
 			<activation>
-				<activeByDefault>false</activeByDefault>
+				<activeByDefault>true</activeByDefault>
 				<property>
 					<name>env</name>
 					<value>dev</value>
 				</property>
 			</activation>
 
-			<build>
-				<plugins>
-					<!-- GWT plugin -->
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>gwt-maven-plugin</artifactId>
-						<configuration>
-							<modules>
-								<module>org.stbland.test.gwtspringsecurity.MainModuleDev</module>
-							</modules>
-						</configuration>
-					</plugin>
-				</plugins>
-
-			</build>
+			<properties>
+				<!-- Module GWT principal -->
+				<main.gwt.module>org.stbland.test.gwtspringsecurity.MainModuleDev</main.gwt.module>
+			</properties>
 
 		</profile>
 	</profiles>
@@ -127,12 +110,38 @@
 		<!-- GWT dependencies -->
 		<dependency>
 			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-servlet</artifactId>
+			<version>${gwt.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-user</artifactId>
+			<version>${gwt.version}</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-dev</artifactId>
+			<version>${gwt.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Validation dependencies (pour GWT) -->
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>${validation-api.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>${validation-api.version}</version>
+			<classifier>sources</classifier>
 			<scope>test</scope>
 		</dependency>
 
@@ -140,6 +149,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -207,59 +217,6 @@
 
 	</dependencies>
 
-	<dependencyManagement>
-
-		<dependencies>
-
-			<!-- GWT dependencies -->
-			<dependency>
-				<groupId>com.google.gwt</groupId>
-				<artifactId>gwt-servlet</artifactId>
-				<version>${gwt.version}</version>
-				<scope>runtime</scope>
-			</dependency>
-
-			<dependency>
-				<groupId>com.google.gwt</groupId>
-				<artifactId>gwt-user</artifactId>
-				<version>${gwt.version}</version>
-				<scope>provided</scope>
-			</dependency>
-
-			<dependency>
-				<groupId>com.google.gwt</groupId>
-				<artifactId>gwt-dev</artifactId>
-				<version>${gwt.version}</version>
-				<scope>test</scope>
-			</dependency>
-
-			<!-- JUnit dependency -->
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>${junit.version}</version>
-				<scope>test</scope>
-			</dependency>
-
-			<!-- Validation dependencies (pour GWT) -->
-			<dependency>
-				<groupId>javax.validation</groupId>
-				<artifactId>validation-api</artifactId>
-				<version>${validation-api.version}</version>
-				<scope>test</scope>
-			</dependency>
-
-			<dependency>
-				<groupId>javax.validation</groupId>
-				<artifactId>validation-api</artifactId>
-				<version>${validation-api.version}</version>
-				<classifier>sources</classifier>
-				<scope>test</scope>
-			</dependency>
-
-		</dependencies>
-
-	</dependencyManagement>
 
 	<build>
 
@@ -284,183 +241,72 @@
 
 		</resources>
 
-		<pluginManagement>
-
-			<plugins>
-
-				<!-- JavaDoc plugin -->
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-javadoc-plugin</artifactId>
-					<version>${maven-javadoc-plugin.version}</version>
-				</plugin>
-
-				<!-- GWT Plugin -->
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>gwt-maven-plugin</artifactId>
-					<version>${gwt-maven-plugin.version}</version>
-					<dependencies>
-						<dependency>
-							<groupId>com.google.gwt</groupId>
-							<artifactId>gwt-user</artifactId>
-							<version>${gwt.version}</version>
-						</dependency>
-						<dependency>
-							<groupId>com.google.gwt</groupId>
-							<artifactId>gwt-dev</artifactId>
-							<version>${gwt.version}</version>
-						</dependency>
-						<dependency>
-							<groupId>com.google.gwt</groupId>
-							<artifactId>gwt-servlet</artifactId>
-							<version>${gwt.version}</version>
-						</dependency>
-					</dependencies>
-
-					<configuration>
-						<logLevel>INFO</logLevel>
-						<extraJvmArgs>-Xmx512m</extraJvmArgs>
-						<style>PRETTY</style>
-						<mode>htmlunit</mode>
-						<gwtVersion>${gwt.version}</gwtVersion>
-						<!-- <skipTests>false</skipTests> -->
-						<hostedWebapp>${webappOutputDirectory}</hostedWebapp>
-						<webappDirectory>${webappOutputDirectory}</webappDirectory>
-						<webXml>${webappSourceDirectory}/WEB-INF/web.xml</webXml>
-						<copyWebapp>true</copyWebapp>
-						<runTarget>${gwt.runTarget1}</runTarget>
-					</configuration>
-					<executions>
-						<execution>
-							<id>compile</id>
-							<phase>prepare-package</phase>
-							<goals>
-								<goal>resources</goal>
-								<goal>compile</goal>
-								<goal>generateAsync</goal>
-								<goal>test</goal>
-							</goals>
-						</execution>
-						<execution>
-							<id>clean</id>
-							<goals>
-								<goal>clean</goal>
-							</goals>
-							<phase>clean</phase>
-						</execution>
-					</executions>
-
-				</plugin>
-
-
-				<!-- Tomcat plugin -->
-				<!-- Exécution de la webapp via le serveur Tomcat embarqué de Maven) -->
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>tomcat-maven-plugin</artifactId>
-					<configuration>
-						<path>/${war.name}</path>
-					</configuration>
-				</plugin>
-
-				<!-- WAR plugin -->
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-war-plugin</artifactId>
-					<version>${maven-war-plugin.version}</version>
-
-					<configuration>
-						<webappDirectory>${webappOutputDirectory}</webappDirectory>
-						<webResources>
-							<resource>
-								<!-- WEB resources -->
-								<directory>${webappSourceDirectory}</directory>
-							</resource>
-						</webResources>
-					</configuration>
-					<!-- <executions> <execution> <id>exploded-when-compile</id> <phase>compile</phase> 
-						<goals> <goal>exploded</goal> </goals> </execution> </executions> -->
-				</plugin>
-
-
-
-				<!-- Compiler plugin -->
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>${maven-compiler-plugin.version}</version>
-					<configuration>
-						<source>${maven.compiler.source}</source>
-						<target>${maven.compiler.target}</target>
-						<encoding>${project.encoding}</encoding>
-					</configuration>
-				</plugin>
-
-				<!-- Resources plugin -->
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-resources-plugin</artifactId>
-					<version>${maven-resources-plugin.version}</version>
-					<configuration>
-						<encoding>${project.encoding}</encoding>
-					</configuration>
-				</plugin>
-
-				<!-- Eclipse plugin (génaration du projet Eclipse depuis Maven) -->
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-eclipse-plugin</artifactId>
-					<version>${maven-eclipse-plugin.version}</version>
-
-					<configuration>
-						<downloadSources>true</downloadSources>
-						<downloadJavadocs>true</downloadJavadocs>
-						<wtpversion>2.0</wtpversion>
-
-						<projectnatures>
-							<projectnature>org.eclipse.jdt.core.javanature</projectnature>
-							<nature>com.google.gwt.eclipse.core.gwtNature</nature>
-							<nature>org.springframework.ide.eclipse.core.springnature</nature>
-						</projectnatures>
-						<buildcommands>
-							<buildcommand>org.eclipse.jdt.core.javabuilder</buildcommand>
-							<buildcommand>com.google.appengine.eclipse.core.projectValidator</buildcommand>
-							<buildcommand>com.google.gwt.eclipse.core.gwtProjectValidator</buildcommand>
-							<buildCommand>
-								<name>org.springframework.ide.eclipse.core.springbuilder</name>
-							</buildCommand>
-						</buildcommands>
-						<classpathContainers>
-							<classpathContainer>org.eclipse.jdt.launching.JRE_CONTAINER</classpathContainer>
-							<classpathContainer>com.google.gwt.eclipse.core.GWT_CONTAINER</classpathContainer>
-						</classpathContainers>
-
-						<excludes>
-							<exclude>com.google.gwt:gwt-servlet</exclude>
-							<exclude>com.google.gwt:gwt-user</exclude>
-							<exclude>com.google.gwt:gwt-dev</exclude>
-							<exclude>javax.validation:validation-api</exclude>
-						</excludes>
-
-						<sourceIncludes>
-							<sourceInclude>*.ui.xml</sourceInclude>
-						</sourceIncludes>
-
-					</configuration>
-				</plugin>
-
-
-			</plugins>
-
-		</pluginManagement>
-
 		<plugins>
 
 			<!-- GWT Plugin -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>gwt-maven-plugin</artifactId>
+				<version>${gwt-maven-plugin.version}</version>
+				<dependencies>
+					<dependency>
+						<groupId>com.google.gwt</groupId>
+						<artifactId>gwt-user</artifactId>
+						<version>${gwt.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>com.google.gwt</groupId>
+						<artifactId>gwt-dev</artifactId>
+						<version>${gwt.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>com.google.gwt</groupId>
+						<artifactId>gwt-servlet</artifactId>
+						<version>${gwt.version}</version>
+					</dependency>
+				</dependencies>
+
+				<configuration>
+					<modules>
+						<module>${main.gwt.module}</module>
+					</modules>
+
+					<logLevel>INFO</logLevel>
+					<extraJvmArgs>-Xmx512m</extraJvmArgs>
+					<style>PRETTY</style>
+					<mode>htmlunit</mode>
+					<gwtVersion>${gwt.version}</gwtVersion>
+					<!-- <skipTests>false</skipTests> -->
+					<webappDirectory>${webappOutputDirectory}</webappDirectory>
+					<copyWebapp>true</copyWebapp>
+
+					<webXml>${webappSourceDirectory}/WEB-INF/web.xml</webXml>
+
+					<!-- gwt:run -->
+					<runTarget>${gwt.runTarget1}</runTarget>
+					<hostedWebapp>${webappOutputDirectory}</hostedWebapp>
+
+				</configuration>
+				<executions>
+					<execution>
+						<id>compile</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>resources</goal>
+							<goal>compile</goal>
+							<goal>generateAsync</goal>
+							<goal>test</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>clean</id>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+						<phase>clean</phase>
+					</execution>
+				</executions>
+
 			</plugin>
 
 			<!-- Tomcat plugin -->
@@ -468,27 +314,95 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>tomcat-maven-plugin</artifactId>
+				<version>${tomcat-maven-plugin.version}</version>
+				<configuration>
+					<path>/${war.name}</path>
+				</configuration>
 			</plugin>
 
 			<!-- Compiler plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
+					<encoding>${project.encoding}</encoding>
+				</configuration>
 			</plugin>
 
 			<!-- Resources plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
+				<version>${maven-resources-plugin.version}</version>
+				<configuration>
+					<encoding>${project.encoding}</encoding>
+				</configuration>
 			</plugin>
 
 			<!-- WAR plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
+				<version>${maven-war-plugin.version}</version>
+
+				<configuration>
+					<webappDirectory>${webappOutputDirectory}</webappDirectory>
+					<webResources>
+						<resource>
+							<!-- WEB resources -->
+							<directory>${webappSourceDirectory}</directory>
+						</resource>
+					</webResources>
+				</configuration>
+				<!-- <executions> <execution> <id>exploded-when-compile</id> <phase>compile</phase> 
+					<goals> <goal>exploded</goal> </goals> </execution> </executions> -->
 			</plugin>
 
 
+			<!-- Eclipse plugin (génaration du projet Eclipse depuis Maven) -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>${maven-eclipse-plugin.version}</version>
+
+				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>false</downloadJavadocs>
+					<wtpversion>2.0</wtpversion>
+
+					<projectnatures>
+						<projectnature>org.eclipse.jdt.core.javanature</projectnature>
+						<nature>com.google.gwt.eclipse.core.gwtNature</nature>
+						<nature>org.springframework.ide.eclipse.core.springnature</nature>
+					</projectnatures>
+					<buildcommands>
+						<buildcommand>org.eclipse.jdt.core.javabuilder</buildcommand>
+						<buildcommand>com.google.gwt.eclipse.core.gwtProjectValidator</buildcommand>
+						<buildCommand>
+							<name>org.springframework.ide.eclipse.core.springbuilder</name>
+						</buildCommand>
+					</buildcommands>
+					<classpathContainers>
+						<classpathContainer>org.eclipse.jdt.launching.JRE_CONTAINER</classpathContainer>
+						<classpathContainer>com.google.gwt.eclipse.core.GWT_CONTAINER</classpathContainer>
+					</classpathContainers>
+
+					<excludes>
+						<exclude>com.google.gwt:gwt-servlet</exclude>
+						<exclude>com.google.gwt:gwt-user</exclude>
+						<exclude>com.google.gwt:gwt-dev</exclude>
+						<exclude>javax.validation:validation-api</exclude>
+					</excludes>
+
+					<sourceIncludes>
+						<sourceInclude>*.ui.xml</sourceInclude>
+					</sourceIncludes>
+
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 

@@ -2,6 +2,8 @@ package org.stbland.test.gwtspringsecurity.client.factory;
 
 import org.stbland.test.gwtspringsecurity.client.views.LoginView;
 import org.stbland.test.gwtspringsecurity.client.views.LoginViewImpl;
+import org.stbland.test.gwtspringsecurity.client.views.SecureView;
+import org.stbland.test.gwtspringsecurity.client.views.SecureViewImpl;
 import org.stbland.test.gwtspringsecurity.client.views.WelcomeView;
 import org.stbland.test.gwtspringsecurity.client.views.WelcomeViewImpl;
 
@@ -34,6 +36,11 @@ public class ClientFactoryImpl implements ClientFactory {
 	@Override
 	public WelcomeView getWelcomeView() {
 		return new WelcomeViewImpl();
+	}
+
+	@Override
+	public SecureView getSecureView() {
+		return new SecureViewImpl();
 	}
 
 }
