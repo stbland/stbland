@@ -7,6 +7,7 @@ import org.stbland.test.gwtspringsecurity.client.views.WelcomeView.Presenter;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
 public class WelcomActivity extends AbstractActivity implements Presenter {
@@ -24,6 +25,12 @@ public class WelcomActivity extends AbstractActivity implements Presenter {
 		WelcomeView welcomeView = clientFactory.getWelcomeView();
 		welcomeView.setPresenter(this);
 		containerWidget.setWidget(welcomeView.asWidget());
+	}
+
+	@Override
+	public void goTo(Place newPlace) {
+		clientFactory.getPlaceController().goTo(newPlace);
+		
 	}
 
 }
