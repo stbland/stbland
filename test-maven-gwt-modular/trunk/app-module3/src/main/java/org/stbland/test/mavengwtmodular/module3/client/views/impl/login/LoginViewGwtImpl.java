@@ -7,10 +7,10 @@ import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Hidden;
 import com.google.gwt.user.client.ui.Widget;
-import com.googlecode.mgwt.dom.client.event.touch.simple.HasSimpleTouchHandler;
-import com.googlecode.mgwt.dom.client.event.touch.simple.SimpleTouchEvent;
-import com.googlecode.mgwt.dom.client.event.touch.simple.SimpleTouchHandler;
-import com.googlecode.mgwt.ui.client.MGWTUtil;
+import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
+import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
+import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
+import com.googlecode.mgwt.ui.client.MGWT;
 import com.googlecode.mgwt.ui.client.widget.Button;
 import com.googlecode.mgwt.ui.client.widget.MPasswordTextBox;
 import com.googlecode.mgwt.ui.client.widget.MTextBox;
@@ -46,7 +46,7 @@ public class LoginViewGwtImpl extends AbstractViewGwtImpl implements LoginView {
 		scrollPanel.setWidget(widgetList);
 		// workaround for android formfields jumping around when using
 		// -webkit-transform
-		scrollPanel.setUsePos(MGWTUtil.getFeatureDetection().isAndroid());
+		scrollPanel.setUsePos(MGWT.getOsDetection().isAndroid());
 
 		FlexTable table = new FlexTable();
 		table.setHeight("90px");
@@ -78,12 +78,11 @@ public class LoginViewGwtImpl extends AbstractViewGwtImpl implements LoginView {
 		loginButton = new Button("Valider");
 		// widgetListAdd(loginButton);
 		table.setWidget(2/* row */, 1/* column */, loginButton);
-
-		loginButton.addSimpleTouchHandler(new SimpleTouchHandler() {
+		loginButton.addTapHandler(new TapHandler() {
 
 			@Override
-			public void onTouch(SimpleTouchEvent event) {
-				onSimpleTouch(event);
+			public void onTap(TapEvent event) {
+				onTap(event);
 
 			}
 		});
@@ -109,12 +108,12 @@ public class LoginViewGwtImpl extends AbstractViewGwtImpl implements LoginView {
 	}
 
 	@Override
-	public HasSimpleTouchHandler getLoginButton() {
+	public HasTapHandlers getLoginButton() {
 		return loginButton;
 	}
 
 	// @UiHandler("loginButton")
-	public void onSimpleTouch(SimpleTouchEvent event) {
+	public void onTap(TapEvent event) {
 		// Window.alert("LoginButton clicked");
 		if (presenter != null) {
 			presenter.onLoginButtonClicked();

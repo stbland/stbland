@@ -10,8 +10,8 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
-import com.googlecode.mgwt.dom.client.event.touch.simple.SimpleTouchEvent;
-import com.googlecode.mgwt.dom.client.event.touch.simple.SimpleTouchHandler;
+import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
+import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
 
 public class MenuActivity extends AbstractPortailActivity implements
 		MenuPresenter {
@@ -36,12 +36,12 @@ public class MenuActivity extends AbstractPortailActivity implements
 			menuView.setTitle("Menu");
 
 			addHandlerRegistration(menuView.getBackButton()
-					.addSimpleTouchHandler(new SimpleTouchHandler() {
+					.addTapHandler(new TapHandler() {
 
 						@Override
-						public void onTouch(SimpleTouchEvent event) {
-							clientFactory.getPlaceController().goTo(
-									new LoginPlace());
+						public void onTap(TapEvent event) {
+							Window.alert("OK");
+							// clientFactory.getPlaceController().goTo(new LoginPlace());
 
 						}
 					}));

@@ -15,8 +15,8 @@ import com.googlecode.gwtphonegap.client.PhoneGapAvailableEvent;
 import com.googlecode.gwtphonegap.client.PhoneGapAvailableHandler;
 import com.googlecode.gwtphonegap.client.PhoneGapTimeoutEvent;
 import com.googlecode.gwtphonegap.client.PhoneGapTimeoutHandler;
-import com.googlecode.mgwt.dom.client.event.touch.simple.SimpleTouchEvent;
-import com.googlecode.mgwt.dom.client.event.touch.simple.SimpleTouchHandler;
+import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
+import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
 
 public class LoginActivity extends AbstractActivity implements LoginPresenter {
 
@@ -38,11 +38,11 @@ public class LoginActivity extends AbstractActivity implements LoginPresenter {
 			loginView.setBackButtonText("Menu");
 			loginView.setTitle("Identification");
 
-			addHandlerRegistration(loginView.getBackButton()
-					.addSimpleTouchHandler(new SimpleTouchHandler() {
+			addHandlerRegistration(loginView.getBackButton().addTapHandler(
+					new TapHandler() {
 
 						@Override
-						public void onTouch(SimpleTouchEvent event) {
+						public void onTap(TapEvent event) {
 							clientFactory.getPlaceController().goTo(
 									new MenuPlace());
 

@@ -7,9 +7,9 @@ import com.google.gwt.dom.client.StyleInjector;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.Widget;
-import com.googlecode.mgwt.dom.client.event.touch.simple.HasSimpleTouchHandler;
+import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
+import com.googlecode.mgwt.ui.client.MGWT;
 import com.googlecode.mgwt.ui.client.MGWTStyle;
-import com.googlecode.mgwt.ui.client.MGWTUtil;
 import com.googlecode.mgwt.ui.client.widget.HeaderButton;
 import com.googlecode.mgwt.ui.client.widget.HeaderPanel;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
@@ -43,12 +43,12 @@ public abstract class AbstractViewGwtImpl implements ViewGwt {
 		headerMainButton = new HeaderButton();
 		headerMainButton.setRoundButton(true);
 
-		if (MGWTUtil.getFeatureDetection().isPhone()) {
+		if (MGWT.getOsDetection().isPhone()) {
 			headerPanel.setLeftWidget(headerBackButton);
 		} else {
 			headerPanel.setLeftWidget(headerMainButton);
-			headerMainButton.addStyleName(MGWTStyle.getDefaultClientBundle()
-					.getUtilCss().portraitonly());
+			headerMainButton.addStyleName(MGWTStyle.getTheme()
+					.getMGWTClientBundle().getUtilCss().portraitonly());
 		}
 
 		main.add(headerPanel);
@@ -71,7 +71,7 @@ public abstract class AbstractViewGwtImpl implements ViewGwt {
 	}
 
 	@Override
-	public HasSimpleTouchHandler getBackButton() {
+	public HasTapHandlers getBackButton() {
 		return headerBackButton;
 	}
 
@@ -81,7 +81,7 @@ public abstract class AbstractViewGwtImpl implements ViewGwt {
 	}
 
 	@Override
-	public HasSimpleTouchHandler getMainButton() {
+	public HasTapHandlers getMainButton() {
 		return headerMainButton;
 	}
 

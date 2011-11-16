@@ -1,6 +1,6 @@
 package org.stbland.test.mavengwtmodular.module3.client.views;
 
-import com.googlecode.mgwt.dom.client.event.touch.simple.HasSimpleTouchHandler;
+import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
 
 public interface PortailView extends ViewGwt {
 
@@ -10,5 +10,5 @@ public interface PortailView extends ViewGwt {
 
 	void setPresenter(PortailPresenter presenter);
 
-	HasSimpleTouchHandler getLogoutButton();
+	HasTapHandlers getLogoutButton();
 }

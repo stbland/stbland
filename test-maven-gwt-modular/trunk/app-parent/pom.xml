@@ -56,7 +56,7 @@
 		<validation-api.version>1.0.0.GA</validation-api.version>
 		<gwt.version>2.4.0</gwt.version>
 		<!-- MGWT -->
-		<mgwt.version>1.0.0-alpha2</mgwt.version>
+		<mgwt.version>1.0.0</mgwt.version>
 		<!--
 		<mgwt.version>1.0.0-SNAPSHOT</mgwt.version>
 		-->
@@ -408,7 +408,7 @@
 
 					<configuration>
 						<downloadSources>true</downloadSources>
-						<downloadJavadocs>true</downloadJavadocs>
+						<downloadJavadocs>false</downloadJavadocs>
 						<wtpversion>2.0</wtpversion>
 
 						<projectnatures>

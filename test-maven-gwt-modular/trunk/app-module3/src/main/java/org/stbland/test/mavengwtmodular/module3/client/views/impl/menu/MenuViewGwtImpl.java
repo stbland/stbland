@@ -4,9 +4,9 @@ import org.stbland.test.mavengwtmodular.module3.client.views.MenuView;
 import org.stbland.test.mavengwtmodular.module3.client.views.impl.AbstractPortailView;
 
 import com.google.gwt.uibinder.client.UiField;
-import com.googlecode.mgwt.dom.client.event.touch.simple.HasSimpleTouchHandler;
-import com.googlecode.mgwt.dom.client.event.touch.simple.SimpleTouchEvent;
-import com.googlecode.mgwt.ui.client.widget.BarButton;
+import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
+import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
+import com.googlecode.mgwt.ui.client.widget.HeaderButton;
 
 public class MenuViewGwtImpl extends AbstractPortailView implements MenuView {
 
@@ -26,7 +26,7 @@ public class MenuViewGwtImpl extends AbstractPortailView implements MenuView {
 	private MenuPresenter presenter;
 
 	@UiField
-	protected BarButton logoutButton;
+	protected HeaderButton logoutButton;
 
 	// @Override
 	/*
@@ -35,12 +35,12 @@ public class MenuViewGwtImpl extends AbstractPortailView implements MenuView {
 	 */
 
 	@Override
-	public HasSimpleTouchHandler getLogoutButton() {
+	public HasTapHandlers getLogoutButton() {
 		return logoutButton;
 	}
 
 	// @UiHandler("logoutButton")
-	public void onSimpleTouch(SimpleTouchEvent event) {
+	public void onSimpleTouch(TapEvent event) {
 		if (presenter != null) {
 			presenter.onLogoutButtonClicked();
 		}

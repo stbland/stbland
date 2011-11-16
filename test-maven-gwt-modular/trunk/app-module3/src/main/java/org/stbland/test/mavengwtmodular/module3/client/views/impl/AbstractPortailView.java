@@ -4,9 +4,8 @@ import org.stbland.test.mavengwtmodular.module3.client.views.PortailView;
 
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.googlecode.mgwt.dom.client.event.touch.simple.HasSimpleTouchHandler;
-import com.googlecode.mgwt.dom.client.event.touch.simple.SimpleTouchEvent;
-import com.googlecode.mgwt.ui.client.widget.BarButton;
+import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
+import com.googlecode.mgwt.ui.client.widget.HeaderButton;
 
 public abstract class AbstractPortailView extends AbstractViewGwtImpl implements
 		PortailView {
@@ -14,7 +13,7 @@ public abstract class AbstractPortailView extends AbstractViewGwtImpl implements
 	private PortailPresenter presenter;
 
 	@UiField()
-	protected BarButton logoutButton;
+	protected HeaderButton logoutButton;
 
 	@Override
 	public void setPresenter(PortailPresenter presenter) {
@@ -22,12 +21,12 @@ public abstract class AbstractPortailView extends AbstractViewGwtImpl implements
 	}
 
 	@Override
-	public HasSimpleTouchHandler getLogoutButton() {
+	public HasTapHandlers getLogoutButton() {
 		return logoutButton;
 	}
 
 	@UiHandler("logoutButton")
-	public void onSimpleTouch(SimpleTouchEvent event) {
+	public void onSimpleTouch(HasTapHandlers event) {
 		if (presenter != null) {
 			presenter.onLogoutButtonClicked();
 		}

@@ -1,6 +1,6 @@
 package org.stbland.test.mavengwtmodular.module3.client.views;
 
-import com.googlecode.mgwt.dom.client.event.touch.simple.HasSimpleTouchHandler;
+import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
 
 public interface LoginView extends ViewGwt {
 
@@ -10,12 +10,12 @@ public interface LoginView extends ViewGwt {
 
 	void setLoginPresenter(LoginPresenter loginPresenter);
 
-	HasSimpleTouchHandler getLoginButton();
+	HasTapHandlers getLoginButton();
 
 	public void setLogin(String login);
 
 	public String getLogin();
-	
+
 	public void focusLogin();
 
 	public void setPassword(String password);
