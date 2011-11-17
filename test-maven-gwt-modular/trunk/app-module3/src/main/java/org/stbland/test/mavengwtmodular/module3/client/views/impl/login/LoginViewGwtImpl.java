@@ -82,8 +82,7 @@ public class LoginViewGwtImpl extends AbstractViewGwtImpl implements LoginView {
 
 			@Override
 			public void onTap(TapEvent event) {
-				onTap(event);
-
+				loginButton_onTap(event);
 			}
 		});
 
@@ -113,7 +112,7 @@ public class LoginViewGwtImpl extends AbstractViewGwtImpl implements LoginView {
 	}
 
 	// @UiHandler("loginButton")
-	public void onTap(TapEvent event) {
+	public void loginButton_onTap(TapEvent event) {
 		// Window.alert("LoginButton clicked");
 		if (presenter != null) {
 			presenter.onLoginButtonClicked();

@@ -57,11 +57,8 @@
 		<gwt.version>2.4.0</gwt.version>
 		<!-- MGWT -->
 		<mgwt.version>1.0.0</mgwt.version>
-		<!--
-		<mgwt.version>1.0.0-SNAPSHOT</mgwt.version>
-		-->
 		<!-- GWT-Phonegap -->
-		<gwtphonegap.version>1.0.0.0</gwtphonegap.version>
+		<gwtphonegap.version>1.2.0.0</gwtphonegap.version>
 		<!-- jqm4gwt -->
 		<jqm4gwt.version>0.4.0</jqm4gwt.version>
 
