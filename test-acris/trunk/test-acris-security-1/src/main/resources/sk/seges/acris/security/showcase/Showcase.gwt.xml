@@ -1,0 +1,21 @@
+<module>
+    <inherits name="com.google.gwt.user.theme.chrome.Chrome"/>
+    
+    <inherits name="com.google.gwt.user.User"/>
+    <inherits name="com.google.gwt.i18n.I18N"/>
+    
+    <!-- acris-security module -->
+    <inherits name='sk.seges.acris.Security' />
+
+	<!-- Français par défaut -->
+	<extend-property name="locale" values="en, fr" />
+	<set-property-fallback name="locale" value="fr" />
+	
+    <!-- Chrome seulement -->
+    <set-property name="user.agent" value="safari"/>
+
+    <entry-point class="sk.seges.acris.security.showcase.client.Site"/>
+    
+    <source path="client" />
+    <source path="shared" />
+</module>

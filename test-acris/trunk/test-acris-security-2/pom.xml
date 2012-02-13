@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<!-- POM file generated with GWT webAppCreator -->
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.stbland.test.acris</groupId>
+	<artifactId>test-acris-security-2</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>test acris security 2</name>
+
+	<parent>
+		<groupId>org.stbland.test.acris</groupId>
+		<artifactId>test-acris-parent</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+<!--
+		<relativePath>../test-acris-parent/pom.xml</relativePath>
+-->
+	</parent>
+
+
+	<build>
+
+	</build>
+
+</project>

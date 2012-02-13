@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+  <!-- Inherit our applications main module.                      -->
+  <inherits name='org.stbland.test.acris.HelloRpcModule' />
+
+  <!-- Specify the path to any remote services.                   -->
+  <servlet path="/hellorpc/greet" class="org.stbland.test.acris.server.GreetingServiceImpl" />
+
+</module>

@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<!-- POM file generated with GWT webAppCreator -->
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.stbland.test.acris</groupId>
+	<artifactId>test-acris-security-1</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>GWT Maven Archetype</name>
+
+	<parent>
+		<groupId>org.stbland.test.acris</groupId>
+		<artifactId>test-acris-parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../test-acris-parent/pom.xml</relativePath>
+	</parent>
+
+	<properties>
+		<!-- Convenience property to set the GWT version -->
+		<gwtVersion>2.4.0</gwtVersion>
+		<acris-os.version>1.0.0</acris-os.version>
+		<!-- <acris-os.version>1.0.1-SNAPSHOT</acris-os.version> -->
+		<acris-os.version>1.2.0</acris-os.version>
+
+		<log4j.version>1.2.14</log4j.version>
+		<slf4j.version>1.5.8</slf4j.version>
+
+		<!-- Testing -->
+		<junit.version>4.8.2</junit.version>
+
+		<guice-servlet.version>2.0</guice-servlet.version>
+		<openid4java.version>0.9.6</openid4java.version>
+		<spring.version>3.0.5.RELEASE</spring.version>
+
+		<!-- GWT needs at least java 1.5 -->
+		<jdk.version>1.6</jdk.version>
+		<webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-servlet</artifactId>
+			<version>${gwtVersion}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-user</artifactId>
+			<version>${gwtVersion}</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.0.0.GA</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.0.0.GA</version>
+			<classifier>sources</classifier>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+
+		<!-- Acris -->
+		<!-- <dependency> <groupId>sk.seges.acris</groupId> <artifactId>acris-security</artifactId> 
+			<version>${acris-os.version}</version> <exclusions> <exclusion> <groupId>quartz</groupId> 
+			<artifactId>quartz</artifactId> </exclusion> <exclusion> <groupId>sun-jaxws</groupId> 
+			<artifactId>jaxws-api</artifactId> </exclusion> <exclusion> <groupId>sun-jaxws</groupId> 
+			<artifactId>jsr181-api</artifactId> </exclusion> </exclusions> </dependency> 
+			<dependency> <groupId>sk.seges.acris</groupId> <artifactId>acris-security</artifactId> 
+			<version>${acris-os.version}</version> <classifier>sources</classifier> <exclusions> 
+			<exclusion> <groupId>quartz</groupId> <artifactId>quartz</artifactId> </exclusion> 
+			<exclusion> <groupId>sun-jaxws</groupId> <artifactId>jaxws-api</artifactId> 
+			</exclusion> <exclusion> <groupId>sun-jaxws</groupId> <artifactId>jsr181-api</artifactId> 
+			</exclusion> </exclusions> </dependency> -->
+
+		<!-- Acris dependencies -->
+		<dependency>
+			<groupId>sk.seges.acris</groupId>
+			<artifactId>acris-common</artifactId>
+			<version>${acris-os.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>sk.seges.acris</groupId>
+			<artifactId>acris-common</artifactId>
+			<version>${acris-os.version}</version>
+			<classifier>sources</classifier>
+		</dependency>
+
+		<!-- acris-security -->
+		<!-- <dependency> <groupId>sk.seges.acris</groupId> <artifactId>acris-security</artifactId> 
+			<version>${acris-os.version}</version> </dependency> <dependency> <groupId>sk.seges.acris</groupId> 
+			<artifactId>acris-security</artifactId> <version>${acris-os.version}</version> 
+			<classifier>sources</classifier> </dependency> -->
+
+		<!-- acris-security-core -->
+		<dependency>
+			<groupId>sk.seges.acris</groupId>
+			<artifactId>acris-security-core</artifactId>
+			<version>${acris-os.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>sk.seges.acris</groupId>
+			<artifactId>acris-security-core</artifactId>
+			<version>${acris-os.version}</version>
+			<classifier>sources</classifier>
+		</dependency>
+
+
+		<!-- acris-security-spring -->
+		<dependency>
+			<groupId>sk.seges.acris</groupId>
+			<artifactId>acris-security-spring</artifactId>
+			<version>${acris-os.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>sk.seges.acris</groupId>
+			<artifactId>acris-security-spring</artifactId>
+			<version>${acris-os.version}</version>
+			<classifier>sources</classifier>
+		</dependency>
+
+		<!-- acris-security-openid -->
+
+		<dependency>
+			<groupId>sk.seges.acris</groupId>
+			<artifactId>acris-security-openid</artifactId>
+			<version>${acris-os.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>sk.seges.acris</groupId>
+			<artifactId>acris-security-openid</artifactId>
+			<version>${acris-os.version}</version>
+			<classifier>sources</classifier>
+		</dependency>
+
+
+		<!-- acris-security-ui -->
+
+		<dependency>
+			<groupId>sk.seges.acris</groupId>
+			<artifactId>acris-security-ui</artifactId>
+			<version>${acris-os.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>sk.seges.acris</groupId>
+			<artifactId>acris-security-ui</artifactId>
+			<version>${acris-os.version}</version>
+			<classifier>sources</classifier>
+		</dependency>
+
+
+		<!-- Other dependencies -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.inject</groupId>
+			<artifactId>guice</artifactId>
+			<version>${guice-servlet.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.code.guice</groupId>
+			<artifactId>guice-servlet</artifactId>
+			<version>${guice-servlet.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+
+		<!-- Spring dependencies -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<!-- OpenID4Java consumer -->
+		<dependency>
+			<groupId>org.openid4java</groupId>
+			<artifactId>openid4java-nodeps</artifactId>
+			<version>${openid4java.version}</version>
+		</dependency>
+
+	</dependencies>
+
+
+
+	<build>
+		<!-- Generate compiled stuff in the folder used for developing mode -->
+		<outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
+
+		<plugins>
+
+			<!-- GWT Maven Plugin -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>gwt-maven-plugin</artifactId>
+				<version>2.4.0</version>
+				<executions>
+
+					<execution>
+						<goals>
+							<goal>compile</goal>
+							<goal>test</goal>
+							<goal>i18n</goal>
+							<goal>generateAsync</goal>
+						</goals>
+					</execution>
+				</executions>
+				<!-- Plugin configuration. There are many available options, see gwt-maven-plugin 
+					documentation at codehaus.org -->
+				<configuration>
+					<runTarget>hellorpc.html</runTarget>
+					<!-- <runTarget>sk.seges.acris.openid.OpenIDShowcase/OpenIDShowcase.html</runTarget> -->
+					<hostedWebapp>${webappDirectory}</hostedWebapp>
+					<i18nMessagesBundle>org.stbland.test.acris.client.Messages</i18nMessagesBundle>
+					<modules>
+						<module>org.stbland.test.acris.HelloRpcModule</module>
+						<module>sk.seges.acris.openid.OpenIDShowcase</module>
+						<module>sk.seges.acris.security.showcase.Showcase</module>
+					</modules>
+
+				</configuration>
+			</plugin>
+
+			<!-- Copy static web files before executing gwt:run -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.1.1</version>
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<goals>
+							<goal>exploded</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<webappDirectory>${webappDirectory}</webappDirectory>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

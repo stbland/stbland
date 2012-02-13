@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+
+	<!-- DEBUT Acris security showcase -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:sk/seges/acris/security/showcase/gwt-url-mapping.xml</param-value>
+	</context-param>
+
+	<filter>
+		<filter-name>SessionFilter</filter-name>
+		<!-- <filter-class>sk.seges.acris.security.server.SessionRemoteServiceFilter</filter-class> -->
+		<filter-class>sk.seges.acris.security.server.core.SessionRemoteServiceFilter</filter-class>
+	</filter>
+
+
+	<!-- FIN Acris security showcase -->
+
+	<!-- DEBUT Acris OpenID showcase -->
+	<filter>
+		<filter-name>guiceFilter</filter-name>
+		<filter-class>com.google.inject.servlet.GuiceFilter</filter-class>
+	</filter>
+	<!-- FIN Acris OpenID showcase -->
+
+	<!-- DEBUT Acris OpenID showcase -->
+	<filter-mapping>
+		<filter-name>guiceFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- FIN Acris OpenID showcase -->
+
+	<!-- DEBUT Acris security showcase -->
+
+	<filter-mapping>
+		<filter-name>SessionFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- FIN Acris security showcase -->
+
+	<!-- DEBUT Acris security showcase -->
+	<listener>
+		<!-- <listener-class>sk.seges.acris.security.server.SessionHandlerListener</listener-class> -->
+		<listener-class>sk.seges.acris.security.server.core.SessionHandlerListener</listener-class>
+	</listener>
+	<!-- FIN Acris security showcase -->
+
+	<!-- Spring listener -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+
+	<!-- DEBUT Acris OpenID showcase -->
+	<listener>
+		<listener-class>sk.seges.acris.openid.server.service.ServletContextListener</listener-class>
+	</listener>
+	<!-- FIN Acris OpenID showcase -->
+
+
+	<!-- DEBUT Acris security showcase -->
+	<!-- dispatcher servlet responsible for catching GWT-RPC requests -->
+	<servlet>
+		<servlet-name>service</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<!-- FIN Acris security showcase -->
+
+	<!-- Servlets -->
+	<servlet>
+		<servlet-name>greetServlet</servlet-name>
+		<servlet-class>org.stbland.test.acris.server.GreetingServiceImpl</servlet-class>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>greetServlet</servlet-name>
+		<url-pattern>/hellorpc/greet</url-pattern>
+	</servlet-mapping>
+
+
+
+
+	<!-- Default page to serve -->
+	<welcome-file-list>
+		<!-- <welcome-file>MainModule.html</welcome-file> -->
+		<!-- <welcome-file>sk.seges.acris.openid.OpenIDShowcase/OpenIDShowcase.html</welcome-file> -->
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+
+</web-app>
