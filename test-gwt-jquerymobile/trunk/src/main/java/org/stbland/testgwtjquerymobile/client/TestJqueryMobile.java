@@ -47,7 +47,7 @@ public class TestJqueryMobile implements EntryPoint {
 				historyMapper);
 		historyHandler.register(placeController, eventBus, defaultPlace);
 
-		RootPanel.get().add(appWidget);
+		RootPanel.get("pageContainer").add(appWidget);
 
 		historyHandler.handleCurrentHistory();
 	}

@@ -15,6 +15,7 @@
 	<entry-point class='org.stbland.testgwtjquerymobile.client.TestJqueryMobile' />
 
 	<public path="public">
+		<include name="*.html" />
 		<include name="**/*.png" />
 		<include name="**/*.min.css" />
 		<include name="**/*.min.js" />
