@@ -1,9 +1,10 @@
 package org.stbland.testgwtjquerymobile.client.widgets;
 
-public class Header extends AbstractContainer {
-	
-	public Header()
-	{
+import com.google.gwt.user.client.ui.HasText;
+
+public class Header extends AbstractContainer implements HasText {
+
+	public Header() {
 		super();
 		setDataRole("header");
 	}

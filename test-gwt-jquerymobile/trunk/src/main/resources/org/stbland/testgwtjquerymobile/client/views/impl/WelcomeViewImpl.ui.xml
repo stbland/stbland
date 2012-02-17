@@ -2,5 +2,8 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:jqm="urn:import:org.stbland.testgwtjquerymobile.client.widgets">
 	<jqm:Page>
+		<jqm:Header >
+			<!-- <g:Label>Accueil</g:Label> -->
+		</jqm:Header>
 	</jqm:Page>
 </ui:UiBinder>
