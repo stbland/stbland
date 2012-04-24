@@ -56,19 +56,28 @@ finder add --finderName findVisitsByDescriptionLike
 
 module focus --moduleName ~
 module create --moduleName ui --topLevelPackage com.example.petclinic.ui --packaging POM
+
+# UI/MVC module creation
 module create --moduleName mvc --topLevelPackage com.example.petclinic.ui.mvc
 
 web mvc setup
 web mvc all --package ~
 web mvc finder all
 
-web mvc language --code de
-web mvc language --code es
+# web mvc language --code de
+# web mvc language --code es
 
-selenium test --controller ~.OwnerController
-selenium test --controller ~.PetController
-selenium test --controller ~.VetController
-selenium test --controller ~.VisitController
+# selenium test --controller ~.OwnerController
+# selenium test --controller ~.PetController
+# selenium test --controller ~.VetController
+# selenium test --controller ~.VisitController
 
 module focus --moduleName ui/mvc
+logging setup --level INFO
+
+# UI/GWT module creation
+module focus --moduleName ui
+module create --moduleName gwt --topLevelPackage com.example.petclinic.ui.gwt
+web gwt setup
+# web gwt all --proxyPackage com.example.petclinic.ui.gwt.proxy --requestPackage com.example.petclinic.ui.gwt.request
 logging setup --level INFO
