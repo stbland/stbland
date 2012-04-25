@@ -1,0 +1,71 @@
+[mesindicateurssispringfuse] - 2012-04-25 20:43:40,797 -  - Servlet Context initialized...
+[mesindicateurssispringfuse] - 2012-04-25 20:44:29,780 -  - Registering converter fr.cora.mesindicateurssi.converter.DateConverters$LocalDateTimeToStringConverter
+[mesindicateurssispringfuse] - 2012-04-25 20:44:29,782 -  - Registering converter fr.cora.mesindicateurssi.converter.DateConverters$LocalDateToStringConverter
+[mesindicateurssispringfuse] - 2012-04-25 20:44:29,782 -  - Registering converter fr.cora.mesindicateurssi.converter.DateConverters$DateToStringConverter
+[mesindicateurssispringfuse] - 2012-04-25 20:44:29,782 -  - Registering annotation formatter FileSizeFormatterAnnotationFactory
+[mesindicateurssispringfuse] - 2012-04-25 20:44:29,795 -  - Registering annotation formatter EnumFormatterAnnotationFactory
+[mesindicateurssispringfuse] - 2012-04-25 20:44:29,795 -  - Registering formatter Legacy
+[mesindicateurssispringfuse] - 2012-04-25 20:44:29,796 -  - Registering formatter Book
+[mesindicateurssispringfuse] - 2012-04-25 20:44:29,796 -  - Registering formatter Account
+[mesindicateurssispringfuse] - 2012-04-25 20:44:29,796 -  - Registering formatter Document
+[mesindicateurssispringfuse] - 2012-04-25 20:44:29,796 -  - Registering formatter Address
+[mesindicateurssispringfuse] - 2012-04-25 20:44:29,796 -  - Registering formatter MoreTypesDemo
+[mesindicateurssispringfuse] - 2012-04-25 20:44:29,796 -  - Registering formatter Role
+[mesindicateurssispringfuse] - 2012-04-25 20:44:29,797 -  - Registering default enum formatter for Civility
+[mesindicateurssispringfuse] - 2012-04-25 20:44:29,798 -  - Registering default enum formatter for NullRestrictionKind
+[mesindicateurssispringfuse] - 2012-04-25 20:44:31,712 - anonymousUser - sessionId=xquthfuu3ws51ule39bgq0rgp maxInactiveInterval=1800 seconds
+[mesindicateurssispringfuse] - 2012-04-25 20:48:54,227 -  - Security verification for user 'user'
+[mesindicateurssispringfuse] - 2012-04-25 20:48:55,185 -  - sessionId=xquthfuu3ws51ule39bgq0rgp
+[mesindicateurssispringfuse] - 2012-04-25 20:48:55,185 -  - sessionId=vgbq52mn6isf1vrwxdh4n95dr maxInactiveInterval=1800 seconds
+[mesindicateurssispringfuse] - 2012-04-25 20:49:37,490 -  - sessionId=vgbq52mn6isf1vrwxdh4n95dr
+[mesindicateurssispringfuse] - 2012-04-25 20:49:37,511 - anonymousUser - sessionId=12euvsuc8jn101x52acsckuc2t maxInactiveInterval=1800 seconds
+[mesindicateurssispringfuse] - 2012-04-25 20:49:49,152 -  - Security verification for user 'admin'
+[mesindicateurssispringfuse] - 2012-04-25 20:49:49,163 -  - sessionId=12euvsuc8jn101x52acsckuc2t
+[mesindicateurssispringfuse] - 2012-04-25 20:49:49,163 -  - sessionId=10ueita3gz6yd1wt7iwiij4tzl maxInactiveInterval=1800 seconds
+[mesindicateurssispringfuse] - 2012-04-25 20:52:55,768 -  - sessionId=10ueita3gz6yd1wt7iwiij4tzl
+[mesindicateurssispringfuse] - 2012-04-25 20:52:55,790 - anonymousUser - sessionId=1ryerq7bw6rf01hy24alcaircj maxInactiveInterval=1800 seconds
+[mesindicateurssispringfuse] - 2012-04-25 20:53:07,708 -  - Security verification for user 'user'
+[mesindicateurssispringfuse] - 2012-04-25 20:53:07,723 -  - sessionId=1ryerq7bw6rf01hy24alcaircj
+[mesindicateurssispringfuse] - 2012-04-25 20:53:07,724 -  - sessionId=145jecfh1rasugpdz3e6aix2d maxInactiveInterval=1800 seconds
+[mesindicateurssispringfuse] - 2012-04-25 20:53:13,142 -  - sessionId=145jecfh1rasugpdz3e6aix2d
+[mesindicateurssispringfuse] - 2012-04-25 20:53:13,171 - anonymousUser - sessionId=16tg576m6666p1edm8aejobqpv maxInactiveInterval=1800 seconds
+[mesindicateurssispringfuse] - 2012-04-25 20:53:21,272 -  - Security verification for user 'admin'
+[mesindicateurssispringfuse] - 2012-04-25 20:53:21,286 -  - sessionId=16tg576m6666p1edm8aejobqpv
+[mesindicateurssispringfuse] - 2012-04-25 20:53:21,288 -  - sessionId=l0pt1cjl398b1ve769otbuoaq maxInactiveInterval=1800 seconds
+[mesindicateurssispringfuse] - 2012-04-25 20:54:21,328 - admin - trying to access invalid page number: 0
+[mesindicateurssispringfuse] - 2012-04-25 21:02:43,513 -  - sessionId=l0pt1cjl398b1ve769otbuoaq
+[mesindicateurssispringfuse] - 2012-04-25 21:02:43,521 -  - Servlet Context destroyed...
+[mesindicateurssispringfuse] - 2012-04-25 21:03:20,088 -  - Servlet Context initialized...
+[mesindicateurssispringfuse] - 2012-04-25 21:04:03,390 -  - Registering converter fr.cora.mesindicateurssi.converter.DateConverters$LocalDateTimeToStringConverter
+[mesindicateurssispringfuse] - 2012-04-25 21:04:03,390 -  - Registering converter fr.cora.mesindicateurssi.converter.DateConverters$LocalDateToStringConverter
+[mesindicateurssispringfuse] - 2012-04-25 21:04:03,390 -  - Registering converter fr.cora.mesindicateurssi.converter.DateConverters$DateToStringConverter
+[mesindicateurssispringfuse] - 2012-04-25 21:04:03,391 -  - Registering annotation formatter FileSizeFormatterAnnotationFactory
+[mesindicateurssispringfuse] - 2012-04-25 21:04:03,409 -  - Registering annotation formatter EnumFormatterAnnotationFactory
+[mesindicateurssispringfuse] - 2012-04-25 21:04:03,410 -  - Registering formatter Legacy
+[mesindicateurssispringfuse] - 2012-04-25 21:04:03,411 -  - Registering formatter Book
+[mesindicateurssispringfuse] - 2012-04-25 21:04:03,411 -  - Registering formatter Account
+[mesindicateurssispringfuse] - 2012-04-25 21:04:03,412 -  - Registering formatter Document
+[mesindicateurssispringfuse] - 2012-04-25 21:04:03,412 -  - Registering formatter Address
+[mesindicateurssispringfuse] - 2012-04-25 21:04:03,412 -  - Registering formatter MoreTypesDemo
+[mesindicateurssispringfuse] - 2012-04-25 21:04:03,413 -  - Registering formatter Role
+[mesindicateurssispringfuse] - 2012-04-25 21:04:03,414 -  - Registering default enum formatter for Civility
+[mesindicateurssispringfuse] - 2012-04-25 21:04:03,417 -  - Registering default enum formatter for NullRestrictionKind
+[mesindicateurssispringfuse] - 2012-04-25 21:04:07,358 - anonymousUser - sessionId=3D36A216E0552AC0333936E797146CD9 maxInactiveInterval=1800 seconds
+[mesindicateurssispringfuse] - 2012-04-25 21:12:10,265 -  - Servlet Context destroyed...
+[mesindicateurssispringfuse] - 2012-04-25 21:17:17,573 -  - Servlet Context initialized...
+[mesindicateurssispringfuse] - 2012-04-25 21:17:36,718 -  - Registering converter fr.cora.mesindicateurssi.converter.DateConverters$LocalDateTimeToStringConverter
+[mesindicateurssispringfuse] - 2012-04-25 21:17:36,719 -  - Registering converter fr.cora.mesindicateurssi.converter.DateConverters$LocalDateToStringConverter
+[mesindicateurssispringfuse] - 2012-04-25 21:17:36,719 -  - Registering converter fr.cora.mesindicateurssi.converter.DateConverters$DateToStringConverter
+[mesindicateurssispringfuse] - 2012-04-25 21:17:36,719 -  - Registering annotation formatter FileSizeFormatterAnnotationFactory
+[mesindicateurssispringfuse] - 2012-04-25 21:17:36,732 -  - Registering annotation formatter EnumFormatterAnnotationFactory
+[mesindicateurssispringfuse] - 2012-04-25 21:17:36,733 -  - Registering formatter Legacy
+[mesindicateurssispringfuse] - 2012-04-25 21:17:36,733 -  - Registering formatter Book
+[mesindicateurssispringfuse] - 2012-04-25 21:17:36,733 -  - Registering formatter Account
+[mesindicateurssispringfuse] - 2012-04-25 21:17:36,733 -  - Registering formatter Document
+[mesindicateurssispringfuse] - 2012-04-25 21:17:36,733 -  - Registering formatter Address
+[mesindicateurssispringfuse] - 2012-04-25 21:17:36,733 -  - Registering formatter MoreTypesDemo
+[mesindicateurssispringfuse] - 2012-04-25 21:17:36,734 -  - Registering formatter Role
+[mesindicateurssispringfuse] - 2012-04-25 21:17:36,735 -  - Registering default enum formatter for Civility
+[mesindicateurssispringfuse] - 2012-04-25 21:17:36,737 -  - Registering default enum formatter for NullRestrictionKind
+[mesindicateurssispringfuse] - 2012-04-25 21:17:38,966 - anonymousUser - sessionId=6A2349563FD675497FF2B07F29CE0A33 maxInactiveInterval=1800 seconds
+[mesindicateurssispringfuse] - 2012-04-25 21:17:54,170 -  - Servlet Context destroyed...
