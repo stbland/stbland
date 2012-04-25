@@ -35,10 +35,13 @@
 				<li><a href="${pageContext.request.contextPath}/domain/account/search">account</a></li>
 				<li><a href="${pageContext.request.contextPath}/domain/address/search">address</a></li>
 				<li><a href="${pageContext.request.contextPath}/domain/book/search">book</a></li>
+				<li><a href="${pageContext.request.contextPath}/domain/category/search">category</a></li>
 				<li><a href="${pageContext.request.contextPath}/domain/document/search">document</a></li>
+				<li><a href="${pageContext.request.contextPath}/domain/indicator/search">indicator</a></li>
 				<li><a href="${pageContext.request.contextPath}/domain/legacy/search">legacy</a></li>
 				<li><a href="${pageContext.request.contextPath}/domain/moretypesdemo/search">moreTypesDemo</a></li>
 				<li><a href="${pageContext.request.contextPath}/domain/role/search">role</a></li>
+				<li><a href="${pageContext.request.contextPath}/domain/tag/search">tag</a></li>
 			</ul>
 		</security:authorize> 
 	</div>

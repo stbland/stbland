@@ -17,10 +17,13 @@
 				<class>fr.cora.mesindicateurssi.domain.Account</class>
 				<class>fr.cora.mesindicateurssi.domain.Address</class>
 				<class>fr.cora.mesindicateurssi.domain.Book</class>
+				<class>fr.cora.mesindicateurssi.domain.Category</class>
 				<class>fr.cora.mesindicateurssi.domain.Document</class>
+				<class>fr.cora.mesindicateurssi.domain.Indicator</class>
 				<class>fr.cora.mesindicateurssi.domain.Legacy</class>
 				<class>fr.cora.mesindicateurssi.domain.more.MoreTypesDemo</class>
 				<class>fr.cora.mesindicateurssi.domain.Role</class>
+				<class>fr.cora.mesindicateurssi.domain.Tag</class>
 				<exclude-unlisted-classes />
  		]]></description>
 		<mapping-file>META-INF/orm.xml</mapping-file>

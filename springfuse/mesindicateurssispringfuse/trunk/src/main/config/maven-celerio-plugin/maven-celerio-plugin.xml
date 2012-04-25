@@ -22,8 +22,45 @@
 
 		<conventions identifiableProperty="id" />
 	</configuration>
-
+	
+	
 	<entityConfigs>
+	
+		<!-- Table CATEGORIES -->
+		<entityConfig tableName="CATEGORIES" entityName="Category">
+			<columnConfigs>
+				<columnConfig columnName="NAME" min="2" fieldName="name" searchResult="true" />
+				</columnConfigs>
+				</entityConfig>	
+
+		<!-- Table TAGS -->
+		<entityConfig tableName="TAGS" entityName="Tag">
+			<columnConfigs>
+				<columnConfig columnName="NAME" min="2" fieldName="name" searchResult="true" />
+				</columnConfigs>
+				</entityConfig>		
+				
+		<!-- Table INDICATORS -->
+		<entityConfig tableName="INDICATORS" entityName="Indicator">
+			<columnConfigs>
+				<columnConfig columnName="NAME" min="2" fieldName="name" searchResult="true" />
+				<columnConfig columnName="DESCRIPTION" fieldName="description" searchResult="true" />
+				<columnConfig columnName="CATEGORY_ID" searchResult="false" >
+					<manyToOneConfig var="category" ajax="true" />
+				</columnConfig>
+				</columnConfigs>
+				</entityConfig>			
+				
+				<!-- INDICATORS_TAGS -->
+<entityConfig tableName="INDICATORS_TAGS" associationDirection="UNIDIRECTIONAL">
+			<columnConfigs>
+			<!-- 
+				<columnConfig columnName="INDICATOR_ID" inverse="true" />
+				<columnConfig columnName="TAG_ID" inverse="true" />
+				-->
+			</columnConfigs>
+		</entityConfig>												
+	
 		<!-- Account demonstrates misc column configurations -->
 		<entityConfig tableName="ACCOUNT">
 			<columnConfigs>

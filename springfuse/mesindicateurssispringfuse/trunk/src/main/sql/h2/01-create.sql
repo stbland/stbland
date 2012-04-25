@@ -4,6 +4,37 @@
 
 DROP ALL OBJECTS;
 
+CREATE TABLE TAGS (
+    ID                      int not null IDENTITY,
+    NAME                		varchar(56)    ,
+    primary key (ID)
+);
+
+CREATE TABLE CATEGORIES (
+    ID                      int not null IDENTITY,
+    NAME                		varchar(128)    ,
+    primary key (ID)
+);
+
+CREATE TABLE INDICATORS (
+    ID                      int not null IDENTITY,
+    NAME                	varchar(128)    ,
+    DESCRIPTION             varchar(255)    ,
+    CATEGORY_ID  			int not null,
+    
+    constraint INDICATORS_FK1 foreign key (CATEGORY_ID) references CATEGORIES,
+    primary key (ID)
+);
+
+CREATE TABLE INDICATORS_TAGS (
+    INDICATOR_ID  int not null,
+    TAG_ID     int not null,
+
+    constraint INDICATORS_TAGS_FK1 foreign key (INDICATOR_ID) references INDICATORS,
+    constraint INDICATORS_TAGS_FK2 foreign key (TAG_ID) references TAGS,
+    primary key (INDICATOR_ID, TAG_ID)
+);
+
 CREATE TABLE ADDRESS (
     id                          int not null IDENTITY,
     street_name                 varchar(255)    ,
@@ -96,6 +127,15 @@ CREATE TABLE LEGACY (
     extra_info varchar(255) not null,
     primary key (name, code, dept)
 );
+
+INSERT INTO TAGS (NAME) values('montant');
+INSERT INTO TAGS (NAME) values('quantité');
+INSERT INTO TAGS (NAME) values('architecture');
+INSERT INTO TAGS (NAME) values('logistique');
+
+INSERT INTO CATEGORIES (NAME) values('équipements');
+INSERT INTO CATEGORIES (NAME) values('finances');
+INSERT INTO CATEGORIES (NAME) values('mesures');
 
 INSERT INTO ADDRESS (street_name, city) values('Avenue des champs Elysées', 'Paris');
 INSERT INTO ADDRESS (street_name, city) values('Park avenue', 'New-York');
