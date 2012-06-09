@@ -18,6 +18,9 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		
+		<webappDirectory>target/${project.artifactId}</webappDirectory>
+		<classesOutputDirectory>${webappDirectory}/WEB-INF/classes</classesOutputDirectory>		
 	</properties>
 
 	<profiles>
@@ -120,6 +123,7 @@
 	<build>
 
 		<finalName>${project.artifactId}</finalName>
+		<outputDirectory>${classesOutputDirectory}</outputDirectory>
 
 		<plugins>
 			<!-- Source plugin -->
@@ -156,6 +160,7 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>gwt-maven-plugin</artifactId>
+				<!-- 
 				<executions>
 					<execution>
 						<goals>
@@ -165,9 +170,11 @@
 						</goals>
 					</execution>
 				</executions>
+				-->
 				<configuration>
-					<!-- Les modules GWT sont déclarés ci-dessus dans les profiels -->
-					<runTarget>module3.html</runTarget>
+					<!-- Les modules GWT sont déclarés ci-dessus dans les profiles -->
+					<runTarget>module3/module3.html</runTarget>
+					<hostedWebapp>${webappDirectory}</hostedWebapp>
 				</configuration>
 			</plugin>
 

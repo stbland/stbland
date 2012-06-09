@@ -1,1 +1,1 @@
-mvn -f ./app-parent/pom.xml -Pdev tomcat:run-war
+mvn -f ./app-war/pom.xml -Pdev tomcat6:run-war

@@ -20,8 +20,12 @@
 ]]></property-provider>
 
 <set-property name="gwt.logging.enabled" value="FALSE" />
+
+	<public path="public">
+		<include name="**/*.min.js" />
+	</public>
 		
-	<script	src="../js/phonegap-1.0.0-apple.js"></script>	
+	<script	src="js/phonegap-1.0.0-apple.min.js"></script>	
 
 	<source path="client" />
 

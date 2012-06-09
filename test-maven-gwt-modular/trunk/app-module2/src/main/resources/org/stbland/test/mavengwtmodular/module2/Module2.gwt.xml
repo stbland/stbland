@@ -11,4 +11,9 @@
 
 	<entry-point
 		class="org.stbland.test.mavengwtmodular.module2.client.Module2EntryPoint" />
+		
+	<public path="public">
+		<include name="*.html" />
+	</public>		
+	
 </module>

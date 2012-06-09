@@ -18,7 +18,70 @@
 	<properties>
 		<!-- Project properties -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<war.name>app</war.name>
 	</properties>
+
+	<profiles>
+		<!-- Production profile -->
+		<profile>
+			<id>prod</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+				<property>
+					<name>env</name>
+					<value>prod</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<!-- GWT plugin -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>gwt-maven-plugin</artifactId>
+						<configuration>
+							<modules>
+								<module>org.stbland.test.mavengwtmodular.module2.Module2</module>
+								<module>org.stbland.test.mavengwtmodular.module3.Module3</module>
+							</modules>
+						</configuration>
+					</plugin>
+				</plugins>
+
+			</build>
+		</profile>
+
+		<!-- Développement profile -->
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+				<property>
+					<name>env</name>
+					<value>dev</value>
+				</property>
+			</activation>
+
+			<build>
+				<plugins>
+					<!-- GWT plugin -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>gwt-maven-plugin</artifactId>
+						<configuration>
+							<modules>
+								<module>org.stbland.test.mavengwtmodular.module2.Module2Dev</module>
+								<module>org.stbland.test.mavengwtmodular.module3.Module3Dev</module>
+							</modules>
+						</configuration>
+					</plugin>
+				</plugins>
+
+			</build>
+
+		</profile>
+	</profiles>
+
 
 	<dependencies>
 
@@ -29,6 +92,13 @@
 			<version>${app-module1.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.stbland.test.mavengwtmodular</groupId>
+			<artifactId>app-module1</artifactId>
+			<version>${app-module1.version}</version>
+			<classifier>sources</classifier>
+		</dependency>
+
 		<!-- Module 2 -->
 		<dependency>
 			<groupId>org.stbland.test.mavengwtmodular</groupId>
@@ -36,14 +106,28 @@
 			<version>${app-module2.version}</version>
 		</dependency>
 
-		<!-- Module 3 -->
+		<dependency>
+			<groupId>org.stbland.test.mavengwtmodular</groupId>
+			<artifactId>app-module2</artifactId>
+			<version>${app-module2.version}</version>
+			<classifier>sources</classifier>
+		</dependency>
+
+		<!-- Module 3 (MGWT) -->
 		<dependency>
 			<groupId>org.stbland.test.mavengwtmodular</groupId>
 			<artifactId>app-module3</artifactId>
 			<version>${app-module3.version}</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.stbland.test.mavengwtmodular</groupId>
+			<artifactId>app-module3</artifactId>
+			<version>${app-module3.version}</version>
+			<classifier>sources</classifier>
+		</dependency>
 
-		<!-- Module 4 -->
+		<!-- Module 4 (JQueryMobile) -->
 		<!-- <dependency> <groupId>org.stbland.test.mavengwtmodular</groupId> <artifactId>app-module4</artifactId> 
 			<version>${app-module4.version}</version> </dependency> -->
 
@@ -71,6 +155,12 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
+				<!-- <configuration> <webappDirectory>${webappDirectory}</webappDirectory> 
+					<webResources> <resource> <directory>src/main/webapp</directory> </resource> 
+					</webResources> </configuration> <executions> <execution> <id>exploded-when-compile</id> 
+					<phase>compile</phase> <goals> <goal>exploded</goal> </goals> </execution> 
+					</executions> -->
+
 			</plugin>
 
 			<!-- GWT plugin -->
@@ -78,16 +168,18 @@
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>gwt-maven-plugin</artifactId>
 				<configuration>
-					<compileSourcesArtifacts>
-						<!-- <artifact>org.stbland.test.mavengwtmodular:app-module2</artifact> 
-							<artifact>org.stbland.test.mavengwtmodular:app-module3</artifact> -->
-					</compileSourcesArtifacts>
-					<compileTargets>
-						<!-- <value>org.stbland.test.mavengwtmodular.Module2</value> <value>org.stbland.test.mavengwtmodular.Module3</value> -->
-						<value>org.stbland.test.mavengwtmodular.Module4</value>
-					</compileTargets>
 					<runTarget>index.html</runTarget>
 				</configuration>
+
+				<executions>
+					<execution>
+						<id>compile-gwt-modules</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 
 
@@ -97,61 +189,26 @@
 				<artifactId>maven-eclipse-plugin</artifactId>
 			</plugin>
 
-			<!-- Build helper plugin -->
-			<!-- (intègre le contenu HTML et JavaScript généré par chaque module GWT) -->
+
+			<!-- Tomcat 6 plugin -->
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>add-resource</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>add-resource</goal>
-						</goals>
-						<configuration>
-							<!-- ../.. <-> sort du dossier classes puis de WEB-INF pour se retrouver 
-								app-war -->
-							<resources>
-								<!-- Module 1 -->
-								<resource>
-									<directory>../app-module1/src/main/webapp</directory>
-									<targetPath>../..</targetPath>
-								</resource>
-								<resource>
-									<directory>../app-module1/target/partial-war</directory>
-									<targetPath>../..</targetPath>
-								</resource>
-
-								<!-- Module 2 -->
-								<resource>
-									<directory>../app-module2/src/main/webapp</directory>
-									<targetPath>../..</targetPath>
-								</resource>
-								<resource>
-									<directory>../app-module2/target/partial-war</directory>
-									<targetPath>../..</targetPath>
-								</resource>
-
-								<!-- Module 3 -->
-								<resource>
-									<directory>../app-module3/src/main/webapp</directory>
-									<targetPath>../..</targetPath>
-								</resource>
-								<resource>
-									<directory>../app-module3/target/partial-war</directory>
-									<targetPath>../..</targetPath>
-								</resource>
-
-								<!-- Module 4 -->
-								<!-- <resource> <directory>../app-module4/src/main/webapp</directory> 
-									<targetPath>../..</targetPath> </resource> <resource> <directory>../app-module4/target/partial-war</directory> 
-									<targetPath>../..</targetPath> </resource> -->
-							</resources>
-						</configuration>
-					</execution>
-				</executions>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat6-maven-plugin</artifactId>
+				<configuration>
+					<path>/${war.name}</path>
+				</configuration>
 			</plugin>
+
+
+			<!-- Tomcat 7 plugin -->
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<configuration>
+					<path>/${war.name}</path>
+				</configuration>
+			</plugin>
+
 		</plugins>
 
 	</build>

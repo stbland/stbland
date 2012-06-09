@@ -13,8 +13,10 @@
 		<!-- ********************** -->
 
 		<war.name>app</war.name>
+	<!--
 		<webappDirectory>../app-war/target/${war.name}</webappDirectory>
 		<gwt.runTarget1>index.html</gwt.runTarget1>
+	-->
 
 		<!-- Dossier de compilation d'un module GWT (ne pas modifier) -->
 		<gwtModuleCompileDirectory>${project.build.directory}/${project.artifactId}</gwtModuleCompileDirectory>
@@ -56,9 +58,13 @@
 		<validation-api.version>1.0.0.GA</validation-api.version>
 		<gwt.version>2.4.0</gwt.version>
 		<!-- MGWT -->
-		<mgwt.version>1.0.0</mgwt.version>
+		<mgwt.version>1.0.2</mgwt.version>
+		<!-- <mgwt.version>1.0.0-SNAPSHOT</mgwt.version> -->
 		<!-- GWT-Phonegap -->
+	<gwtphonegap.version>1.7.0.0</gwtphonegap.version>
+<!--
 		<gwtphonegap.version>1.2.0.0</gwtphonegap.version>
+-->
 		<!-- jqm4gwt -->
 		<jqm4gwt.version>0.4.0</jqm4gwt.version>
 
@@ -86,6 +92,8 @@
 		<maven-source-plugin.version>2.1.2</maven-source-plugin.version>
 		<!-- Build helper plugin -->
 		<build-helper-maven-plugin.version>1.4</build-helper-maven-plugin.version>
+		<!-- Tomcat plugin -->
+		<tomcat-maven-plugin.version>2.0-beta-1</tomcat-maven-plugin.version>
 
 	</properties>
 
@@ -95,9 +103,13 @@
 	<modules>
 		<module>../app-module1</module>
 		<module>../app-module2</module>
-		<module>../app-module3</module>
-		<!-- <module>../app-module4</module> -->
-		<module>../app-war</module>
+		<module>../app-module3</module>						
+		<!--
+		<module>../app-module4</module> 
+		-->
+		
+		<module>../app-war</module>		
+		
 	</modules>
 
 
@@ -125,6 +137,13 @@
 				<artifactId>gwt-dev</artifactId>
 				<version>${gwt.version}</version>
 				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>2.3</version>
+				<scope>provided</scope>
 			</dependency>
 
 			<!-- JUnit dependency -->
@@ -172,27 +191,6 @@
 				<version>${gwtphonegap.version}</version>
 			</dependency>
 
-			<!-- *********** -->
-			<!-- * Modules * -->
-			<!-- *********** -->
-
-			<!-- Module 1 dependency -->
-			<!-- 
-			<dependency>
-				<groupId>org.stbland.test.mavengwtmodular</groupId>
-				<artifactId>app-module1</artifactId>
-				<version>${app-module1.version}</version>
-			</dependency>
-			-->
-
-			<!-- Module 2 -->
-			<!--
-			<dependency>
-				<groupId>org.stbland.test.mavengwtmodular</groupId>
-				<artifactId>app-module2</artifactId>
-				<version>${app-module2.version}</version>
-			</dependency>
--->
 		</dependencies>
 
 	</dependencyManagement>
@@ -200,7 +198,9 @@
 	<build>
 
 		<!-- Generate compiled stuff in the folder used for developing mode -->
+		<!--
 		<outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
+		-->
 
 		<resources>
 			<!-- Java resources -->
@@ -261,11 +261,15 @@
 						<mode>htmlunit</mode>
 						<gwtVersion>${gwt.version}</gwtVersion>
 						<!-- <skipTests>false</skipTests> -->
+						<inplace>false</inplace>
+<!--
 						<hostedWebapp>${webappDirectory}</hostedWebapp>
 						<webXml>../app-war/src/main/webapp/WEB-INF/web.xml</webXml>
-						<inplace>false</inplace>
 						<runTarget>${gwt.runTarget1}</runTarget>
+-->
 					</configuration>
+					
+					<!--  
 					<executions>
 						<execution>
 							<id>compile</id>
@@ -284,18 +288,24 @@
 							<phase>clean</phase>
 						</execution>
 					</executions>
-
+					-->
 				</plugin>
+				
 
-				<!-- Tomcat plugin (exécution de la webapp via le serveur Tomcat embarqué 
-					de Maven) -->
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>tomcat-maven-plugin</artifactId>
-					<configuration>
-						<path>/${war.name}</path>
-					</configuration>
-				</plugin>
+		<!-- Tomcat 6 plugin -->	
+		<plugin>
+          <groupId>org.apache.tomcat.maven</groupId>
+          <artifactId>tomcat6-maven-plugin</artifactId>
+          <version>${tomcat-maven-plugin.version}</version>
+        </plugin>
+
+
+		<!-- Tomcat 7 plugin -->
+        <plugin>
+          <groupId>org.apache.tomcat.maven</groupId>
+          <artifactId>tomcat7-maven-plugin</artifactId>
+          <version>2.0-beta-1</version>
+        </plugin>
 
 				<!-- JAR plugin -->
 				<plugin>
@@ -309,12 +319,11 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-war-plugin</artifactId>
 					<version>${maven-war-plugin.version}</version>
-
+<!--
 					<configuration>
 						<webappDirectory>${webappDirectory}</webappDirectory>
 						<webResources>
 							<resource>
-								<!-- WEB resources -->
 								<directory>src/main/webapp</directory>
 							</resource>
 						</webResources>
@@ -329,6 +338,7 @@
 							</goals>
 						</execution>
 					</executions>
+-->
 				</plugin>
 
 				<!-- Ant plugin -->
@@ -336,6 +346,7 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-antrun-plugin</artifactId>
 					<version>${maven-antrun-plugin.version}</version>
+					<!-- 
 					<executions>
 						<execution>
 							<id>include-GWT-module-when-package</id>
@@ -373,6 +384,7 @@
 
 						</execution>
 					</executions>
+					-->
 				</plugin>
 
 				<!-- Compiler plugin -->
@@ -440,11 +452,27 @@
 					</configuration>
 				</plugin>
 
-				<!-- Source plugin -->
+				<!-- Source plugin -->				
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-source-plugin</artifactId>
 					<version>${maven-source-plugin.version}</version>
+					
+ <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                
+                <configuration>
+                    <attach>true</attach>
+                </configuration>
+                				
+                				<!-- 	
 					<executions>
 						<execution>
 							<id>attach-sources</id>
@@ -454,7 +482,9 @@
 							</goals>
 						</execution>
 					</executions>
+					 -->
 				</plugin>
+				 
 
 				<!-- Build helper plugin -->
 				<plugin>

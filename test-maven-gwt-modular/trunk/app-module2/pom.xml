@@ -19,6 +19,9 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<webappDirectory>target/${project.artifactId}</webappDirectory>
+		<classesOutputDirectory>${webappDirectory}/WEB-INF/classes</classesOutputDirectory>
 	</properties>
 
 	<profiles>
@@ -78,6 +81,7 @@
 
 		</profile>
 	</profiles>
+	
 	<dependencies>
 
 		<!-- GWT dependencies -->
@@ -108,14 +112,24 @@
 			<groupId>org.stbland.test.mavengwtmodular</groupId>
 			<artifactId>app-module1</artifactId>
 			<version>${app-module1.version}</version>
-			<!-- <scope>compile</scope> -->
+			<scope>compile</scope>
 		</dependency>
+		
+		<!-- 
+		<dependency>
+			<groupId>org.stbland.test.mavengwtmodular</groupId>
+			<artifactId>app-module1</artifactId>
+			<version>${app-module1.version}</version>
+			<classifier>sources</classifier>
+		</dependency>
+		 -->		
 
 	</dependencies>
 
 	<build>
 
 		<finalName>${project.artifactId}</finalName>
+		<outputDirectory>${classesOutputDirectory}</outputDirectory>
 
 		<plugins>
 
@@ -123,12 +137,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
-			</plugin>
-
-			<!-- WAR plugin -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
 			</plugin>
 
 			<!-- JAR plugin -->
@@ -143,17 +151,12 @@
 				<artifactId>maven-eclipse-plugin</artifactId>
 			</plugin>
 
-			<!-- Ant plugin -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-antrun-plugin</artifactId>
-			</plugin>
-
 			<!-- GWT plugin -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>gwt-maven-plugin</artifactId>
 
+<!-- 
 				<executions>
 					<execution>
 						<goals>
@@ -163,13 +166,18 @@
 						</goals>
 					</execution>
 				</executions>
+ -->				
 
 				<configuration>
-					<!-- Les modules GWT sont déclarés ci-dessus dans les profiels -->
-					<runTarget>module2.html</runTarget>
+					<!-- Les modules GWT sont déclarés ci-dessus dans les profiles -->
+					<runTarget>module2/module2.html</runTarget>
+					<hostedWebapp>${webappDirectory}</hostedWebapp>
+<!--
+					<webappDirectory>${outputdirectory}</webappDirectory>
+-->
 				</configuration>
 			</plugin>
-
+			
 		</plugins>
 	</build>
 
