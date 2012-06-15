@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+
+	<display-name>Music GWT</display-name>
+	
+	<context-param>
+		<param-name>webAppRootKey</param-name>		
+		<param-value>musicgwt.root</param-value>
+    </context-param>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:META-INF/spring/applicationContext-persistence.xml</param-value>
+	</context-param>
+	
+    
+    <!-- Bootstrap the root application context as usual using ContextLoaderListener -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>	
+
+	<servlet>
+		<servlet-name>requestFactoryServlet</servlet-name>
+		<servlet-class>com.google.web.bindery.requestfactory.server.RequestFactoryServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>requestFactoryServlet</servlet-name>
+		<url-pattern>/gwtRequest</url-pattern>
+	</servlet-mapping>
+
+
+	<filter>
+		<filter-name>ExamplesRequestFilter</filter-name>
+		<filter-class>org.stbland.musicgwt.server.EntityManagerFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>ExamplesRequestFilter</filter-name>
+		<url-pattern>/gwtRequest</url-pattern>
+	</filter-mapping>
+
+	<listener>
+		<listener-class>org.stbland.musicgwt.server.DataLoader</listener-class>
+	</listener>
+
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+
+</web-app>

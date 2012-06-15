@@ -1,0 +1,279 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<!-- <groupId>org.stbland.musicgwt</groupId> -->
+	<artifactId>musicgwt-webapp</artifactId>
+	<!-- <version>0.0.1-SNAPSHOT</version> -->
+	<packaging>war</packaging>
+	<name>musicgwt-webapp</name>
+
+	<parent>
+		<groupId>org.stbland.musicgwt</groupId>
+		<artifactId>musicgwt-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<!-- <relativePath>../musicgwt-parent/pom.xml</relativePath> -->
+	</parent>
+
+	<properties>
+		<!-- Project properties -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<war.name>musicgwt</war.name>
+	</properties>
+
+	<profiles>
+		<!-- Production profile -->
+		<profile>
+			<id>prod</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+				<property>
+					<name>env</name>
+					<value>prod</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<!-- GWT plugin -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>gwt-maven-plugin</artifactId>
+						<configuration>
+							<modules>
+								<module>org.stbland.musicgwt.GxtUiModule</module>
+							</modules>
+						</configuration>
+					</plugin>
+				</plugins>
+
+			</build>
+		</profile>
+
+		<!-- Développement profile -->
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+				<property>
+					<name>env</name>
+					<value>dev</value>
+				</property>
+			</activation>
+
+			<build>
+				<plugins>
+					<!-- GWT plugin -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>gwt-maven-plugin</artifactId>
+						<configuration>
+							<modules>
+								<module>org.stbland.musicgwt.GxtUiModuleDev</module>
+							</modules>
+						</configuration>
+					</plugin>
+				</plugins>
+
+			</build>
+
+		</profile>
+	</profiles>
+
+
+	<dependencies>
+
+		<!-- RequestFactory server -->
+		<dependency>
+			<groupId>com.google.web.bindery</groupId>
+			<artifactId>requestfactory-apt</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.web.bindery</groupId>
+			<artifactId>requestfactory-server</artifactId>
+		</dependency>
+
+		<!-- Guice (Google Dependency Injection) -->
+		<dependency>
+			<groupId>com.google.inject</groupId>
+			<artifactId>guice</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.inject.extensions</groupId>
+			<artifactId>guice-servlet</artifactId>
+		</dependency>
+
+		<!-- Guava (Google Core libraries) -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+		</dependency>
+
+		<!-- Servlet API -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+		</dependency>
+
+		<!-- Validation dependencies (pour GWT) -->
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
+
+		<!-- Required by Hibernate validator because slf4j-log4j is optional in 
+			the hibernate-validator POM -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+
+		<!-- JUnit dependency -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+
+		<!-- *********** -->
+		<!-- * Modules * -->
+		<!-- *********** -->
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>musicgwt-shared</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>musicgwt-persistence</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+
+		<!-- Module GXT UI ( Sencha Ext GWT ) -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>musicgwt-ui-gxt</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+			<scope>runtime</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+
+		<finalName>${war.name}</finalName>
+
+		<resources>
+
+			<!-- WEB resources -->
+			<resource>
+				<directory>src/main/webapp</directory>
+				<excludes>
+					<exclude>**</exclude>
+				</excludes>
+			</resource>
+
+		</resources>
+
+		<plugins>
+
+			<!-- WAR plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<!-- <configuration> <webappDirectory>${webappDirectory}</webappDirectory> 
+					<webResources> <resource> <directory>src/main/webapp</directory> </resource> 
+					</webResources> </configuration> <executions> <execution> <id>exploded-when-compile</id> 
+					<phase>compile</phase> <goals> <goal>exploded</goal> </goals> </execution> 
+					</executions> -->
+
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>process-classes</phase>
+						<id>requestfactory-validation-tool</id>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<executable>java</executable>
+							<classpathScope>compile</classpathScope>
+							<arguments>
+								<argument>-Dverbose=true</argument>
+								<argument>-cp</argument>
+								<classpath />
+								<argument>com.google.web.bindery.requestfactory.apt.ValidationTool</argument>
+								<argument>${project.build.outputDirectory}</argument>
+								<argument>org.stbland.musicgwt.shared.MusicRequestFactory</argument>
+							</arguments>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+
+			<!-- Eclipse plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+			</plugin>
+
+
+			<!-- Tomcat 6 plugin -->
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat6-maven-plugin</artifactId>
+				<configuration>
+					<path>/${war.name}</path>
+				</configuration>
+			</plugin>
+
+
+			<!-- Tomcat 7 plugin -->
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<configuration>
+					<path>/${war.name}</path>
+				</configuration>
+			</plugin>
+
+			<!-- Google App Engine plugin -->
+			<plugin>
+				<groupId>net.kindleit</groupId>
+				<artifactId>maven-gae-plugin</artifactId>
+
+				<configuration>
+					<sdkDir>${gae.sdkDir}</sdkDir>
+					<serverId>${gae.serverId}</serverId>
+					<appId>${gae.appId}</appId>
+					<appVersion>${gae.appVersion}</appVersion>
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+	</build>
+
+</project>
