@@ -23,7 +23,7 @@
 	</properties>
 
 	<repositories>
-		<!-- repository of GMWT snapshots -->
+		<!-- repository of MGWT snapshots -->
 		<repository>
 			<id>sonatype snapshots</id>
 			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
