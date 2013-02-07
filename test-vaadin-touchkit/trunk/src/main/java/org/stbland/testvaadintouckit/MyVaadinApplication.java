@@ -15,10 +15,10 @@ public class MyVaadinApplication extends TouchKitApplication
     
     @Override
     public void onBrowserDetailsReady() {
-        Button button = new Button("Click Me");
+        Button button = new Button("Who I am");
         button.addListener(new Button.ClickListener() {
             public void buttonClick(ClickEvent event) {
-                event.getButton().getWindow().addComponent(new Label("Thank you for clicking"));
+                event.getButton().getWindow().addComponent(new Label("STB Land"));
             }
         });
         getMainWindow().addComponent(button);
