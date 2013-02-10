@@ -16,7 +16,14 @@
 		<gwt.plugin.version>2.5.0</gwt.plugin.version>
 
 		<!-- Vaadin -->
-		<vaadin.version>6.8.8</vaadin.version>
+		<vaadin6.version>6.8.8</vaadin6.version>
+		<!-- 
+		<vaadin7.version>7.1-SNAPSHOT</vaadin7.version>
+		-->
+
+		<!-- Vaadin addons -->
+		<vaadin-touchkit.version>2.1.5-SNAPSHOT</vaadin-touchkit.version>
+		<!-- <vaadin-touchkit.version>2.1.0</vaadin-touchkit.version> -->
 
 		<!-- Googe App Engine -->
 		<gae.version>1.7.4</gae.version>
@@ -60,25 +67,6 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.vaadin.addon</groupId>
-			<artifactId>vaadin-touchkit-agpl</artifactId>
-			<version>2.1.0</version>
-			<type>jar</type>
-			<exclusions>
-				<exclusion>
-					<groupId>com.vaadin</groupId>
-					<artifactId>vaadin</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<dependency>
-			<groupId>com.vaadin</groupId>
-			<artifactId>vaadin</artifactId>
-			<version>${vaadin.version}</version>
-		</dependency>
-
-		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>2.3</version>
@@ -92,6 +80,43 @@
 			<scope>provided</scope>
 		</dependency>
 
+
+		<!-- Vaadin 6 -->  
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin</artifactId>
+			<version>${vaadin6.version}</version>
+		</dependency>
+		
+
+		<!-- Vaadin 7 -->
+		<!-- 
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-client</artifactId>
+			<version>${vaadin7.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-server</artifactId>
+			<version>${vaadin7.version}</version>
+		</dependency>
+		-->		
+
+		<!-- Vaadin addons -->
+		<dependency>
+			<groupId>com.vaadin.addon</groupId>
+			<artifactId>vaadin-touchkit-agpl</artifactId>
+			<version>${vaadin-touchkit.version}</version>
+			<type>jar</type>
+			<exclusions>
+				<exclusion>
+					<groupId>com.vaadin</groupId>
+					<artifactId>vaadin</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 
 		<!-- Googe App Engine -->
 		<dependency>
@@ -170,18 +195,14 @@
 			<plugin>
 				<artifactId>maven-clean-plugin</artifactId>
 				<version>2.4.1</version>
-				 
+
 				<configuration>
 
 					<filesets>
 						<fileset>
 							<directory>${basedir}/src/main/webapp/VAADIN</directory>
-							<!-- 
-							<includes>
-								<directory>gwt-unitCache/**</directory>
-							</includes>
-							<followSymlinks>false</followSymlinks>
-							 -->
+							<!-- <includes> <directory>gwt-unitCache/**</directory> </includes> 
+								<followSymlinks>false</followSymlinks> -->
 						</fileset>
 					</filesets>
 
@@ -189,32 +210,33 @@
 
 				</configuration>
 
-<!--
+				<!-- <executions> <execution> <id>default</id> <phase>generate-resources</phase> 
+					<goals> <goal>clean</goal> </goals> </execution> <execution> <id>clean-after-package</id> 
+					<phase>package</phase> <goals> <goal>clean</goal> </goals> <configuration> 
+					<filesets> <fileset> <directory>${basedir}/src/main/webapp/VAADIN/</directory> 
+					</fileset> </filesets> </configuration> </execution> </executions> -->
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>1.7</version>
 				<executions>
 					<execution>
-						<id>default</id>
-						<phase>generate-resources</phase>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
 						<goals>
-							<goal>clean</goal>
-						</goals>
-					</execution>
-
-					<execution>
-						<id>clean-after-package</id>
-						<phase>package</phase>
-						<goals>
-							<goal>clean</goal>
+							<goal>add-source</goal>
 						</goals>
 						<configuration>
-							<filesets>
-								<fileset>
-									<directory>${basedir}/src/main/webapp/VAADIN/</directory>
-								</fileset>
-							</filesets>
+							<sources>
+								<!-- 
+								<source>src/main/legacyvaadin</source>
+								-->
+							</sources>
 						</configuration>
 					</execution>
 				</executions>
-				-->
 			</plugin>
 
 			<!-- Vaadin -->
@@ -264,14 +286,14 @@
 
 
 			<!-- Googe App Engine -->
-<plugin>
-    <groupId>com.google.appengine</groupId>
-    <artifactId>appengine-maven-plugin</artifactId>
-    <version>1.7.4</version>
-<configuration>
+			<plugin>
+				<groupId>com.google.appengine</groupId>
+				<artifactId>appengine-maven-plugin</artifactId>
+				<version>1.7.4</version>
+				<configuration>
 					<serverId>stbland-appengine</serverId>
 				</configuration>
-</plugin>
+			</plugin>
 
 			<plugin>
 				<groupId>net.kindleit</groupId>
@@ -301,15 +323,9 @@
 				</executions>
 			</plugin>
 
-<!--
-			<plugin>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.3</version>
-				<configuration>
-					<packagingExcludes>VAADIN/gwt-unitCache/**/*</packagingExcludes>
-				</configuration>
-			</plugin>					
--->
+			<!-- <plugin> <artifactId>maven-war-plugin</artifactId> <version>2.3</version> 
+				<configuration> <packagingExcludes>VAADIN/gwt-unitCache/**/*</packagingExcludes> 
+				</configuration> </plugin> -->
 
 		</plugins>
 
@@ -366,16 +382,8 @@
 			</plugins>
 		</pluginManagement>
 
-		<!--
-		<resources>
-			<resource>
-				<directory>src/main/webappVAADIN/gwt-unitCache</directory>
-				<excludes>
-					<exclude>**/*</exclude>
-				</excludes>
-			</resource>
-		</resources>
-	-->
+		<!-- <resources> <resource> <directory>src/main/webappVAADIN/gwt-unitCache</directory> 
+			<excludes> <exclude>**/*</exclude> </excludes> </resource> </resources> -->
 
 	</build>
 
