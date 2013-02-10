@@ -1,16 +1,15 @@
-package org.stbland.testvaadintouckit;
+package org.stbland.testvaadintouchkit;
 
 import com.vaadin.addon.touchkit.ui.TouchKitApplication;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.Window;
 
 /**
  * The Application's "main" class
  */
 @SuppressWarnings("serial")
-public class MyVaadinApplication extends TouchKitApplication
+public class TestVaadinTouchkitApplication extends TouchKitApplication
 {
     
     @Override
