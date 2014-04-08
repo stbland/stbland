@@ -1,2 +1,2 @@
 @echo off
-call svn commit
+call svn commit --username stbland@gmail.com
