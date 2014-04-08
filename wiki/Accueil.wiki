@@ -2,7 +2,7 @@
 
 =Introduction=
 
-Test de projets OpenSource
+Test de frameworks OpenSource.
 
 =Details=
 
