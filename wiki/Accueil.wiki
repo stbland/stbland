@@ -1,11 +1,10 @@
 #summary Tests de projets OpenSource.
 
-= Introduction =
+=Introduction=
 
 Test de projets OpenSource
 
-
-= Details =
+=Details=
 
   * Google Web Toolkit
   * Java
